@@ -11,6 +11,8 @@ SnapA::Application.routes.draw do
   resources :sessions, only: [ :new, :create, :destroy]
   resources :user_box_follows, only: [ :create, :destroy]
   resources :user_user_relationships, only: [ :create, :destroy]
+  resources :users
+  resources :sessions, only: [ :new, :create, :destroy]
 
   root to: 'static_pages#home'
 
