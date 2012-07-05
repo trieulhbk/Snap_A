@@ -11,7 +11,32 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120703144148) do
+ActiveRecord::Schema.define(:version => 20120704080000) do
+
+  create_table "boxes", :force => true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "user_box_follows", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "box_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "user_user_relationships", :force => true do |t|
+    t.integer  "following_id"
+    t.integer  "follower_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "user_user_relationships", ["follower_id", "following_id"], :name => "index_user_user_relationships_on_follower_id_and_following_id", :unique => true
+  add_index "user_user_relationships", ["follower_id"], :name => "index_user_user_relationships_on_follower_id"
+  add_index "user_user_relationships", ["following_id"], :name => "index_user_user_relationships_on_following_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"
@@ -20,6 +45,14 @@ ActiveRecord::Schema.define(:version => 20120703144148) do
     t.datetime "updated_at",      :null => false
     t.string   "password_digest"
     t.string   "remember_token"
+    t.string   "about"
+    t.string   "firstName"
+    t.string   "lastName"
+    t.string   "gender"
+    t.string   "language"
+    t.string   "location"
+    t.string   "userName"
+    t.string   "website"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -1,0 +1,6 @@
+<span id="unfollow_box_<%= box.id %>">
+<%= form_for(current_user.user_box_follows.find_by_box_id(box.id), 
+			html: { method: :delete }, remote: true) do |f| %>
+  <%= f.submit "Unfollow", class: "btn btn-large" %>
+<% end %>
+</span>

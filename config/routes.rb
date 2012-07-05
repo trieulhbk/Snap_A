@@ -1,7 +1,16 @@
 SnapA::Application.routes.draw do
 
+  get "boxes/create"
+
+  get "boxes/delete"
+
+  get "boxes/edit"
+
   resources :users
+  resources :boxes
   resources :sessions, only: [ :new, :create, :destroy]
+  resources :user_box_follows, only: [ :create, :destroy]
+  resources :user_user_relationships, only: [ :create, :destroy]
 
   root to: 'static_pages#home'
 
@@ -10,6 +19,7 @@ SnapA::Application.routes.draw do
   match '/about', to: 'static_pages#about'
   match '/signout', to: 'sessions#destroy', via: :delete
 
+  match '/:id', to: 'users#show'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

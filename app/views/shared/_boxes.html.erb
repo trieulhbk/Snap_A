@@ -1,0 +1,7 @@
+    <div>
+      <%= form_for(@new_box) do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name, placeholder: "Board Name" %>
+      <%= f.submit "Create board", class: "btn btn-large btn-primary" %>
+      <% end %>
+    </div>
