@@ -1,7 +1,7 @@
 class Box < ActiveRecord::Base
   attr_accessible :name, :user_id
   
-  validate :name, presense: true, length: {maximum: 20}
+  validates :name, presence: true, length: {maximum: 20}
 
   belongs_to :owner, class_name: "User"
 
