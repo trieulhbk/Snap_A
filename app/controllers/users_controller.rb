@@ -15,6 +15,14 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @boxes = @user.boxes
     @new_box = @user.boxes.build
+
+    if current_user=(@user)
+      authentication = @user.authentications.find_by_provider("facebook")
+      token = authentication.access_token
+      client = FBGraph::Client.new(:client_id => GRAPH_APP_ID, :secret_id => GRAPH_SECRET, :token => token)
+      me = FbGraph::User.me(token).fetch
+      binding.pry
+    end
     store_location
   end
 
@@ -36,10 +44,12 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
+    authentication = session[:authentication]
+    @user.authentications << authentication
     if @user.save
       sign_in @user
       flash[:success] = "Welcome to Sample App"
-      redirect_to user_path
+      redirect_to root_path
     else
       render 'new'
     end
