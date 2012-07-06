@@ -17,11 +17,6 @@ class UsersController < ApplicationController
     @new_box = @user.boxes.build
   end
 
-  # def show_by_name
-  #   @user = User.find_by_name(params[:name])
-  #   render 'show'
-  # end
-
   def new
     authentication = session[:authentication]
     if authentication
@@ -30,7 +25,6 @@ class UsersController < ApplicationController
       user = client.selection.me
       name = user.info!.name
       email = user.info!.email
-    # binding.pry
       @user = User.new(:name => name, :email => email)
     else
       @user = User.new
@@ -54,7 +48,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
+   def edit
     @user = User.find(params[:id])
   end
 
@@ -62,7 +56,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       flash[:success] = "Profile updated"
-      sign_in @user
+      sign_in current_user
       redirect_to @user
     else
       render 'edit'
@@ -87,6 +81,10 @@ class UsersController < ApplicationController
 
   def active?
     current_user.active
+  end
+
+  def admin?
+    current_user.admin
   end
 
   private

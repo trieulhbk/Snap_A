@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false}
-  
+
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
 
@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
 
   has_many :followers, through: :reverse_user_user_relationships, source: :follower
 
-  has_many :user_box_follows, foreign_key: "user_id", 
+  has_many :user_box_follows, foreign_key: "user_id",
   dependent: :destroy
 
   has_many :following_boxes, through: :user_box_follows, source: :box
@@ -52,31 +52,37 @@ class User < ActiveRecord::Base
   end
 
   def follow!(other_user)
-    user_user_relationships.create!(following_id: other_user.id)
-    other_user.boxes.each do | box |
-      follow_box!(box)
+    if !following?(other_user)
+      user_user_relationships.create!(following_id: other_user.id)
+      other_user.boxes.each do | box |
+        follow_box!(box)
+      end
     end
   end
 
   def unfollow!(other_user)
-    user_user_relationships.find_by_following_id(other_user.id).destroy
-    other_user.boxes.each do | box |
-      unfollow_box(box)
+    if following?(other_user)
+      user_user_relationships.find_by_following_id(other_user.id).destroy
+      other_user.boxes.each do | box |
+        unfollow_box(box)
+      end
     end
-
   end
 
 
-  def follow_box!(box)  
-    user_box_follows.create!(box_id: box.id)
+  def follow_box!(box)
+    if !following_box?(box)
+      user_box_follows.create!(box_id: box.id)
+    end
   end
 
-  def unfollow_box!(box) 
-    user_box_follows.find_by_box_id(box.id).destroy
+  def unfollow_box!(box)
+    if following_box?(box)
+      user_box_follows.find_by_box_id(box.id).destroy
+    end
   end
 
   def following_box?(box)
-
     user_box_follows.find_by_box_id(box.id) != nil
   end
 
@@ -90,7 +96,7 @@ class User < ActiveRecord::Base
     self.persistence_token = SecureRandom.urlsafe_base64
   end
 
-  def unfollow_box(box) 
+  def unfollow_box(box)
 
     rel = user_box_follows.find_by_box_id(box.id)
     if rel != nil

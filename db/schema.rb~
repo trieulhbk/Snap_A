@@ -35,12 +35,12 @@ ActiveRecord::Schema.define(:version => 20120706080800) do
   create_table "notifications", :force => true do |t|
     t.integer  "source_id"
     t.integer  "target_id"
-    t.string   "relation_type"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.string   "type"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
-  add_index "notifications", ["source_id", "target_id", "relation_type"], :name => "index_notifications_on_source_id_and_target_id_and_relation_type"
+  add_index "notifications", ["source_id", "target_id", "type"], :name => "index_notifications_on_source_id_and_target_id_and_type", :unique => true
 
   create_table "user_box_follows", :force => true do |t|
     t.integer  "user_id"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(:version => 20120706080800) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "password_digest"
+    t.string   "remember_token"
     t.string   "persistence_token"
     t.string   "single_access_token"
     t.string   "about"
@@ -82,6 +83,7 @@ ActiveRecord::Schema.define(:version => 20120706080800) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["persistence_token"], :name => "index_users_on_persistence_token"
+  add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
   add_index "users", ["single_access_token"], :name => "index_users_on_single_access_token"
 
 end

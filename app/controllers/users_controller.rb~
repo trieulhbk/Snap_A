@@ -17,11 +17,6 @@ class UsersController < ApplicationController
     @new_box = @user.boxes.build
   end
 
-  # def show_by_name
-  #   @user = User.find_by_name(params[:name])
-  #   render 'show'
-  # end
-
   def new
     authentication = session[:authentication]
     if authentication
@@ -30,7 +25,6 @@ class UsersController < ApplicationController
       user = client.selection.me
       name = user.info!.name
       email = user.info!.email
-    # binding.pry
       @user = User.new(:name => name, :email => email)
     else
       @user = User.new
@@ -88,6 +82,11 @@ class UsersController < ApplicationController
   def active?
     current_user.active
   end
+
+  def admin?
+    current_user.admin
+  end
+
   private
 
   def correct_user

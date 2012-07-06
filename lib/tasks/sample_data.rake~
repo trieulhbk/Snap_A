@@ -9,11 +9,11 @@ namespace :db do
 end
 
 def make_users
-  # admin = User.create!(name:     "Example User",
-  #  email:    "example@railstutorial.org",
-  #  password: "foobar",
-  #  password_confirmation: "foobar")
-  # admin.toggle!(:admin)
+   admin = User.create!(name:"Example User",
+    email:    "example@railstutorial.org",
+    password: "foobar",
+    password_confirmation: "foobar")
+   admin.toggle!(:admin)
   10.times do |n|
     name  = Faker::Name.name
     email = "example-#{n+1}@railstutorial.org"
@@ -44,7 +44,7 @@ end
 
 def make_user_box_rel
 
-  boxes = Box.all[1..7]
+  boxes = Box.all[1..4]
   following_box_user = User.find(3)
 
   boxes.each do | box |
