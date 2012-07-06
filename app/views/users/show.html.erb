@@ -1,28 +1,27 @@
-<h2> Show boxes </h2>
+<h2> Show boxes | <%=@user.name %> </h2>
 
-<h4> <%=@user.name %> </h4>
 <% if current_user?(@user) %>
-<h3> Boxes of signed user </h3>
-<% @boxes.each do | box | %>
-<div id="box_frame">
-	<h4> <%= box.name %> </h4>
-	<%= render 'edit_box_form' %>
-</div>
-<% end %>
-<%= render 'shared/box_form', box: @new_box %>
+  <h3> Boxes of signed user </h3>
+  <% @boxes.each do | box | %>
+    <div id="box_frame">
+      <%= box.name %>
+      <%= link_to "edit", edit_box_path(box), data: { confirm: "You sure?" } %>
+    </div>
+  <% end %>
+  <%= render 'new_box_form'%>
 
 <% else %>
-<h3> Boxes of the other user </h3>
+  <h3> Boxes of the other user </h3>
 
-<%= render 'follow_user_form' %>
+  <%= render 'follow_user_form' %>
 
-<% @boxes.each do | box | %>
-<div id="box_frame">
-	<h4> <%= box.name %> id = <%= box.id %></h4>
+  <% @boxes.each do | box | %>
+    <div id="box_frame">
+      <h4> <%= box.name %> id = <%= box.id %></h4>
 
-	<%= render 'follow_box_form', box: box if box.id != nil%>
+      <%= render 'follow_box_form', box: box if box.id != nil%>
 
-</div>
-<% end %>
+    </div>
+  <% end %>
 
 <% end %>

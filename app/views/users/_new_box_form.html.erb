@@ -1,6 +1,11 @@
-<%= form_for(current_user.boxes.build(), remote: true) do |f| %>
- 	
-      <%= f.label :name %>
-      <%= f.text_field :name, placeholder: "Board Name" %>
-      <%= f.submit "Create board", class: "btn btn-large btn-primary" %>
-<% end %>	
+<div>
+  <% @new_box = @user.boxes.build %>
+  <%= form_for(@new_box) do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name, placeholder: "Board Name" %>
+    <%= f.label :category_id %>
+    <%= f.select :category_id, Category.all.collect { |n| [n.name, n.id] } %>
+
+    <%= f.submit "Create board", class: "btn btn-large btn-primary" %>
+  <% end %>
+</div>

@@ -2,8 +2,8 @@ namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
     make_users
+    make_categories
     make_boxes
-
     make_relationships
   end
 end
@@ -25,11 +25,19 @@ def make_users
   end
 end
 
+def make_categories
+  20.times do |n|
+    name = Faker::Address.city
+    Category.create!(name: name)
+  end
+end
+
 def make_boxes
   users = User.all(limit: 5)
   5.times do
     name = Faker::Company.name
-    users.each { |user| user.boxes.create!(name: name)}
+    category = rand(20) + 1
+    users.each { |user| user.boxes.create!(name: name, category_id: category)}
   end
 end
 
@@ -51,3 +59,4 @@ def make_user_box_rel
     following_box_user.follow_box!(box)
   end
 end
+

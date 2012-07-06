@@ -12,6 +12,7 @@ SnapA::Application.routes.draw do
 
   resources :users
   resources :boxes
+  resources :categories
   resources :sessions, only: [ :new, :create, :destroy]
   resources :user_box_follows, only: [ :create, :destroy]
   resources :user_user_relationships, only: [ :create, :destroy]

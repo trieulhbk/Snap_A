@@ -14,7 +14,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @boxes = @user.boxes
-    @new_box = @user.boxes.build
   end
 
   def new
