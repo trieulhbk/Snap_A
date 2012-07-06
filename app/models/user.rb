@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   has_secure_password
 
   before_save { |user| user.email = email.downcase }
-  before_save :create_remember_token
+  before_save :create_persistence_token
 
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -44,6 +44,8 @@ class User < ActiveRecord::Base
 
   # has_many :owning_boxes, through: :user_own_box_rel, source: :id
   has_many :boxes, class_name: "Box"
+
+  has_many :authentications, dependent: :destroy
 
   def following?(other_user)
     user_user_relationships.find_by_following_id(other_user.id)
@@ -84,8 +86,8 @@ class User < ActiveRecord::Base
 
   private
 
-  def create_remember_token
-    self.remember_token = SecureRandom.urlsafe_base64
+  def create_persistence_token
+    self.persistence_token = SecureRandom.urlsafe_base64
   end
 
   def unfollow_box(box) 

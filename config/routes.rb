@@ -13,6 +13,7 @@ SnapA::Application.routes.draw do
   resources :user_user_relationships, only: [ :create, :destroy]
   resources :users
   resources :sessions, only: [ :new, :create, :destroy]
+  resources :authentications
 
   root to: 'static_pages#home'
 
@@ -22,6 +23,9 @@ SnapA::Application.routes.draw do
   match '/signout', to: 'sessions#destroy', via: :delete
 
   match '/:id', to: 'users#show'
+
+  match '/auth/:provider/callback' => 'authentications#create'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

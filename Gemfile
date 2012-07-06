@@ -1,14 +1,20 @@
 source 'https://rubygems.org'
 
-gem 'pry'
 gem 'rails', '3.2.6'
 gem 'bootstrap-sass', '2.0.0'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'faker', '1.0.1'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+gem "authlogic"
+gem "rails3-generators"
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'fbgraph'
+gem 'pry'
+gem 'fb_graph'
+
 
 group :development do
   gem 'sqlite3'

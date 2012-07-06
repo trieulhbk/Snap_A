@@ -24,7 +24,14 @@ class UsersController < ApplicationController
   # end
 
   def new
-    @user = User.new
+    authentication = session[:authentication]
+    token = authentication.access_token
+    client = FBGraph::Client.new(:client_id => GRAPH_APP_ID, :secret_id => GRAPH_SECRET, :token => token)
+    user = client.selection.me
+    name = user.info!.name
+    email = user.info!.email
+    # binding.pry
+    @user = User.new(:name => name, :email => email)
   end
 
   def create
@@ -32,7 +39,7 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       flash[:success] = "Welcome to Sample App"
-      redirect_to root_path
+      redirect_to user_path
     else
       render 'new'
     end
