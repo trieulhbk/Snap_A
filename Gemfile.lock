@@ -253,6 +253,7 @@ DEPENDENCIES
   guard-rspec
   jquery-rails
   libnotify (= 0.5.9)
+  mail
   omniauth
   omniauth-facebook
   omniauth-twitter
