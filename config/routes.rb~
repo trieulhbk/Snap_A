@@ -3,7 +3,6 @@ SnapA::Application.routes.draw do
   match '/search/name/' , to: 'searchs#search_name'
   match '/search/box/',to: 'searchs#search_box'
   match '/search', to: 'searchs#search_page'
-  match '/toggle', to: 'users#toggle_active'
   get "boxes/create"
 
   get "boxes/delete"

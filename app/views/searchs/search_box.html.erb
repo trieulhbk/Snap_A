@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="span6 offset3">
+    <a href =  "/search/name/?search=<%="#{params[:search]}" %>" >Name</a>
+    <span class = "selected"> Box </span>
+  </div>
+
+</div>
+<div class="row">
+  <ul class="nav nav-list">
+    <% @boxes.each do |box| %>
+      <li class="boxes">
+      <%= link_to box.name, '#'%>
+      </li>
+    <%end%>
+  </ul>
+</div>

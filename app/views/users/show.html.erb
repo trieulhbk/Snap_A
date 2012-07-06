@@ -1,5 +1,6 @@
 <h2> Show boxes </h2>
 
+<h4> <%=@user.name %> </h4>
 <% if current_user?(@user) %>
 <h3> Boxes of signed user </h3>
 <% @boxes.each do | box | %>
@@ -20,7 +21,7 @@
 	<h4> <%= box.name %> id = <%= box.id %></h4>
 
 	<%= render 'follow_box_form', box: box if box.id != nil%>
-	
+
 </div>
 <% end %>
 

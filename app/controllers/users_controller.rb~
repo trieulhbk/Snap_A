@@ -88,7 +88,6 @@ class UsersController < ApplicationController
   def active?
     current_user.active
   end
-
   private
 
   def correct_user

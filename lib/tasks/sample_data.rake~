@@ -44,7 +44,7 @@ end
 
 def make_user_box_rel
 
-  boxes = Box.all[1..4]
+  boxes = Box.all[1..7]
   following_box_user = User.find(3)
 
   boxes.each do | box |
