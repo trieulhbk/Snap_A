@@ -48,6 +48,20 @@ ActiveRecord::Schema.define(:version => 20120706143114) do
 
   add_index "notifications", ["source_id", "target_id", "relation_type"], :name => "index_notifications_on_source_id_and_target_id_and_relation_type"
 
+  create_table "photos", :force => true do |t|
+    t.string   "description"
+    t.string   "name"
+    t.string   "source"
+    t.integer  "box_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "image_remote_url"
+  end
+
   create_table "user_box_follows", :force => true do |t|
     t.integer  "user_id"
     t.integer  "box_id"

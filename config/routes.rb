@@ -10,9 +10,12 @@ SnapA::Application.routes.draw do
 
   get "boxes/edit"
 
+  get "boxes/index"
+
   resources :users
   resources :boxes
   resources :categories
+  resources :photos
   resources :sessions, only: [ :new, :create, :destroy]
   resources :user_box_follows, only: [ :create, :destroy]
   resources :user_user_relationships, only: [ :create, :destroy]
@@ -25,9 +28,12 @@ SnapA::Application.routes.draw do
   match '/about', to: 'static_pages#about'
   match '/signout', to: 'sessions#destroy', via: :delete
 
-  match '/:id', to: 'users#show'
-
   match '/auth/:provider/callback' => 'authentications#create'
+
+  match '/upload', to: 'photos#new'
+  match '/upload/facebook', to: 'photos#facebook'
+  match '/upload/url', to: 'photos#url'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

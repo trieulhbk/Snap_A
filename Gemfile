@@ -15,6 +15,7 @@ gem 'fbgraph'
 gem 'pry'
 gem 'fb_graph'
 gem 'mail'
+gem 'paperclip'
 
 
 group :development do

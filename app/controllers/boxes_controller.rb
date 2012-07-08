@@ -1,4 +1,10 @@
 class BoxesController < ApplicationController
+
+  def index
+    @user=current_user
+    @boxes=@user.boxes.all
+  end
+
   def create
 
     b = params[:box]
@@ -31,6 +37,9 @@ class BoxesController < ApplicationController
   end
 
   def show
+    @user=current_user
+    @box=@user.boxes.find(params[:id])
+    @photos=@box.photos.all
   end
 
   def delete
