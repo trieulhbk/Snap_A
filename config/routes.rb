@@ -5,7 +5,8 @@ SnapA::Application.routes.draw do
   match '/admin/photos', to: 'photos#index'
   match '/admin/news', to: 'notifications#index'
 
-  match 'upload/pc' , to: 'photo#pc'
+  match 'upload/pc' , to: 'photos#pc'
+
   match '/admin', to: 'users#admin_page'
   match '/search/name/' , to: 'searchs#search_name'
   match '/search/box/',to: 'searchs#search_box'
@@ -45,6 +46,7 @@ SnapA::Application.routes.draw do
   match '/upload', to: 'photos#new'
   match '/upload/facebook', to: 'photos#facebook'
   match '/upload/url', to: 'photos#url'
+  match '/upload/pc', to: 'photos#pc'
 
 
   # The priority is based upon order of creation:
