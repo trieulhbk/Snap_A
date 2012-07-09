@@ -1,3 +1,13 @@
+<h3> Name: <%= @box.name %> ; Id: <%= @box.id %> </h3>
+	<%if current_user?(@user) %>
+	<%= link_to "edit", edit_box_path(@box)%>
+	<%else%>
+	<%= render 'follow_box_form', box: @box if @box.id != nil%>
+	<%= UserBoxFollow.find_all_by_box_id(@box.id).count %> followers
+	<%end%>
+
+<hr/>
+<hr/> 
 <% @photos.each do |photo| %>
 	<% if photo.image_remote_url.nil? %>
 		<%= image_tag photo.image.url(:small)%>

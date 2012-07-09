@@ -1,24 +1,16 @@
 <h2> Show boxes | <%=@user.name %> </h2>
 
 <% if current_user?(@user) %>
-  <h3> Boxes of signed user </h3>
-  <div id="box_frame">
-    <h5><%= render @boxes %></h5>
-  </div>
-  <%= render 'new_box_form'%>
+<h3> Boxes of signed user </h3>
+<div id="box_frame">
+  <h5><%= render @boxes %></h5>
+</div>
+<%= render 'new_box_form'%>
 
 <% else %>
-    <h3> Boxes of the other user </h3>
+<h3> Boxes of the other user </h3>
 
-  <%= render 'follow_user_form' %>
-
-  <% @boxes.each do | box | %>
-    <div id="box_frame">
-    <h4> <%= box.name %> id = <%= box.id %></h4>
-
-    <%= render 'follow_box_form', box: box if box.id != nil%>
-
-  </div>
-<% end %>
+<%= render 'follow_user_form' %>
+<%= render @boxes %>
 
 <% end %>

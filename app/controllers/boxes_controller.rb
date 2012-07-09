@@ -27,7 +27,7 @@ class BoxesController < ApplicationController
   end
 
   def show
-    @user=current_user
+    @user=User.find(params[:user_id])
     @box=@user.boxes.find(params[:id])
     @photos=@box.photos.all
   end
@@ -42,7 +42,7 @@ class BoxesController < ApplicationController
 
    def delete
    end
-   
+
    def edit
     @box = Box.find(params[:id])
   end
