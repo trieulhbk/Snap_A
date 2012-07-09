@@ -1,0 +1,9 @@
+<h2> List boxes </h2>
+
+<h3> <%=@user.name %> </h3>
+<% if current_user?(@user) %>
+<h4> Boxes of signed user </h4><br>
+<div id="box_frame">
+	<h5><%= render @boxes %></h5>
+</div>
+<% end %>
