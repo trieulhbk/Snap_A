@@ -16,6 +16,8 @@ class Notifier < ActionMailer::Base
 
   def password_reset_instructions(recipient)
     @account = recipient
-    mail(:to => "congthanh991@gmail.com", :subject => "Password Reset Instructions")
+    @edit_password_reset_path = edit_password_reset_path(@account.perishable_token)
+    mail(:to => @account.email, :subject => "Password Reset Instructions", :body => @edit_password_reset_path)
+    binding.pry
   end
 end

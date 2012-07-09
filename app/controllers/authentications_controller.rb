@@ -1,14 +1,15 @@
 class AuthenticationsController < ApplicationController
   include SessionsHelper
+  before_filter :signed_in_user, only: [:destroy]
 
   def create
     omniauth = auth_hash
     token = omniauth['credentials']['token']
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
     if authentication
-      binding.pry
-      if !current_user?(authentication.user)
-        flash[:info] = 'Current Facebook account is linked to other account. Please sign out Facebook! .'
+      # binding.pry
+      if !current_user?(authentication.user) && !current_user.nil?
+        flash[:info] = "Current #{omniauth['provider']} account is linked to other account. Please sign out #{omniauth['provider']}! "
         redirect_to root_path
       else
         # User is already registered with application
@@ -21,7 +22,7 @@ class AuthenticationsController < ApplicationController
       # current_user.apply_omniauth(omniauth)
       current_user.save
       flash[:info] = 'Authentication successful.'
-      redirect_to root_path
+      redirect_to edit_user_path(current_user)
     else
       # User is new to this application
       # user = User.new
@@ -34,7 +35,8 @@ class AuthenticationsController < ApplicationController
   end
 
   def destroy
-    @authentication = current_user.authentications.find(params[:id])
+    # binding.pry
+    @authentication = current_user.authentications.find_by_provider(params[:provider])
     @authentication.destroy
     flash[:notice] = 'Successfully destroyed authentication.'
     redirect_to edit_user_path(current_user)

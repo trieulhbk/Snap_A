@@ -29,8 +29,6 @@ class UsersController < ApplicationController
     end
   end
 
-
-
   def create
     @user = User.new(params[:user])
     authentication = session[:authentication]
@@ -47,7 +45,7 @@ class UsersController < ApplicationController
     end
   end
 
-   def edit
+  def edit
     @user = User.find(params[:id])
     @current_user = current_user
    end
@@ -56,7 +54,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       sign_in @user
-      redirect_to root_path
+      redirect_to @user
     else
       render 'edit'
     end

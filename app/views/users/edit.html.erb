@@ -38,7 +38,18 @@
           <a class="btn active">ON</a>
         <a href= "/auth/facebook/destroy" class="btn">OFF</a>
       <%else%>
-          <a href= "/auth/facebook" TARGET = "_blank" class="btn">ON</a>
+          <a href= "/auth/facebook" class="btn">ON</a>
+        <a class="btn active">OFF</a>
+      <%end%>
+    </div>
+      <br>
+      <%= f.label :Twitter %>
+      <div class="btn-group" data-toggle="buttons-radio">
+        <%if twitter?(current_user)%>
+          <a class="btn active">ON</a>
+        <a href= "/auth/twitter/destroy" class="btn">OFF</a>
+      <%else%>
+          <a href= "/auth/twitter" class="btn">ON</a>
         <a class="btn active">OFF</a>
       <%end%>
     </div>
