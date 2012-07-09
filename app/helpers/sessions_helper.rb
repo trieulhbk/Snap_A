@@ -28,6 +28,14 @@ module SessionsHelper
     end
   end
 
+  def not_signed_in_user
+    if signed_in?
+      store_location
+      flash[:info] = "Please sign out to use this feature."
+      redirect_to root_path
+    end
+  end
+
   def sign_out
     self.current_user = nil
     cookies.delete(:persistence_token)

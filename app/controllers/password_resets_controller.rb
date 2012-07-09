@@ -1,4 +1,5 @@
 class PasswordResetsController < ApplicationController 
+  before_filter :not_signed_in_user
   before_filter :load_user_using_perishable_token, :only => [:edit, :update] 
 
   def new  
@@ -13,7 +14,7 @@ class PasswordResetsController < ApplicationController
       @user.deliver_password_reset_instructions  
       flash[:notice] = "Instructions to reset your password have been emailed to you. " +  
       "Please check your email."  
-      redirect_to root_url  
+      redirect_to root_path  
     else  
       flash[:notice] = "No user was found with that email address"  
       render :action => :new  
@@ -42,4 +43,5 @@ class PasswordResetsController < ApplicationController
       redirect_to root_path  
     end  
   end  
+
 end  

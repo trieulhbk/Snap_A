@@ -30,8 +30,6 @@ class UsersController < ApplicationController
     end
   end
 
-
-
   def create
     @user = User.new(params[:user])
     authentication = session[:authentication]
@@ -48,7 +46,7 @@ class UsersController < ApplicationController
     end
   end
 
-   def edit
+  def edit
     @user = User.find(params[:id])
   end
 
