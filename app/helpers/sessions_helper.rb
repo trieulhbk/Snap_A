@@ -41,4 +41,12 @@ module SessionsHelper
   def store_location
     session[:return_to] = request.fullpath
   end
+
+  def facebook?(user)
+    !user.authentications.find_by_provider("facebook").nil?
+  end
+
+  def twitter?(user)
+    !user.authentications.find_by_provider("twitter").nil?
+  end
 end
