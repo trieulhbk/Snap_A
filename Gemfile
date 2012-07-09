@@ -17,7 +17,6 @@ gem 'fb_graph'
 gem 'mail'
 gem 'paperclip'
 
-
 group :development do
   gem 'sqlite3'
   gem 'rspec-rails', '2.10.0'

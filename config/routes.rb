@@ -14,6 +14,7 @@ SnapA::Application.routes.draw do
 
   resources :users
   resources :boxes
+  resources :password_resets
   resources :categories
   resources :photos
   resources :sessions, only: [ :new, :create, :destroy]
@@ -27,6 +28,10 @@ SnapA::Application.routes.draw do
   match '/signin', to: 'sessions#new'
   match '/about', to: 'static_pages#about'
   match '/signout', to: 'sessions#destroy', via: :delete
+
+  match '/newpassword', to: 'password_resets#new'
+  # match '/editpassword', to: 'password_resets#edit'
+  match '/:id', to: 'users#show'
 
   match '/auth/:provider/callback' => 'authentications#create'
 

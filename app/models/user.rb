@@ -90,6 +90,12 @@ class User < ActiveRecord::Base
 
   end
 
+  def deliver_password_reset_instructions
+    reset_perishable_token!  
+    mail = Notifier.password_reset_instructions(self)
+    mail.deliver    
+  end  
+
   private
 
   def create_persistence_token
