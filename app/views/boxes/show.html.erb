@@ -2,8 +2,9 @@
 	<%if current_user?(@user) %>
 	<%= link_to "edit", edit_box_path(@box)%>
 	<%else%>
+	<h4>Author: <%= @user.name %> </h4>
 	<%= render 'follow_box_form', box: @box if @box.id != nil%>
-	<%= UserBoxFollow.find_all_by_box_id(@box.id).count %> followers
+	<a href="<%= @box.id %>/followers"><%= UserBoxFollow.find_all_by_box_id(@box.id).count %> followers</a>
 	<%end%>
 
 <hr/>

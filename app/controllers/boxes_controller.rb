@@ -32,6 +32,13 @@ class BoxesController < ApplicationController
     @photos=@box.photos.all
   end
 
+  def followers
+    @followers = Box.find(params[:id]).users
+    if @followers == nil
+      a
+    end
+  end
+
   def destroy
      # User.find(params[:id]).destroy
      box = Box.find(params[:box_id]).destroy

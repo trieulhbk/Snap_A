@@ -17,7 +17,12 @@ SnapA::Application.routes.draw do
       get :following, :followers
     end
   end
-  resources :boxes
+  resources :boxes do
+    member do 
+      get :followers
+    end
+  end
+
   resources :categories
   resources :photos
   resources :sessions, only: [ :new, :create, :destroy]
