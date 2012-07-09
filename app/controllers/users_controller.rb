@@ -56,7 +56,7 @@ class UsersController < ApplicationController
     if @user.update_attributes(params[:user])
       flash[:success] = "Profile updated"
       sign_in current_user
-      redirect_to @user
+      redirect_to current_user
     else
       render 'edit'
     end
@@ -73,17 +73,9 @@ class UsersController < ApplicationController
     current_user.update_attribute("active",false)
     else
     current_user.update_attribute("active",true)
-    sign_in current_user
     end
-    redirect_back_or root_path
-  end
-
-  def active?
-    current_user.active
-  end
-
-  def admin?
-    current_user.admin
+    sign_in current_user
+    redirect_to edit_user_path(current_user)
   end
 
   private
