@@ -1,5 +1,5 @@
-<% provide(:title, 'Upload via URL') %>
-<h1>Upload via URL</h1>
+<% provide(:title, 'Upload') %>
+<h1>Upload via PC</h1>
 <div class="row">
   <div class="span6 offset3">
     <%= form_for @photo, :html => { multipart: true } do |f| %>
@@ -13,10 +13,8 @@
         <%= f.label :description %>
         <%= f.text_area :description, rows: 3 %>
 
-        URL: <%= f.text_field :image_url %>
-
-        <br>
-        <%= f.submit "UPLOAD", class: "btn btn-large btn-primary" %>
+        <%= f.file_field :image %>
+        <%= f.submit "Upload", class: "btn btn-large btn-primary" %>        
       <% end %>
   </div>
 </div>

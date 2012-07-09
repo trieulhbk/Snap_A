@@ -5,7 +5,6 @@ class UsersController < ApplicationController
   before_filter :correct_user, only: [:edit,:update]
   before_filter :admin_user, only: :destroy
   before_filter :create_user, only: [:create,:new]
-
   def index
     @allusers = User.all
     @users = User.paginate(page: params[:page])
@@ -48,14 +47,14 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-  end
+    @current_user = current_user
+   end
 
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
-      flash[:success] = "Profile updated"
-      sign_in current_user
-      redirect_to current_user
+      sign_in @user
+      redirect_to @user
     else
       render 'edit'
     end
@@ -75,6 +74,10 @@ class UsersController < ApplicationController
     end
     sign_in current_user
     redirect_to edit_user_path(current_user)
+  end
+
+  def admin_page
+
   end
 
   private

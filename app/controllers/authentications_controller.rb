@@ -22,7 +22,7 @@ class AuthenticationsController < ApplicationController
       # current_user.apply_omniauth(omniauth)
       current_user.save
       flash[:info] = 'Authentication successful.'
-      redirect_to root_path
+      redirect_to edit_user_path(current_user)
     else
       # User is new to this application
       # user = User.new
@@ -35,7 +35,7 @@ class AuthenticationsController < ApplicationController
   end
 
   def destroy
-    binding.pry
+    # binding.pry
     @authentication = current_user.authentications.find_by_provider(params[:provider])
     @authentication.destroy
     flash[:notice] = 'Successfully destroyed authentication.'

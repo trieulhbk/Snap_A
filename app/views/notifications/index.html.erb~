@@ -1,5 +1,3 @@
-<% provide(:title, 'All users') %>
-
 <nav id="site-nav" class="span1">
 
   <h2>Administrator</h2>
@@ -7,25 +5,25 @@
   <ul class="demos-list">
     <ul class="nav nav-list">
       <li>
-      <a href="/admin/users">
+      <a href="/users">
         <i class="icon-user"></i>
         User List
       </a>
       </li>
       <li>
-      <a href="/admin/photos">
+      <a href="#">
         <i class="icon-picture"></i>
         Photo List
       </a>
       </li>
       <li>
-      <a href="/admin/reports">
+      <a href="#">
         <i class="icon-exclamation-sign"></i>
         Reports
       </a>
       </li>
       <li>
-      <a href="/admin/news">
+      <a href="#">
         <i class="icon-time"></i>
         News
       </a>
@@ -34,12 +32,12 @@
   </nav> <!-- #site-nav -->
   <section class="content">
 
-<h1>All users</h1>
+<h1>All News</h1>
     <%= will_paginate %>
 
 
-  <ul class="users">
-    <%= render @users %>
+  <ul class="news">
+    <%= render @notifications %>
   </ul>
 
   <%= will_paginate %>

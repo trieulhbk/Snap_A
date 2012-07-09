@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120709015919) do
+ActiveRecord::Schema.define(:version => 20120709084425) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -61,6 +61,16 @@ ActiveRecord::Schema.define(:version => 20120709015919) do
     t.datetime "image_updated_at"
     t.string   "image_remote_url"
   end
+
+  create_table "reports", :force => true do |t|
+    t.integer  "source_id"
+    t.integer  "target_id"
+    t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "reports", ["source_id", "target_id", "title"], :name => "index_reports_on_source_id_and_target_id_and_title"
 
   create_table "user_box_follows", :force => true do |t|
     t.integer  "user_id"

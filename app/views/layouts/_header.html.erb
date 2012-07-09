@@ -1,18 +1,29 @@
 <header class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-      <%= link_to "sample app", root_path, id: "logo" %>
       <nav>
+        <form class="navbar-search pull-left" action="/search" method="post">
+          <input type="text" class="search-query" name="search" placeholder="Search">
+        </form>
+        <ul class= "nav">
+            <%= link_to "SNAP", root_path, id: "logo" %>
+          </ul>
         <ul class="nav pull-right">
-          <form class="navbar-search pull-left" action="/search" method="post">
-            <input type="text" class="search-query" name="email" placeholder="Search">
-          </form>
           <li><%= link_to "Home", root_path %></li>
           <% if signed_in? %>
-            <li><%= link_to "Users", users_path %></li>
-            <li><%= link_to "Upload", upload_path%> </li>
-            <li><%= link_to "Boxes", boxes_path%> </li>
-           <li id="fat-menu" class="dropdown">
+
+            <li id="fat-menu" class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="icon-upload"></i> Upload <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "Upload via PC", upload_pc_path %></li>
+            <li><%= link_to "Upload via URL", upload_url_path %></li>
+            <li><%= link_to "Upload via Facebook", upload_facebook_path %></li>
+          </ul>
+          </li>
+
+          <li id="fat-menu" class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <%= current_user.name%> <b class="caret"></b>
           </a>
@@ -24,6 +35,10 @@
             <li><%= link_to "Pins", '#'%></li>
             <li><%= link_to "Likes",'#'%></li>
             <li class="divider"></li>
+            <% if current_user.admin? %>
+              <li><%= link_to "Admin" ,admin_path %></li>
+            <li class="divider"></li>
+          <%end%>
             <li><%= link_to "Settings", edit_user_path(current_user) %></li>
             <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
           </ul>

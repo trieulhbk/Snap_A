@@ -1,5 +1,13 @@
 SnapA::Application.routes.draw do
 
+  match '/admin/users', to: 'users#index'
+  match '/admin/reports', to: 'reports#index'
+  match '/admin/photos', to: 'photos#index'
+  match '/admin/news', to: 'notifications#index'
+
+  match 'upload/pc' , to: 'photos#pc'
+
+  match '/admin', to: 'users#admin_page'
   match '/search/name/' , to: 'searchs#search_name'
   match '/search/box/',to: 'searchs#search_box'
   match '/search', to: 'searchs#search_page'
@@ -24,6 +32,7 @@ SnapA::Application.routes.draw do
 
   root to: 'static_pages#home'
 
+
   match '/signup', to: 'users#new'
   match '/signin', to: 'sessions#new'
   match '/about', to: 'static_pages#about'
@@ -31,7 +40,6 @@ SnapA::Application.routes.draw do
 
   match '/resetpassword', to: 'password_resets#new'
   # match '/editpassword', to: 'password_resets#edit'
-  match '/:id', to: 'users#show'
 
   match '/auth/:provider/callback' => 'authentications#create'
   match '/auth/:provider/destroy' => 'authentications#destroy'
@@ -39,6 +47,7 @@ SnapA::Application.routes.draw do
   match '/upload', to: 'photos#new'
   match '/upload/facebook', to: 'photos#facebook'
   match '/upload/url', to: 'photos#url'
+  match '/upload/pc', to: 'photos#pc'
 
 
   # The priority is based upon order of creation:

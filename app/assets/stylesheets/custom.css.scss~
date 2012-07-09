@@ -79,7 +79,6 @@ p {
     color: white;
     text-decoration: none;
   }
-  margin-left: 200px;
 }
 
 /* footer */
