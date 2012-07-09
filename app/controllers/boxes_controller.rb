@@ -1,6 +1,6 @@
 class BoxesController < ApplicationController
   def create
-  	
+
     b = params[:box]
     if b == nil
       a
