@@ -36,6 +36,7 @@ class UsersController < ApplicationController
     authentication = session[:authentication]
     if authentication
       @user.authentications << authentication
+      session.delete :authentication
     end
     if @user.save
       sign_in @user
