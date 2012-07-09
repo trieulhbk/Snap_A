@@ -1,5 +1,3 @@
-<% provide(:title, 'All users') %>
-
 <nav id="site-nav" class="span1">
 
   <h2>Administrator</h2>
@@ -34,12 +32,11 @@
   </nav> <!-- #site-nav -->
   <section class="content">
 
-<h1>All users</h1>
+<h1>All Reports</h1>
     <%= will_paginate %>
 
-
-  <ul class="users">
-    <%= render @users %>
+  <ul class="reports">
+    <%= render @reports %>
   </ul>
 
   <%= will_paginate %>

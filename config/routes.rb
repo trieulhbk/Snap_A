@@ -1,5 +1,10 @@
 SnapA::Application.routes.draw do
 
+  match '/admin/users', to: 'users#index'
+  match '/admin/reports', to: 'reports#index'
+  match '/admin/photos', to: 'photos#index'
+  match '/admin/news', to: 'notifications#index'
+
   match 'upload/pc' , to: 'photo#pc'
   match '/admin', to: 'users#admin_page'
   match '/search/name/' , to: 'searchs#search_name'
@@ -25,6 +30,7 @@ SnapA::Application.routes.draw do
   resources :authentications
 
   root to: 'static_pages#home'
+
 
   match '/signup', to: 'users#new'
   match '/signin', to: 'sessions#new'

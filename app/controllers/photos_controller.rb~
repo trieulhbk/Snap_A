@@ -3,7 +3,7 @@ class PhotosController < ApplicationController
 	before_filter :authenticated_user, only: [:facebook]
 
   def index
-	@photos = Photo.order("created_at DESC").paginate(page: params[:page])
+	@photos = Photo.order("created_ad DESC").paginate(page: params[:page])
   end
 
 	def new
