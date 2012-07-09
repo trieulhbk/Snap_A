@@ -12,7 +12,11 @@ SnapA::Application.routes.draw do
 
   get "boxes/index"
 
-  resources :users
+  resources :users do
+      member do
+      get :following, :followers
+    end
+  end
   resources :boxes
   resources :categories
   resources :photos
@@ -33,7 +37,7 @@ SnapA::Application.routes.draw do
   match '/upload', to: 'photos#new'
   match '/upload/facebook', to: 'photos#facebook'
   match '/upload/url', to: 'photos#url'
-
+\
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

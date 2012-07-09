@@ -16,6 +16,16 @@ class UsersController < ApplicationController
     @boxes = @user.boxes
   end
 
+  def followers
+    @user = User.find(params[:id])
+    @followers = @user.followers
+  end
+
+  def following
+    @user = User.find(params[:id])
+    @following = @user.following_users
+  end
+
   def new
     authentication = session[:authentication]
     if authentication
@@ -47,7 +57,7 @@ class UsersController < ApplicationController
     end
   end
 
-   def edit
+  def edit
     @user = User.find(params[:id])
   end
 
@@ -70,10 +80,10 @@ class UsersController < ApplicationController
 
   def toggle_active
     if current_user.active
-    current_user.update_attribute("active",false)
+      current_user.update_attribute("active",false)
     else
-    current_user.update_attribute("active",true)
-    sign_in current_user
+      current_user.update_attribute("active",true)
+      sign_in current_user
     end
     redirect_back_or root_path
   end

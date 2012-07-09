@@ -11,6 +11,9 @@
 <h3> Boxes of the other user </h3>
 
 <%= render 'follow_user_form' %>
+<%= link_to "#{@user.followers.count} followers", followers_user_path(@user) %>
+<%= link_to "#{@user.following_users.count} following", following_user_path(@user) %>
+<hr/>
 <%= render @boxes %>
 
 <% end %>

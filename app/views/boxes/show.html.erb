@@ -12,6 +12,7 @@
 	<% if photo.image_remote_url.nil? %>
 		<%= image_tag photo.image.url(:small)%>
 	<% else %>
+		<%= render 'pictures/action_form_picture' %>
 		<%= image_tag photo.source, size: "150x150"%>
 	<% end %>
 <% end %>
