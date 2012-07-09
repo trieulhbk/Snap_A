@@ -1,5 +1,6 @@
 module SessionsHelper
 
+
   def sign_in(user)
     cookies.permanent[:persistence_token] = user.persistence_token
     self.current_user = user
@@ -28,6 +29,14 @@ module SessionsHelper
     end
   end
 
+  def not_signed_in_user
+    if signed_in?
+      store_location
+      flash[:info] = "Please sign out to use this feature."
+      redirect_to root_path
+    end
+  end
+
   def sign_out
     self.current_user = nil
     cookies.delete(:persistence_token)
@@ -40,5 +49,13 @@ module SessionsHelper
 
   def store_location
     session[:return_to] = request.fullpath
+  end
+
+  def facebook?(user)
+    !user.authentications.find_by_provider("facebook").nil?
+  end
+
+  def twitter?(user)
+    !user.authentications.find_by_provider("twitter").nil?
   end
 end

@@ -1,20 +1,28 @@
 class AuthenticationsController < ApplicationController
+  include SessionsHelper
+  before_filter :signed_in_user, only: [:destroy]
+
   def create
     omniauth = auth_hash
     token = omniauth['credentials']['token']
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
-
     if authentication
-      # User is already registered with application
-      flash[:info] = 'Signed in successfully.'
-      sign_in_and_redirect(authentication.user)
+      # binding.pry
+      if !current_user?(authentication.user) && !current_user.nil?
+        flash[:info] = "Current #{omniauth['provider']} account is linked to other account. Please sign out #{omniauth['provider']}! "
+        redirect_to root_path
+      else
+        # User is already registered with application
+        flash[:info] = 'Signed in successfully.'
+        sign_in_and_redirect(authentication.user)
+      end
     elsif current_user
       # User is signed in but has not already authenticated with this social network
       current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'], :access_token => token)
       # current_user.apply_omniauth(omniauth)
       current_user.save
       flash[:info] = 'Authentication successful.'
-      redirect_to root_path
+      redirect_to edit_user_path(current_user)
     else
       # User is new to this application
       # user = User.new
@@ -27,10 +35,11 @@ class AuthenticationsController < ApplicationController
   end
 
   def destroy
-    @authentication = current_user.authentications.find(params[:id])
+    # binding.pry
+    @authentication = current_user.authentications.find_by_provider(params[:provider])
     @authentication.destroy
     flash[:notice] = 'Successfully destroyed authentication.'
-    redirect_to authentications_url
+    redirect_to edit_user_path(current_user)
   end
 
   def auth_hash

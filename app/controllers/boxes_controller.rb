@@ -14,7 +14,7 @@ class BoxesController < ApplicationController
     if @box.save
       follower_follow_this_box(@box)
       # redirect_to root_path
-      redirect_back_or(root_path)
+      redirect_to upload_path
     else
       # @micropost = current_user.microposts.build(params[:micropost])
       # if @micropost.save
@@ -57,7 +57,7 @@ class BoxesController < ApplicationController
   def update
     @box = Box.find(params[:id])
     if @box.update_attributes(params[:user])
-      flash[:success] = "Profile updated"
+      flash[:success] = "Box info updated"
       redirect_back_or @box
     else
       render 'edit'

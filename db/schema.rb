@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120706143114) do
+ActiveRecord::Schema.define(:version => 20120709084425) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -62,6 +62,16 @@ ActiveRecord::Schema.define(:version => 20120706143114) do
     t.string   "image_remote_url"
   end
 
+  create_table "reports", :force => true do |t|
+    t.integer  "source_id"
+    t.integer  "target_id"
+    t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "reports", ["source_id", "target_id", "title"], :name => "index_reports_on_source_id_and_target_id_and_title"
+
   create_table "user_box_follows", :force => true do |t|
     t.integer  "user_id"
     t.integer  "box_id"
@@ -98,9 +108,11 @@ ActiveRecord::Schema.define(:version => 20120706143114) do
     t.string   "website"
     t.boolean  "active",              :default => true
     t.boolean  "admin",               :default => false
+    t.string   "perishable_token",    :default => "",    :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"
   add_index "users", ["persistence_token"], :name => "index_users_on_persistence_token"
   add_index "users", ["single_access_token"], :name => "index_users_on_single_access_token"
 

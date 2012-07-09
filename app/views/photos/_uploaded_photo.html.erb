@@ -1,0 +1,24 @@
+<% source =find_photo_source(uploaded_photo) %>
+<table class="table table-condensed">
+	<tr>
+		<td>
+			<a class="thumbnail span5" href="<%= source %>">
+				<%= image_tag source %>
+			</a>
+		</td>
+		<td>
+			<%= form_for @photo, :html => { multipart: true} do |f| %>
+    		<%= render 'shared/error_messages', object: f.object %>
+    		<%= f.label :box_id %><br />
+ 			<%= f.collection_select :box_id, current_user.boxes.all, :id, :name %>
+   			<%= f.label :name %>
+     		<%= f.text_field :name %>
+        	<%= f.label :description %>
+       		<%= f.text_area :description, rows: 2, cols: 10 %>
+        	<%= f.hidden_field :image_url, value: source.to_s %>
+
+        	<%= f.submit "Upload", class: "btn btn-large btn-primary" %>
+      		<% end %>
+		</td>
+	</tr>
+</table>

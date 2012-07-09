@@ -17,7 +17,7 @@ class Photo < ActiveRecord::Base
                     :url  => "/assets/photos/:id/:style/:basename.:extension",
                     :path => ":rails_root/public/assets/photos/:id/:style/:basename.:extension"
   
-  validates_attachment_presence :image, :unless => :image_url_provided?
+  validates_attachment_presence :image, :if => :upload_from_pc?
   validates_attachment_size :image, :less_than => 5.megabytes
   validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/png']
 
@@ -25,8 +25,12 @@ class Photo < ActiveRecord::Base
 
 private
 
+  def upload_from_pc?
+    self.image_remote_url.nil?
+  end
+
   def save_source_via_pc
-    self.source=self.image.path
+    self.source||=self.image.path
   end
 
   def image_url_provided?    

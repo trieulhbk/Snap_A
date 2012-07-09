@@ -1,9 +1,14 @@
 <% provide(:title, 'Upload') %>
-<h1>Upload</h1>
-<div class="row">
-  <div class="span6 offset3">
-  	<% @links.each do |link| %>
-  	<%= image_tag link, size: "150x150" %>
-   	 <% end %>
-   </div>
-</div>
+<h1>Upload via facebook</h1>
+<ul class="thumbnails">
+	<% @albums.each do |album| %>
+		<% uploaded_photos = album.collection %>
+		<% uploaded_photos.each do |uploaded_photo| %>
+			<%= render 'uploaded_photo', uploaded_photo: uploaded_photo %>
+		<% end%>
+	<% end %>
+	<% @tagged_photos.each do |tagged_photo| %>
+		<%= render 'tagged_photo', tagged_photo: tagged_photo %>
+	<% end %>	
+</ul>
+

@@ -10,7 +10,7 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :password, :password_confirmation
+  attr_accessible :email, :name, :password, :password_confirmation,:location,:gender
   has_secure_password
 
   before_save { |user| user.email = email.downcase }
@@ -88,6 +88,12 @@ class User < ActiveRecord::Base
 
   def like_photo!(photo)
 
+  end
+
+  def deliver_password_reset_instructions
+    reset_perishable_token!
+    mail = Notifier.password_reset_instructions(self)
+    mail.deliver
   end
 
   private

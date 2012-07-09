@@ -1,3 +1,4 @@
+
 <h3> Name: <%= @box.name %> ; Id: <%= @box.id %> </h3>
 	<%if current_user?(@user) %>
 	<%= link_to "edit", edit_box_path(@box)%>
@@ -9,11 +10,17 @@
 
 <hr/>
 <hr/> 
+
+<ul class="thumbnails">
 <% @photos.each do |photo| %>
-	<% if photo.image_remote_url.nil? %>
-		<%= image_tag photo.image.url(:small)%>
-	<% else %>
+  <li class="span3">   	
+    <div class="thumbnail">
 		<%= render 'pictures/action_form_picture' %>
-		<%= image_tag photo.source, size: "150x150"%>
+    	<%= render 'photo', photo: photo %>
+	</div>
+</li>
+
 	<% end %>
-<% end %>
+</ul>
+
+
