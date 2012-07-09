@@ -20,8 +20,18 @@ class UsersController < ApplicationController
       authentication = @user.authentications.find_by_provider("facebook")
       token = authentication.access_token
       client = FBGraph::Client.new(:client_id => GRAPH_APP_ID, :secret_id => GRAPH_SECRET, :token => token)
-      me = FbGraph::User.me(token).fetch
-      binding.pry
+      user = client.selection.me.info!
+      # me = FbGraph::User.me(token).fetch
+      # app_request = FbGraph::User.me(token).app_request!(
+      #   :message => 'Display Message',
+      #   :data => 'Any string (usually JSON data?)'
+      #   )
+      
+      # @graph = Koala::Facebook::API.new(token)
+      # binding.pry
+      # @graph.put_connections(user.id,"apprequests", :message => "abc", :data => "abc")
+
+      
     end
     store_location
   end

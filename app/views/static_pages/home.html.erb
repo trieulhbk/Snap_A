@@ -3,4 +3,31 @@
 
   <%= link_to "Log in with Facebook", "/auth/facebook", 
   class: "btn btn-large btn-primary" %>
+  <%= link_to "Log in with Twitter", "/auth/twitter", 
+  class: "btn btn-large btn-primary" %>
 </div>
+
+<%= link_to 'Send Request to your friends', '#', :id => :app_request %>
+
+<html xmlns:fb="http://www.facebook.com/2008/fbml">
+  <body>
+    <script src="http://connect.facebook.net/en_US/all.js"></script>
+    <div id="fb-root"></div>
+    <script>
+      // assume we are already logged in
+      FB.init({appId: <%= GRAPH_APP_ID %>, xfbml: true, cookie: true});
+
+      $('#app_request').click(function () {
+        FB.ui({
+          method: 'apprequests',
+          message: 'try out this app http://0.0.0.0:3000/',
+        });
+        return false;
+      });
+     </script>
+  </body>
+</html>
+
+
+
+
