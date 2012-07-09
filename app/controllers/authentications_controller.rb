@@ -1,13 +1,20 @@
 class AuthenticationsController < ApplicationController
+  include SessionsHelper
+
   def create
     omniauth = auth_hash
     token = omniauth['credentials']['token']
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
-
     if authentication
-      # User is already registered with application
-      flash[:info] = 'Signed in successfully.'
-      sign_in_and_redirect(authentication.user)
+      binding.pry
+      if !current_user?(authentication.user)
+        flash[:info] = 'Current Facebook account is linked to other account. Please sign out Facebook! .'
+        redirect_to root_path
+      else
+        # User is already registered with application
+        flash[:info] = 'Signed in successfully.'
+        sign_in_and_redirect(authentication.user)
+      end
     elsif current_user
       # User is signed in but has not already authenticated with this social network
       current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'], :access_token => token)
@@ -30,7 +37,7 @@ class AuthenticationsController < ApplicationController
     @authentication = current_user.authentications.find(params[:id])
     @authentication.destroy
     flash[:notice] = 'Successfully destroyed authentication.'
-    redirect_to authentications_url
+    redirect_to edit_user_path(current_user)
   end
 
   def auth_hash
