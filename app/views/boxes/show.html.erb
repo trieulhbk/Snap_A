@@ -1,7 +1,12 @@
+<h1><%=@box.name%></h1>
+<ul class="thumbnails">
 <% @photos.each do |photo| %>
-	<% if photo.image_remote_url.nil? %>
-		<%= image_tag photo.image.url(:small)%>
-	<% else %>
-		<%= image_tag photo.source, size: "150x150"%>
+  <li class="span3">   	
+    <div class="thumbnail">
+    	<%= render 'photo', photo: photo %>
+	</div>
+</li>
 	<% end %>
-<% end %>
+</ul>
+
+
