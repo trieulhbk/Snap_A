@@ -1,5 +1,7 @@
 SnapA::Application.routes.draw do
 
+  match 'upload/pc' , to: 'photo#pc'
+  match '/admin', to: 'users#admin_page'
   match '/search/name/' , to: 'searchs#search_name'
   match '/search/box/',to: 'searchs#search_box'
   match '/search', to: 'searchs#search_page'
@@ -31,7 +33,6 @@ SnapA::Application.routes.draw do
 
   match '/newpassword', to: 'password_resets#new'
   # match '/editpassword', to: 'password_resets#edit'
-  match '/:id', to: 'users#show'
 
   match '/auth/:provider/callback' => 'authentications#create'
 

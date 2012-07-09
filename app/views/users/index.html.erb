@@ -1,10 +1,46 @@
 <% provide(:title, 'All users') %>
+
+<nav id="site-nav" class="span1">
+
+  <h2>Administrator</h2>
+
+  <ul class="demos-list">
+    <ul class="nav nav-list">
+      <li>
+      <a href="/users">
+        <i class="icon-user"></i>
+        User List
+      </a>
+      </li>
+      <li>
+      <a href="#">
+        <i class="icon-picture"></i>
+        Photo List
+      </a>
+      </li>
+      <li>
+      <a href="#">
+        <i class="icon-exclamation-sign"></i>
+        Reports
+      </a>
+      </li>
+      <li>
+      <a href="#">
+        <i class="icon-time"></i>
+        News
+      </a>
+      </li>
+    </ul>
+  </nav> <!-- #site-nav -->
+  <section class="content">
+
 <h1>All users</h1>
+    <%= will_paginate %>
 
-<%= will_paginate %>
 
-<ul class="users">
-  <%= render @users %>
-</ul>
+  <ul class="users">
+    <%= render @users %>
+  </ul>
 
-<%= will_paginate %>
+  <%= will_paginate %>
+</section>
