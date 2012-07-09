@@ -1,11 +1,7 @@
+<span id="follow_box_<%= box.id %>">
+<%= form_for(current_user.user_box_follows.build(box_id: box.id), remote: true) do |f| %>
+ 	<div><%= f.hidden_field :box_id %></div>
 
-<div id="follow_form">
-	Follow_form
-	<%if current_user.following_box?(box) %>	
-	<div> unfollow box</div>
-	<%= render 'unfollow_box', box: box %>
-	<% else %>
-	<%= render 'follow_box', box: box %>
-	<div> follow box</div>
-	<% end %>
-</div>
+	<%= f.submit "Follow", class: "btn btn-large btn-primary" %>
+<% end %>	
+</span>

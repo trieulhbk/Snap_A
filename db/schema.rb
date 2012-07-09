@@ -12,7 +12,6 @@
 # It's strongly recommended to check this file into your version control system.
 
 ActiveRecord::Schema.define(:version => 20120709015919) do
-
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
     t.string   "provider"
@@ -29,7 +28,37 @@ ActiveRecord::Schema.define(:version => 20120709015919) do
     t.datetime "updated_at",  :null => false
     t.string   "title"
     t.string   "description"
-    t.string   "category"
+    t.integer  "category_id"
+  end
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "notifications", :force => true do |t|
+    t.integer  "source_id"
+    t.integer  "target_id"
+    t.string   "relation_type"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "notifications", ["source_id", "target_id", "relation_type"], :name => "index_notifications_on_source_id_and_target_id_and_relation_type"
+
+  create_table "photos", :force => true do |t|
+    t.string   "description"
+    t.string   "name"
+    t.string   "source"
+    t.integer  "box_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "image_remote_url"
   end
 
   create_table "user_box_follows", :force => true do |t|
@@ -53,10 +82,9 @@ ActiveRecord::Schema.define(:version => 20120709015919) do
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.string   "password_digest"
-    t.string   "remember_token"
     t.string   "persistence_token"
     t.string   "single_access_token"
     t.string   "about"
@@ -68,12 +96,13 @@ ActiveRecord::Schema.define(:version => 20120709015919) do
     t.string   "userName"
     t.string   "website"
     t.string   "perishable_token",    :default => "", :null => false
+    t.boolean  "active",              :default => true
+    t.boolean  "admin",               :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"
   add_index "users", ["persistence_token"], :name => "index_users_on_persistence_token"
-  add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
   add_index "users", ["single_access_token"], :name => "index_users_on_single_access_token"
 
 end

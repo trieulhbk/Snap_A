@@ -1,6 +1,12 @@
 class BoxesController < ApplicationController
+
+  def index
+    @user=current_user
+    @boxes=@user.boxes.all
+  end
+
   def create
-  	
+
     b = params[:box]
     if b == nil
       a
@@ -13,7 +19,7 @@ class BoxesController < ApplicationController
       b
     end
 
-    @box = current_user.boxes.build(name: name)
+    @box = current_user.boxes.build(name: name, category_id: params[:box][:category_id])
 
     if @box.save
       follower_follow_this_box(@box)
@@ -31,15 +37,31 @@ class BoxesController < ApplicationController
   end
 
   def show
+    @user=current_user
+    @box=@user.boxes.find(params[:id])
+    @photos=@box.photos.all
   end
 
   def delete
   end
 
+
   def edit
+    @box = Box.find(params[:id])
   end
 
-  private 
+  def update
+    @box = Box.find(params[:id])
+    if @box.update_attributes(params[:user])
+      flash[:success] = "Profile updated"
+      redirect_back_or @box
+    else
+      render 'edit'
+    end
+  end
+
+
+  private
   def follower_follow_this_box(box)
     followers = current_user.followers
     if followers != nil

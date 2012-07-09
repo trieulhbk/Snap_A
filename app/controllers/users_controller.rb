@@ -14,48 +14,30 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @boxes = @user.boxes
-    @new_box = @user.boxes.build
-
-    if current_user=(@user)
-      authentication = @user.authentications.find_by_provider("facebook")
-      token = authentication.access_token
-      client = FBGraph::Client.new(:client_id => GRAPH_APP_ID, :secret_id => GRAPH_SECRET, :token => token)
-      user = client.selection.me.info!
-      # me = FbGraph::User.me(token).fetch
-      # app_request = FbGraph::User.me(token).app_request!(
-      #   :message => 'Display Message',
-      #   :data => 'Any string (usually JSON data?)'
-      #   )
-      
-      # @graph = Koala::Facebook::API.new(token)
-      # binding.pry
-      # @graph.put_connections(user.id,"apprequests", :message => "abc", :data => "abc")
-
-      
-    end
-    store_location
   end
-
-  # def show_by_name
-  #   @user = User.find_by_name(params[:name])
-  #   render 'show'
-  # end
 
   def new
     authentication = session[:authentication]
-    token = authentication.access_token
-    client = FBGraph::Client.new(:client_id => GRAPH_APP_ID, :secret_id => GRAPH_SECRET, :token => token)
-    user = client.selection.me
-    name = user.info!.name
-    email = user.info!.email
-    # binding.pry
-    @user = User.new(:name => name, :email => email)
+    if authentication
+      token = authentication.access_token
+      client = FBGraph::Client.new(:client_id => GRAPH_APP_ID, :secret_id => GRAPH_SECRET, :token => token)
+      user = client.selection.me
+      name = user.info!.name
+      email = user.info!.email
+      @user = User.new(:name => name, :email => email)
+    else
+      @user = User.new
+    end
   end
+
+
 
   def create
     @user = User.new(params[:user])
     authentication = session[:authentication]
-    @user.authentications << authentication
+    if authentication
+      @user.authentications << authentication
+    end
     if @user.save
       sign_in @user
       flash[:success] = "Welcome to Sample App"
@@ -65,7 +47,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
+   def edit
     @user = User.find(params[:id])
   end
 
@@ -73,7 +55,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       flash[:success] = "Profile updated"
-      sign_in @user
+      sign_in current_user
       redirect_to @user
     else
       render 'edit'
@@ -84,6 +66,24 @@ class UsersController < ApplicationController
     User.find(params[:id]).destroy
     flash[:success] = "User destroyed"
     redirect_to users_path
+  end
+
+  def toggle_active
+    if current_user.active
+    current_user.update_attribute("active",false)
+    else
+    current_user.update_attribute("active",true)
+    sign_in current_user
+    end
+    redirect_back_or root_path
+  end
+
+  def active?
+    current_user.active
+  end
+
+  def admin?
+    current_user.admin
   end
 
   private

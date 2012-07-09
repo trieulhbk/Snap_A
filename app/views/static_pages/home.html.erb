@@ -1,3 +1,4 @@
+<%if !signed_in? %>
 <div class="center hero-unit">
   <h1>Welcome to Snap</h1>
 
@@ -7,9 +8,18 @@
   class: "btn btn-large btn-primary" %>
 </div>
 
-<%= link_to 'Send Request to your friends', '#', :id => :app_request %>
+<%else%>
+<div class="span6 offset3">
+  <%Notification.order("created_at DESC").each do |noti| %>
+  <li>
+    <% if noti.target_id == current_user.id && noti.relation_type == "user_user_relationships" %>
+    <%= User.find(noti.source_id).name%> followed you
+  </li>
+  <%end%>
+  <%end%>
+  <%= link_to 'Send Request to your friends', '#', :id => :app_request %>
 
-<html xmlns:fb="http://www.facebook.com/2008/fbml">
+  <html xmlns:fb="http://www.facebook.com/2008/fbml">
   <body>
     <script src="http://connect.facebook.net/en_US/all.js"></script>
     <div id="fb-root"></div>
@@ -24,10 +34,8 @@
         });
         return false;
       });
-     </script>
-  </body>
-</html>
-
-
-
-
+      </script>
+    </body>
+    </html>
+    <%end%>
+  </div>

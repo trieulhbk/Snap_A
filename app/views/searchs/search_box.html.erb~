@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="span6 offset3">
+    <a href =  "/search/?search=<%="#{params[:search]}" %>" >Pin</a>
+    <a href =  "/search/name/?search=<%="#{params[:search]}" %>" >Name</a>
+    <span class = "selected"> Category </span>
+  </div>
+
+</div>
+<div class="row">
+  <ul class="nav nav-list">
+    <% @categories.each do |category| %>
+      <li class="categories">
+      <%= link_to category.name, '#'%>
+      </li>
+    <%end%>
+  </ul>
+</div>

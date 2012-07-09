@@ -14,7 +14,8 @@ gem 'omniauth-facebook'
 gem 'fbgraph'
 gem 'pry'
 gem 'fb_graph'
-gem 'koala'
+gem 'mail'
+gem 'paperclip'
 
 group :development do
   gem 'sqlite3'

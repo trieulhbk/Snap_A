@@ -1,0 +1,7 @@
+1.User information
+  - thua du lieu Users
+
+2.Session
+  - xoa authen khi khong dang nhap qua facebook
+  
+

@@ -1,0 +1,9 @@
+<% provide(:title, 'Upload') %>
+<h1>Upload</h1>
+<div class="row">
+  <div class="span6 offset3">
+  	<% @links.each do |link| %>
+  	<%= image_tag link, size: "150x150" %>
+   	 <% end %>
+   </div>
+</div>
