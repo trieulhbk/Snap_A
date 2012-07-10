@@ -13,11 +13,14 @@ $grayMediumLight: #eaeaea;
 /* universal */
 
 html {
+  min-height: 800px;
   overflow-y: scroll;
+  background: #f7f5f5 url(../images/paper.jpg) repeat;
 }
 
 body {
-  padding-top: 60px;
+  background: #f7f5f5 url(../images/paper.jpg) repeat;
+  padding-top: 45px;
 }
 
 section {
@@ -106,9 +109,9 @@ footer {
     }
   }
 }
-  /* miscellaneous */
+/* miscellaneous */
 
-  .debug_dump {
+.debug_dump {
   clear: both;
   float: left;
   width: 100%;
@@ -198,7 +201,7 @@ input, textarea, select, .uneditable-input {
 .field_with_errors {
   @extend .control-group;
   @extend .error;
- }
+}
 
 .users {
   padding-right: 20px;
@@ -214,6 +217,7 @@ input, textarea, select, .uneditable-input {
   }
 }
 .content {
+  border-left: 1px solid #DFDFDF;
   display: block;
 }
 .timestamp {
@@ -231,7 +235,7 @@ aside {
 }
 
 .container {
-  width: 100% !important;
+  width: 1280px;
 }
 
 .container::after{
@@ -306,4 +310,13 @@ aside {
   -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
   -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
+}
+
+/* img */
+img {
+  padding-top: 30px;
+  max-width: 100%;
+  height: auto;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
 }

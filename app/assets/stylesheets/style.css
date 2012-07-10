@@ -240,7 +240,7 @@ button {
 
 #container {
   margin-left: 30px;
-  background: #FFF;
+  background: #f7f5f5 url(../images/paper.jpg) repeat;
   padding: 5px;
   margin-bottom: 20px;
   border-radius: 5px;
