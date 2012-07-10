@@ -6,6 +6,13 @@
   class: "btn btn-large btn-primary" %>
   <%= link_to "Log in with Twitter", "/auth/twitter", 
   class: "btn btn-large btn-primary" %>
+  <div id="send">
+    <%= form_tag(sendinvite_path) do %>
+    <%= label_tag :email %>
+    <%= text_field_tag :email %>
+    <%= submit_tag "Send", class: "btn btn-normal btn-primary" %>
+    <% end %>
+  </div>
 </div>
 
 <%else%>

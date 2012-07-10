@@ -45,7 +45,7 @@ SnapA::Application.routes.draw do
   match '/signin', to: 'sessions#new'
   match '/about', to: 'static_pages#about'
   match '/signout', to: 'sessions#destroy', via: :delete
-
+  match '/sendinvite', to: 'users#send_invite'
   match '/resetpassword', to: 'password_resets#new'
   # match '/editpassword', to: 'password_resets#edit'
 
