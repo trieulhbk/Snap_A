@@ -1,11 +1,15 @@
 <li>
 <span class="content">
+<%if report.title == "user_report_photo" %>
+  <span class="label label-warning">Photo</span>
   <%= link_to User.find(report.source_id).name , User.find(report.source_id) %>
   reported
-<%if report.title == "user_report_photo" %>
   this <%= link_to "photo" , Photo.find(report.target_id) %>
 <%end%>
 <%if report.title == "user_report_user" %>
+  <span class="label label-inverse">User</span>
+  <%= link_to User.find(report.source_id).name , User.find(report.source_id) %>
+  reported
   <%= link_to " #{User.find(report.target_id).name}" , User.find(report.target_id) %>
 <%end%>
 <ul class="pull-right" style="margin-right: 30px">
