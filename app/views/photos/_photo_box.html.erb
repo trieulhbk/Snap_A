@@ -1,0 +1,16 @@
+<% @photos.each do |photo| %>
+  <div class = "box col2">
+  <% if photo.image_remote_url.nil? %>
+    <%= image_tag photo.image.url%>
+<% else %>
+    <%= image_tag photo.source %>
+<% end %>
+<div class="btn-group">
+  <a class="btn btn-small" style="background: initial; border: 0;" href="#"><i class="icon-zoom-in"></i></a>
+  <a class="btn btn-small" style="background: initial; border: 0;" href="<%= edit_photo_path(photo) %>"><i class="icon-edit"></i></a>
+  <a href="/photos/1" class="btn btn-small"  style="background: initial; border: 0;" data-confirm="You sure?" data-method="delete" rel="nofollow"><i class="icon-trash"></i></a>
+  <a class="btn btn-small"  style="background: initial; border: 0;" href="#"><i class="icon-warning-sign"></i></a>
+</div>
+    </div>
+    <div style="display: none"><%= will_paginate %></div>
+  <%end%>
