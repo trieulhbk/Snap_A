@@ -79,7 +79,6 @@ p {
     color: white;
     text-decoration: none;
   }
-  margin-left: 200px;
 }
 
 /* footer */
@@ -202,6 +201,7 @@ input, textarea, select, .uneditable-input {
  }
 
 .users {
+  padding-right: 20px;
   list-style: none;
   margin: 0;
   li {
@@ -240,4 +240,8 @@ aside {
     height: 100px;
     margin-bottom: 5px;
   }
+}
+
+.container {
+  width: 100% !important;
 }
