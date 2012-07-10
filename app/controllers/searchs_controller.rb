@@ -1,4 +1,15 @@
 class SearchsController < ApplicationController
+  def search_pin
+    @results = []
+    @results.clear
+    Photo.all.each do |photo|
+      if photo.name.include? params[:search]
+        @results.push photo
+      end
+    end
+      @photos = @results
+  end
+
   def search_name
     @results = []
     @results.clear
@@ -20,4 +31,9 @@ class SearchsController < ApplicationController
     end
       @boxes = @results
   end
+
+  def search_page
+    search_box
+  end
+
 end

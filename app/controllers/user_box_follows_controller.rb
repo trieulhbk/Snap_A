@@ -21,10 +21,6 @@ class UserBoxFollowsController < ApplicationController
   def destroy
     @box = UserBoxFollow.find(params[:id]).box
 
-    if @box == nil
-      a
-    end
-
     current_user.unfollow_box!(@box)
     respond_to do |format|
       format.html { redirect_to @user }

@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(:version => 20120710041257) do
     t.datetime "updated_at",  :null => false
     t.string   "title"
     t.string   "description"
-    t.string   "category"
     t.integer  "category_id"
   end
 
@@ -76,6 +75,14 @@ ActiveRecord::Schema.define(:version => 20120710041257) do
   create_table "user_box_follows", :force => true do |t|
     t.integer  "user_id"
     t.integer  "box_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "user_photo_actions", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "photo_id"
+    t.string   "action"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

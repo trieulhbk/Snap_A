@@ -11,9 +11,12 @@ SnapA::Application.routes.draw do
 
   match '/admin', to: 'users#admin_page'
   match '/search/name/' , to: 'searchs#search_name'
-  match '/search/box/',to: 'searchs#search_box'
+  match '/search/pin/',to: 'searchs#search_pin'
   match '/search', to: 'searchs#search_page'
   match '/toggle', to: 'users#toggle_active'
+
+  get 'boxes/edit'
+  get 'boxes/delete'
 
   resources :users do
       member do
@@ -32,6 +35,7 @@ SnapA::Application.routes.draw do
   resources :sessions, only: [ :new, :create, :destroy]
   resources :user_box_follows, only: [ :create, :destroy]
   resources :user_user_relationships, only: [ :create, :destroy]
+  resources :user_photo_actions, only: [ :create, :destroy]
   resources :authentications
 
   root to: 'static_pages#home'

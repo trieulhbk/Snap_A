@@ -1,0 +1,1 @@
+$("#like_photo_<%= @photo.id %>").html("<%= escape_javascript(render('photos/unlike_photo', photo: @photo )) %>")
