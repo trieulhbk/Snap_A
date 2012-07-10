@@ -1,0 +1,6 @@
+
+<%unless current_user.liked_photo?(photo) %>	
+<%= render 'photos/like_photo', photo: photo %>
+<% else %>
+<%= render 'photos/unlike_photo', photo: photo %>
+<% end %>

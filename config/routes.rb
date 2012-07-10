@@ -13,6 +13,9 @@ SnapA::Application.routes.draw do
   match '/search', to: 'searchs#search_page'
   match '/toggle', to: 'users#toggle_active'
 
+  get 'boxes/edit'
+  get 'boxes/delete'
+  
   resources :users do
       member do
       get :following, :followers
@@ -29,6 +32,7 @@ SnapA::Application.routes.draw do
   resources :sessions, only: [ :new, :create, :destroy]
   resources :user_box_follows, only: [ :create, :destroy]
   resources :user_user_relationships, only: [ :create, :destroy]
+  resources :user_photo_actions, only: [ :create, :destroy]
   resources :authentications
 
   root to: 'static_pages#home'
