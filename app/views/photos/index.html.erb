@@ -31,59 +31,7 @@
     </ul>
   </nav> <!-- #site-nav -->
 
-  <h1>All Photos</h1>
+  <%# <h1>All Photos</h1> %>
   <section class="content">
-
-
-    <div id="container" class="transitions-enabled infinite-scroll clearfix">
-      <% @photos.each do |photo| %>
-        <div class = "box col2">
-        <h5 class="lead"><%= photo.name %></h5>
-        <% if photo.image_remote_url.nil? %>
-          <%= image_tag photo.image.url%>
-      <% else %>
-          <%= image_tag photo.source %>
-      <% end %>
-        <div class="btn-group ">
-          <a class="btn btn-small" href="#"><i class="icon-zoom-in"></i></a>
-          <a class="btn btn-small" href="<%= edit_photo_path(photo) %>"><i class="icon-edit"></i></a>
-          <a href="/photos/1" class="btn btn-small" data-confirm="You sure?" data-method="delete" rel="nofollow"><i class="icon-trash"></i></a>
-          <a class="btn btn-small" href="#"><i class="icon-warning-sign"></i></a>
-        </div>
-      </div>
-      <div style="display: none"><%= will_paginate %></div>
-    <%end%>
-    </div>
-    <script type="text/javascript">
-var $container = $('#container');
-
-$container.imagesLoaded(function(){
-    $container.masonry({
-itemSelector: '.box',
-columnWidth: 100
-});
-    });
-
-$container.infinitescroll({
-navSelector  : '.next_page',    // selector for the paged navigation
-nextSelector : '.next_page a',  // selector for the NEXT link (to page 2)
-itemSelector : '.box',         // selector for all items you'll retrieve
-loading: {
-finishedMsg: 'No more pages to load.',
-img: 'http://i.imgur.com/6RMhx.gif'
-}
-},
-// trigger Masonry as a callback
-function( newElements ) {
-// hide new items while they are loading
-var $newElems = $( newElements ).css({ opacity: 0 });
-// ensure that images load before adding to masonry layout
-$newElems.imagesLoaded(function(){
-  // show elems now they're ready
-  $newElems.animate({ opacity: 1 });
-  $container.masonry( 'appended', $newElems, true );
-  });
-}
-);
-    </script>
+    <%= render :partial => 'photo_paginate' %>
   </section>

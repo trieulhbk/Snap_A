@@ -11,6 +11,7 @@ class Photo < ActiveRecord::Base
   before_validation :save_source_via_pc, :unless => :image_url_provided?
   before_validation :download_remote_image, :if => :image_url_provided?
 
+
   validates_presence_of :image_remote_url, :if => :image_url_provided?, :message => 'is invalid or inaccessible'
 
   has_attached_file :image, :styles => { :small => "150x150>" },
@@ -21,9 +22,14 @@ class Photo < ActiveRecord::Base
   validates_attachment_size :image, :less_than => 5.megabytes
   validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/png']
 
+  has_many :user_photo_actions, foreign_key: "photo_id", 
+  dependent: :destroy
+
+  has_many :attaching_users, through: :user_photo_actions, source: :user
+
   belongs_to :box
 
-private
+  private
 
   def upload_from_pc?
     self.image_remote_url.nil?
@@ -45,7 +51,7 @@ private
   def do_download_remote_image
     io = open(URI.parse(image_url))
 
-  def io.original_filename; base_uri.path.split('/').last; end
+    def io.original_filename; base_uri.path.split('/').last; end
     io.original_filename.blank? ? nil : io
   rescue
   end

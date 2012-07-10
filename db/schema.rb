@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120709084425) do
+ActiveRecord::Schema.define(:version => 20120710041257) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -79,6 +79,14 @@ ActiveRecord::Schema.define(:version => 20120709084425) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "user_photo_actions", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "photo_id"
+    t.string   "action"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "user_user_relationships", :force => true do |t|
     t.integer  "following_id"
     t.integer  "follower_id"
@@ -109,6 +117,7 @@ ActiveRecord::Schema.define(:version => 20120709084425) do
     t.boolean  "active",              :default => true
     t.boolean  "admin",               :default => false
     t.string   "perishable_token",    :default => "",    :null => false
+    t.boolean  "banned",              :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

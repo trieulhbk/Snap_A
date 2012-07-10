@@ -3,5 +3,5 @@ class UserBoxFollow < ActiveRecord::Base
 
 	belongs_to :user,  class_name: "User"
 	belongs_to :box, class_name: "Box"
-
+	
 end
