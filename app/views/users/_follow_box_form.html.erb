@@ -1,6 +1,0 @@
-
-<%if current_user.following_box?(box) %>	
-<%= render 'unfollow_box', box: box %>
-<% else %>
-<%= render 'follow_box', box: box %>
-<% end %>

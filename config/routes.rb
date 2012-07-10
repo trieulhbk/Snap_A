@@ -12,16 +12,17 @@ SnapA::Application.routes.draw do
   match '/search/box/',to: 'searchs#search_box'
   match '/search', to: 'searchs#search_page'
   match '/toggle', to: 'users#toggle_active'
-  get "boxes/create"
 
-  get "boxes/delete"
-
-  get "boxes/edit"
-
-  get "boxes/index"
-
-  resources :users
-  resources :boxes
+  resources :users do
+      member do
+      get :following, :followers
+    end
+  end
+  resources :boxes do
+    member do 
+      get :followers
+    end
+  end
   resources :password_resets, only: [ :new, :create, :edit, :update ]
   resources :categories
   resources :photos

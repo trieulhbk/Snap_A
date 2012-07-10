@@ -1,6 +1,6 @@
 $("#follow_user_form").html("<%= escape_javascript(render('users/unfollow_user')) %>")
 <% @boxes.each do | box | %>
-$("#follow_box_<%= box.id %>").html("<%= escape_javascript(render('users/unfollow_box', box: box )) %>")
+$("#follow_box_<%= box.id %>").html("<%= escape_javascript(render('boxes/unfollow_box', box: box )) %>")
 <% end %>
 
 

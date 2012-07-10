@@ -7,18 +7,8 @@ class BoxesController < ApplicationController
 
   def create
 
-    b = params[:box]
-    if b == nil
-      a
-    end
-
 
     name = params[:box][:name]
-
-    if name == nil
-      b
-    end
-
     @box = current_user.boxes.build(name: name, category_id: params[:box][:category_id])
 
     if @box.save
@@ -37,16 +27,30 @@ class BoxesController < ApplicationController
   end
 
   def show
-    @user=current_user
+    @user=User.find(params[:user_id])
     @box=@user.boxes.find(params[:id])
     @photos=@box.photos.all
   end
 
-  def delete
+  def followers
+    @followers = Box.find(params[:id]).users
+    if @followers == nil
+      a
+    end
   end
 
+  def destroy
+     # User.find(params[:id]).destroy
+     box = Box.find(params[:box_id]).destroy
+     delete_rel_to_box(box)
+     flash[:success] = "Box #{params[:box_id]} destroyed."
+     redirect_to boxes_path
+   end
 
-  def edit
+   def delete
+   end
+
+   def edit
     @box = Box.find(params[:id])
   end
 
@@ -68,6 +72,13 @@ class BoxesController < ApplicationController
       followers.each do |follower|
         follower.follow_box!(box)
       end
+    end
+  end
+
+  def delete_rel_to_box(box)
+    rel = UserBoxFollow.find_by_box_id(box.id)
+    if rel != nil
+      rel.destroy
     end
   end
 end

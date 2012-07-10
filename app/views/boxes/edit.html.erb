@@ -2,6 +2,8 @@
 <div class ="pull-left">
   <h1>Update your box information</h1>
 </div>
+<%= button_to "Delete Board", { :controller => 'boxes', action: :delete, :box_id => @box.id }, :method => :delete %>
+
 <div class="row">
   <div class="span6 offset3">
     <%= form_for(@box) do |f| %>

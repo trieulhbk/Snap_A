@@ -1,0 +1,3 @@
+<%= link_to user.name, user_path(user) %>
+<%= render 'users/follow_user_form', :@user => user %>
+<%= render 'shared/stat_user', user: user %>

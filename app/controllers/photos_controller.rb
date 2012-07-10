@@ -40,7 +40,7 @@ class PhotosController < ApplicationController
 			redirect_to upload_path
 		else
 			flash[:error] = "Upload failed"
-			redirect_back_or(root_path)
+			render 'pc'
 		end
 	end
 
