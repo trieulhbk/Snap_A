@@ -8,7 +8,7 @@ class PhotosController < ApplicationController
 
 	def new
 	end
-
+  
 	def pc
 		@photo=Photo.new
 		store_location
