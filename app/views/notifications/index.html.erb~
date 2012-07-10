@@ -5,25 +5,25 @@
   <ul class="demos-list">
     <ul class="nav nav-list">
       <li>
-      <a href="/users">
+      <a href="/admin/users">
         <i class="icon-user"></i>
         User List
       </a>
       </li>
       <li>
-      <a href="#">
+      <a href="/admin/photos">
         <i class="icon-picture"></i>
         Photo List
       </a>
       </li>
       <li>
-      <a href="#">
+      <a href="/admin/reports">
         <i class="icon-exclamation-sign"></i>
         Reports
       </a>
       </li>
       <li>
-      <a href="#">
+      <a href="/admin/news">
         <i class="icon-time"></i>
         News
       </a>

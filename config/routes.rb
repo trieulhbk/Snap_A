@@ -11,13 +11,13 @@ SnapA::Application.routes.draw do
 
   match '/admin', to: 'users#admin_page'
   match '/search/name/' , to: 'searchs#search_name'
-  match '/search/box/',to: 'searchs#search_box'
+  match '/search/pin/',to: 'searchs#search_pin'
   match '/search', to: 'searchs#search_page'
   match '/toggle', to: 'users#toggle_active'
 
   get 'boxes/edit'
   get 'boxes/delete'
-  
+
   resources :users do
       member do
       get :following, :followers

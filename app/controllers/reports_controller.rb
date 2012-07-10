@@ -1,4 +1,15 @@
 class ReportsController < ApplicationController
+
+ def create
+  if params[:photo]
+    Report.create(source_id: current_user.id,target_id: params[:photo],title: "user_report_photo")
+  end
+  if params[:user]
+    Report.create(source_id: current_user.id,target_id: params[:user],title: "user_report_user")
+  end
+  redirect_to admin_photos_path
+ end
+
  def index
     @reports = Report.order("created_at DESC").paginate(page: params[:page])
  end
