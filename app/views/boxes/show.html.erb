@@ -9,18 +9,9 @@
 	<%end%>
 
 <hr/>
-<hr/> 
 
-<ul class="thumbnails">
-<% @photos.each do |photo| %>
-  <li class="span3">   	
-    <div class="thumbnail">
-		<%= render 'pictures/action_form_picture' %>
-    	<%= render 'photo', photo: photo %>
-	</div>
-</li>
-
-	<% end %>
-</ul>
-
+<hr/>
+  <section class="content">
+    <%= render :partial => 'photos/photo_paginate' %>
+  </section>
 

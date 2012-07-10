@@ -4,6 +4,7 @@ namespace :db do
     make_users
     make_categories
     make_boxes
+    make_photos
     make_relationships
   end
 end
@@ -60,3 +61,25 @@ def make_user_box_rel
   end
 end
 
+def make_photos
+  users = User.all(limit: 5)
+  size=[
+    { x: 300, y: 400 },
+    { x: 500, y: 500 },
+    { x: 640, y: 480 },
+    { x: 300, y: 600 }
+  ]
+  5.times do
+    users.each do |user|
+      user.boxes.each do |b|
+        10.times do
+          name = Faker::PhoneNumber.phone_number
+          description = Faker::Internet.domain_name
+          temp = size[rand(3)]
+          source = "http://placehold.it/#{temp[:x]}x#{temp[:y]}"
+          b.photos.create(name: name, description: description, source: source, image_remote_url: source)
+        end
+      end
+    end
+  end
+end

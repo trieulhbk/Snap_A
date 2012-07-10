@@ -45,6 +45,11 @@ class User < ActiveRecord::Base
   # has_many :owning_boxes, through: :user_own_box_rel, source: :id
   has_many :boxes, class_name: "Box"
 
+  has_many :user_photo_actions, foreign_key: "user_id", 
+  dependent: :destroy
+
+  has_many :action_photos, through: :user_photo_actions, source: :photo
+
   has_many :authentications, dependent: :destroy
 
   def following?(other_user)
@@ -86,8 +91,32 @@ class User < ActiveRecord::Base
     user_box_follows.find_by_box_id(box.id) != nil
   end
 
-  def like_photo!(photo)
+  def act_on_photo!(photo, action)
+    unless right_action?(action)
+      return false
+    end
+    if action == :like && liked_photo?(photo)
+      return false
+    end
 
+    user_photo_actions.create!(photo_id: photo.id, action: action)
+  end
+
+  def un_act_on_photo!(photo, action)
+    unless right_action?(action)
+      return false
+    end
+    user_photo_actions.find_by_photo_id(photo.id).destroy
+  end
+
+  def liked_photo?(photo)
+    rels = user_photo_actions.find_all_by_action(:like)
+    rels.each do | rel |
+      if rel.photo_id == photo.id
+        return true
+      end
+    end
+    false
   end
 
   def deliver_password_reset_instructions
@@ -100,6 +129,10 @@ class User < ActiveRecord::Base
 
   def create_persistence_token
     self.persistence_token = SecureRandom.urlsafe_base64
+  end
+
+  def right_action?(action) 
+    return action == :like || action == :repin
   end
 
   def unfollow_box(box)

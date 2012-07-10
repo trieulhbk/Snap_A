@@ -1,0 +1,22 @@
+<li>
+<span class="content">
+  <%= link_to User.find(report.source_id).name , User.find(report.source_id) %>
+  reported
+<%if report.title == "user_report_photo" %>
+  this <%= link_to "photo" , Photo.find(report.target_id) %>
+<%end%>
+<%if report.title == "user_report_user" %>
+  <%= link_to " #{User.find(report.target_id).name}" , User.find(report.target_id) %>
+<%end%>
+<ul class="pull-right" style="margin-right: 30px">
+  <%= link_to "Execute" ,"/reports/execute/?id=#{report.id}",data: {confirm: "This action will delete the reported user\n\t\t Are you sure?"} %> |
+  <%= link_to "Ignore",report, method: :delete,
+    data: { confirm: "This action will delete report\n\t\t Are you sure?" } %>
+</ul>
+</span>
+<span class="timestamp">
+  <%= time_ago_in_words(report.created_at) %> ago.
+</span>
+
+<hr>
+</li>

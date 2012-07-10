@@ -5,6 +5,8 @@ SnapA::Application.routes.draw do
   match '/admin/photos', to: 'photos#index'
   match '/admin/news', to: 'notifications#index'
 
+  match '/reports/execute',to: 'reports#execute'
+
   match 'upload/pc' , to: 'photos#pc'
 
   match '/admin', to: 'users#admin_page'
@@ -13,22 +15,28 @@ SnapA::Application.routes.draw do
   match '/search', to: 'searchs#search_page'
   match '/toggle', to: 'users#toggle_active'
 
+  get 'boxes/edit'
+  get 'boxes/delete'
+  
   resources :users do
       member do
       get :following, :followers
     end
   end
   resources :boxes do
-    member do 
+    member do
       get :followers
     end
   end
+
   resources :password_resets
+  resources :reports
   resources :categories
   resources :photos
   resources :sessions, only: [ :new, :create, :destroy]
   resources :user_box_follows, only: [ :create, :destroy]
   resources :user_user_relationships, only: [ :create, :destroy]
+  resources :user_photo_actions, only: [ :create, :destroy]
   resources :authentications
   resources :find_friends
 
@@ -39,7 +47,7 @@ SnapA::Application.routes.draw do
   match '/signin', to: 'sessions#new'
   match '/about', to: 'static_pages#about'
   match '/signout', to: 'sessions#destroy', via: :delete
-
+  match '/sendinvite', to: 'users#send_invite'
   match '/resetpassword', to: 'password_resets#new'
   # match '/editpassword', to: 'password_resets#edit'
 
