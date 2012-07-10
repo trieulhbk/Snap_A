@@ -5,6 +5,8 @@ SnapA::Application.routes.draw do
   match '/admin/photos', to: 'photos#index'
   match '/admin/news', to: 'notifications#index'
 
+  match '/reports/execute',to: 'reports#execute'
+
   match 'upload/pc' , to: 'photos#pc'
 
   match '/admin', to: 'users#admin_page'
@@ -22,10 +24,11 @@ SnapA::Application.routes.draw do
     end
   end
   resources :boxes do
-    member do 
+    member do
       get :followers
     end
   end
+  resources :reports
   resources :password_resets, only: [ :new, :create, :edit, :update ]
   resources :categories
   resources :photos

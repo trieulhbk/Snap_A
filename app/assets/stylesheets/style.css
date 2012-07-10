@@ -239,6 +239,7 @@ button {
 /**** Demos ****/
 
 #container {
+  margin-left: 30px;
   background: #FFF;
   padding: 5px;
   margin-bottom: 20px;
@@ -283,7 +284,7 @@ button {
 
 
 .col1 { width: 80px; }
-.col2 { width: 180px; }
+.col2 { width: 175px; }
 .col3 { width: 280px; }
 .col4 { width: 380px; }
 .col5 { width: 480px; }
@@ -331,184 +332,194 @@ button {
      -moz-transition-property: top;
        -o-transition-property: top;
           transition-property: top;
-}
 
 
-/* disable transitions on container */
-.transitions-enabled.infinite-scroll.masonry {
-  -webkit-transition-property: none;
-     -moz-transition-property: none;
-       -o-transition-property: none;
+          border: 1px solid #CFCACA;
+
+          width: 1;
+          position: absolute;
+          -webkit-box-shadow: 0 1px 10px rgba(34, 25, 25, 0.4);
+          background-color: white;
+          box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+          -webkit-transition-property: top;
+        }
+
+
+        /* disable transitions on container */
+        .transitions-enabled.infinite-scroll.masonry {
+          -webkit-transition-property: none;
+          -moz-transition-property: none;
+          -o-transition-property: none;
           transition-property: none;
-}
+        }
 
-/**** Primer comparison ****/
+        /**** Primer comparison ****/
 
-#comparison {
-  overflow: auto;
-}
+        #comparison {
+          overflow: auto;
+        }
 
-#comparison .example {
-  width: 420px;
-  float: left;
-  margin-right: 20px;
-}
+        #comparison .example {
+          width: 420px;
+          float: left;
+          margin-right: 20px;
+        }
 
-#comparison .box h5 {
-  float: left;
-  margin-bottom: 0;
-  font-size: 30px;
-  margin-right: 4px;
-  line-height: 28px;
-  font-weight: bold;
-  color: #FFF;
-}
+        #comparison .box h5 {
+          float: left;
+          margin-bottom: 0;
+          font-size: 30px;
+          margin-right: 4px;
+          line-height: 28px;
+          font-weight: bold;
+          color: #FFF;
+        }
 
-/* Homepage */
+        /* Homepage */
 
-.homepage .item {
-  width: 200px;
-  float: left;
-  padding: 10px;
-  margin: 10px;
-  background: #D8D5D2;
-  font-weight: 300;
-  -webkit-border-radius: 5px;
-     -moz-border-radius: 5px;
+        .homepage .item {
+          width: 200px;
+          float: left;
+          padding: 10px;
+          margin: 10px;
+          background: #D8D5D2;
+          font-weight: 300;
+          -webkit-border-radius: 5px;
+          -moz-border-radius: 5px;
           border-radius: 5px;
-}
+        }
 
-.homepage .big-text,
-.homepage .link {
-  font-size: 24px;
-  line-height: 1.2em;
-}
+        .homepage .big-text,
+        .homepage .link {
+          font-size: 24px;
+          line-height: 1.2em;
+        }
 
-.homepage .link {
-  padding: 0;
-}
+        .homepage .link {
+          padding: 0;
+        }
 
-.homepage .link a {
-  display: block;
-  padding: 10px;
-  width: 200px;
-  background: #D26;
-  color: white;
-  -webkit-border-radius: 5px;
-     -moz-border-radius: 5px;
+        .homepage .link a {
+          display: block;
+          padding: 10px;
+          width: 200px;
+          background: #D26;
+          color: white;
+          -webkit-border-radius: 5px;
+          -moz-border-radius: 5px;
           border-radius: 5px;
-}
+        }
 
-.homepage .link a:hover {
-  background: #A2C;
-}
+        .homepage .link a:hover {
+          background: #A2C;
+        }
 
-.homepage .col2 {
-  width: 440px;
-}
+        .homepage .col2 {
+          width: 440px;
+        }
 
-.homepage .example {
-  padding: 0;
-  width: 220px;
-  background: transparent;
-}
+        .homepage .example {
+          padding: 0;
+          width: 220px;
+          background: transparent;
+        }
 
-.homepage .example a { display: block; }
+        .homepage .example a { display: block; }
 
-.homepage .example img {
-  display: block;
-  width: 100%;
-}
+        .homepage .example img {
+          display: block;
+          width: 100%;
+        }
 
-.homepage .example a:hover {
-  background: #D26;
-  color: white;
-}
+        .homepage .example a:hover {
+          background: #D26;
+          color: white;
+        }
 
-.homepage .loading {
-  background: black;
-  color: #D8D5D2;
-}
+        .homepage .loading {
+          background: black;
+          color: #D8D5D2;
+        }
 
-.homepage .loading img {
-  float: left;
-  padding-right: 5px;
-  width: 54px;
-}
+        .homepage .loading img {
+          float: left;
+          padding-right: 5px;
+          width: 54px;
+        }
 
-/* mini example */
+        /* mini example */
 
-.homepage .mini div {
-  float: left;
-  background: white;
-  margin: 3px;
-  color: #D8D5D2;
-  font-weight: bold;
-  font-size: 32px;
-  line-height: 46px;
-  text-align: center;
-  -webkit-border-radius: 3px;
-     -moz-border-radius: 3px;
+        .homepage .mini div {
+          float: left;
+          background: white;
+          margin: 3px;
+          color: #D8D5D2;
+          font-weight: bold;
+          font-size: 32px;
+          line-height: 46px;
+          text-align: center;
+          -webkit-border-radius: 3px;
+          -moz-border-radius: 3px;
           border-radius: 3px;
-}
+        }
 
-.homepage .mini .w1 { width: 44px; }
-.homepage .mini .h1 { height: 44px; }
-.homepage .mini .w2 { width: 94px; }
-.homepage .mini .h2 { height: 94px; }
+        .homepage .mini .w1 { width: 44px; }
+        .homepage .mini .h1 { height: 44px; }
+        .homepage .mini .w2 { width: 94px; }
+        .homepage .mini .h2 { height: 94px; }
 
-/* Tumblelog example */
+        /* Tumblelog example */
 
-#tumblelog {
-  background: #FFF;
-  padding: 1.0em;
-}
+        #tumblelog {
+          background: #FFF;
+          padding: 1.0em;
+        }
 
-#tumblelog .story {
-  margin: 10px;
-  border-top: 4px solid #DCB;
-  padding-top: 10px;
-  background: #FFF;
-  float: left;
-}
+        #tumblelog .story {
+          margin: 10px;
+          border-top: 4px solid #DCB;
+          padding-top: 10px;
+          background: #FFF;
+          float: left;
+        }
 
-#tumblelog h1, #tumblelog h2, #tumblelog h3 { font-weight: bold;}
+        #tumblelog h1, #tumblelog h2, #tumblelog h3 { font-weight: bold;}
 
-#tumblelog .col1 { width: 220px; }
-#tumblelog .col2 { width: 460px; }
-#tumblelog .col3 { width: 700px; }
+        #tumblelog .col1 { width: 220px; }
+        #tumblelog .col2 { width: 460px; }
+        #tumblelog .col3 { width: 700px; }
 
-#tumblelog .col1 img,
-#tumblelog .col2 img,
-#tumblelog .col3 img {
-  max-width: none;
-}
+        #tumblelog .col1 img,
+        #tumblelog .col2 img,
+        #tumblelog .col3 img {
+          max-width: none;
+        }
 
-/* Infinite Scroll loader */
-#infscr-loading {
-  text-align: center;
-  z-index: 100;
-  position: fixed;
-  left: 45%;
-  bottom: 40px;
-  width: 200px;
-  padding: 10px;
-  background: #000;
-  opacity: 0.8;
-  color: #FFF;
-  -webkit-border-radius: 10px;
-     -moz-border-radius: 10px;
+        /* Infinite Scroll loader */
+        #infscr-loading {
+          text-align: center;
+          z-index: 100;
+          position: fixed;
+          left: 45%;
+          bottom: 40px;
+          width: 200px;
+          padding: 10px;
+          background: #000;
+          opacity: 0.8;
+          color: #FFF;
+          -webkit-border-radius: 10px;
+          -moz-border-radius: 10px;
           border-radius: 10px;
-}
+        }
 
-/**** Fluid ****/
+        /**** Fluid ****/
 
-#container.fluid  {
-  padding: 5px 0;
-}
+        #container.fluid  {
+          padding: 5px 0;
+        }
 
-/* right margin value is 0.1% less than calculated,
-  to allow for rounding errors in Firefox */
+        /* right margin value is 0.1% less than calculated,
+        to allow for rounding errors in Firefox */
 .fluid .box {
   margin: 5px 0.9% 5px 1%;
   padding: 5px 1%;
@@ -529,8 +540,8 @@ button {
   background: red;
   color: white;
   -webkit-border-radius: 5px;
-     -moz-border-radius: 5px;
-          border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }
 
 /**** Pygments ****/

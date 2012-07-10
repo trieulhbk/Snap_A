@@ -34,7 +34,7 @@ class BoxesController < ApplicationController
     end
     
     @box=@user.boxes.find(params[:id])
-    @photos=@box.photos.all
+    @photos = @box.photos.order("created_at DESC").paginate(page: params[:page],per_page: 15)
   end
 
   def followers
@@ -45,17 +45,17 @@ class BoxesController < ApplicationController
   end
 
   def destroy
-     # User.find(params[:id]).destroy
-     box = Box.find(params[:box_id]).destroy
-     delete_rel_to_box(box)
-     flash[:success] = "Box #{params[:box_id]} destroyed."
-     redirect_to boxes_path
-   end
+    # User.find(params[:id]).destroy
+    box = Box.find(params[:box_id]).destroy
+    delete_rel_to_box(box)
+    flash[:success] = "Box #{params[:box_id]} destroyed."
+    redirect_to boxes_path
+  end
 
-   def delete
-   end
+  def delete
+  end
 
-   def edit
+  def edit
     @box = Box.find(params[:id])
   end
 

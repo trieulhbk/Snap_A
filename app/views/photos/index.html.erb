@@ -30,14 +30,8 @@
       </li>
     </ul>
   </nav> <!-- #site-nav -->
+
+  <%# <h1>All Photos</h1> %>
   <section class="content">
-
-<h1>All Photos</h1>
-    <%= will_paginate %>
-
-  <ul class="photos">
-    <%= render @photos %>
-  </ul>
-
-  <%= will_paginate %>
-</section>
+    <%= render :partial => 'photo_paginate' %>
+  </section>

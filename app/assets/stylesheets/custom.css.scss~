@@ -79,6 +79,7 @@ p {
     color: white;
     text-decoration: none;
   }
+  margin-left: 450px;
 }
 
 /* footer */
@@ -239,4 +240,10 @@ aside {
     height: 100px;
     margin-bottom: 5px;
   }
+}
+
+.container {
+  margin-left: 0px;
+  margin-right: 0px;
+  width: 100% !important;
 }
