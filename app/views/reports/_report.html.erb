@@ -9,7 +9,7 @@
   <%= link_to " #{User.find(report.target_id).name}" , User.find(report.target_id) %>
 <%end%>
 <ul class="pull-right" style="margin-right: 30px">
-  <%= link_to "Execute" ,"/reports/execute/?id=#{report.id}",data: {confirm: "This action will delete the reported user\n\t\t Are you sure?"} %> |
+  <%= link_to "Execute" ,"/reports/execute/?id=#{report.id}",data: {confirm: "This action will delete the reported \n\t\t Are you sure?"} %> |
   <%= link_to "Ignore",report, method: :delete,
     data: { confirm: "This action will delete report\n\t\t Are you sure?" } %>
 </ul>
