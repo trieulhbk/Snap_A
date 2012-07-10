@@ -1,10 +1,21 @@
-
 <div class="row">
-  <div class="span6 offset3">
-    <span class = "selected"> Pins</span>
-    <span class = "greyselected">" - search results for "</span>
-    <a href =  "/search/name/?search=<%="#{params[:search]}" %>" >Name</a>
-    <a href =  "/search/category/?search=<%="#{params[:search]}" %>" >Category</a>
+  <div class="span6 offset3" style="font-size: 20px">
+    <a href =  "/search/?search=<%="#{params[:search]}" %>" style="text-decoration: underline;color: black">Box</a>
+    ·
+    <a href =  "/search/name/?search=<%="#{params[:search]}" %>" style="text-decoration: underline;color: black">Name</a>
+    ·
+    <span class = "selected" style="color: #CB2027"> Pin </span>
+
+    <span class = "greyselected" style="color: #8C7E7E" >   — search results for <%= "#{params[:search]}" %>  </span>
   </div>
-  <%= debug params %>
+  <br>
+  <div class="row">
+  <ul class="nav nav-list">
+    <% @photos.each do |photo| %>
+      <li class="photos">
+      <%= link_to photo.name, '#'%>
+      </li>
+    <%end%>
+  </ul>
+</div>
 </div>

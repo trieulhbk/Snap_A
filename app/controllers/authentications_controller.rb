@@ -5,9 +5,9 @@ class AuthenticationsController < ApplicationController
   def create
     omniauth = auth_hash
     token = omniauth['credentials']['token']
+    token_secret = omniauth['credentials']['secret']
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
     if authentication
-      # binding.pry
       if !current_user?(authentication.user) && !current_user.nil?
         flash[:info] = "Current #{omniauth['provider']} account is linked to other account. Please sign out #{omniauth['provider']}! "
         redirect_to root_path
@@ -18,7 +18,7 @@ class AuthenticationsController < ApplicationController
       end
     elsif current_user
       # User is signed in but has not already authenticated with this social network
-      current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'], :access_token => token)
+      current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'], :access_token => token, :token_secret => token_secret)
       # current_user.apply_omniauth(omniauth)
       current_user.save
       flash[:info] = 'Authentication successful.'
@@ -26,7 +26,7 @@ class AuthenticationsController < ApplicationController
     else
       # User is new to this application
       # user = User.new
-      authentication = Authentication.new(:provider => omniauth['provider'], :uid => omniauth['uid'], :access_token => token)
+      authentication = Authentication.new(:provider => omniauth['provider'], :uid => omniauth['uid'], :access_token => token, :token_secret => token_secret)
       session[:authentication] = authentication
       # user.apply_omniauth(omniauth)
 
@@ -36,10 +36,15 @@ class AuthenticationsController < ApplicationController
 
   def destroy
     # binding.pry
-    @authentication = current_user.authentications.find_by_provider(params[:provider])
-    @authentication.destroy
-    flash[:notice] = 'Successfully destroyed authentication.'
-    redirect_to edit_user_path(current_user)
+    @authentication = current_user.authentications.find_by_provider(params[:provider]) 
+    if @authentication
+      @authentication.destroy
+      flash[:notice] = 'Successfully destroyed authentication.'
+      redirect_to edit_user_path(current_user)
+    else
+      flash[:notice] = "Authentication for #{params[:provider]} not found. "
+      redirect_to root_path
+    end
   end
 
   def auth_hash
@@ -49,10 +54,6 @@ class AuthenticationsController < ApplicationController
   private
   def sign_in_and_redirect(user)
     sign_in user
-    unless current_user
-      user_session = UserSession.new(User.find_by_single_access_token(user.single_access_token))
-      user_session.save
-    end
     redirect_to root_path
   end
 end

@@ -235,9 +235,9 @@ button {
 
 #container {
   min-height: 100%;
-  margin-left: 30px;
+  /* margin-left: 30px; */
   background: #f7f5f5 url(../images/paper.jpg) repeat;
-  padding: 5px;
+  /* padding: 5px; */
   margin-bottom: 20px;
   border-radius: 5px;
   clear: none;
@@ -279,17 +279,17 @@ button {
 
 
 
-.col1 { -webkit-box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4); box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4); border-radius: 5px; padding: 15px 15px 0; background-color: white; color: white; width: 80px; }
-.col2 { -webkit-box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4); box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4); border-radius: 5px; padding: 15px 15px 0; background-color: white; color: white; width: 170px; }
-.col3 { -webkit-box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4); box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4); border-radius: 5px; padding: 15px 15px 0; background-color: white; color: white; width: 280px; }
-.col4 { -webkit-box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4); box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4); border-radius: 5px; padding: 15px 15px 0; background-color: white; color: white; width: 380px; }
-.col5 { -webkit-box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4); box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4); border-radius: 5px; padding: 15px 15px 0; background-color: white; color: white; width: 480px; }
+.col1 { width: 80px; }
+.col2 { width: 175px; }
+.col3 { width: 280px; }
+.col4 { width: 380px; }
+.col5 { width: 480px; }
 
-.col1 img { margin-bottom: 6px;max-width: 80px; }
-.col2 img { margin-bottom: 6px;max-width: 180px; }
-.col3 img { margin-bottom: 6px;max-width: 280px; }
-.col4 img { margin-bottom: 6px;max-width: 380px; }
-.col5 img { margin-bottom: 6px;max-width: 480px; }
+.col1 img { max-width: 80px; }
+.col2 img { max-width: 180px; }
+.col3 img { max-width: 280px; }
+.col4 img { max-width: 380px; }
+.col5 img { max-width: 480px; }
 
 /**** Gutters ****/
 

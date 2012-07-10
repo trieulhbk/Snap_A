@@ -5,6 +5,8 @@ class UsersController < ApplicationController
   before_filter :correct_user, only: [:edit,:update]
   before_filter :admin_user, only: :destroy
   before_filter :create_user, only: [:create,:new]
+  before_filter :auth_user, only: [:new]
+
   def index
     @allusers = User.all
     @users = User.paginate(page: params[:page])
@@ -16,7 +18,6 @@ class UsersController < ApplicationController
   end
 
   def send_invite
-    binding.pry
     UserMailer.invite(params[:email]).deliver
     redirect_to root_path
   end
@@ -32,17 +33,7 @@ class UsersController < ApplicationController
   end
 
   def new
-    authentication = session[:authentication]
-    if authentication
-      token = authentication.access_token
-      client = FBGraph::Client.new(:client_id => GRAPH_APP_ID, :secret_id => GRAPH_SECRET, :token => token)
-      user = client.selection.me
-      name = user.info!.name
-      email = user.info!.email
-      @user = User.new(:name => name, :email => email)
-    else
-      @user = User.new
-    end
+
   end
 
   def create
@@ -54,7 +45,7 @@ class UsersController < ApplicationController
     end
     if @user.save
       sign_in @user
-      flash[:success] = "Welcome to Sample App"
+      flash[:success] = "Welcome to Snap"
       redirect_to root_path
     else
       render 'new'
@@ -64,7 +55,7 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     @current_user = current_user
-   end
+  end
 
   def update
     @user = User.find(params[:id])
@@ -86,7 +77,7 @@ class UsersController < ApplicationController
     if current_user.active
       current_user.update_attribute("active",false)
     else
-    current_user.update_attribute("active",true)
+      current_user.update_attribute("active",true)
     end
     sign_in current_user
     redirect_to edit_user_path(current_user)
@@ -97,6 +88,31 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def auth_user
+    authentication = session[:authentication]
+    @user = User.new
+    if authentication
+      token = authentication.access_token
+      token_secret = authentication.token_secret
+      if authentication.provider == 'facebook'
+        client = FBGraph::Client.new(:client_id => GRAPH_APP_ID, :secret_id => GRAPH_SECRET, :token => token)
+        user = client.selection.me
+        name = user.info!.name
+        email = user.info!.email
+      else
+        Twitter.configure do |config|
+          config.consumer_key = TWITTER_APP_ID
+          config.consumer_secret = TWITTER_SECRET
+          config.oauth_token = token
+          config.oauth_token_secret = token_secret
+        end
+        name = Twitter.user.name
+        email = ""
+      end
+      @user = User.new(:name => name, :email => email)
+    end
+  end
 
   def correct_user
     @user = User.find(params[:id])

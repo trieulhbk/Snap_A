@@ -1,6 +1,6 @@
-<div class="container transitions-enabled infinite-scroll clearfix">
+<div id="container" class="container transitions-enabled infinite-scroll clearfix">
   <% @photos.each do |photo| %>
-  <div class = "box col2 show-image">
+  <div class = "box col2">
     <% if photo.image_remote_url.nil? %>
     <img src="<%=photo.image.url%>" data-toggle = "modal" href="#ZoomIn">
     <% else %>
@@ -32,7 +32,7 @@
 <script type="text/javascript">
 jQuery(function() {                                              // <== Doc ready
 
-    jQuery(".btn-group").hide();                  // Initially hide all buttons
+  //  jQuery(".btn-group").hide();                  // Initially hide all buttons
 
     jQuery('.show-image').hover(function() {
          jQuery(this).find('.btn-group').show();         // use .find() !

@@ -1,7 +1,12 @@
 <div class="row">
-  <div class="span6 offset3">
-    <span class = "selected"> Name </span>
-    <a href =  "/search/box/?search=<%="#{params[:search]}" %>" >Box</a>
+  <div class="span6 offset3" style="font-size: 20px">
+    <a href =  "/search/?search=<%="#{params[:search]}" %>" style="text-decoration: underline;color: black">Box</a>
+    ·
+    <span class = "selected" style="color: #CB2027"> Name </span>
+    ·
+    <a href =  "/search/pin/?search=<%="#{params[:search]}" %>" style="text-decoration: underline;color: black">Pin</a>
+
+    <span class = "greyselected" style="color: #8C7E7E" >   — search results for <%= "#{params[:search]}" %>  </span>
   </div>
 
 </div>
@@ -14,3 +19,4 @@
     <%end%>
   </ul>
 </div>
+

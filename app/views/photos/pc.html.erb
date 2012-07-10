@@ -1,7 +1,7 @@
 <% provide(:title, 'Upload') %>
 <h1>Upload via PC</h1>
 <div class="row center">
-  <div class="span6 offset5">
+  <div class="span6" style="margin-left: 31%;">
     <%= form_for @photo, :html => { multipart: true } do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
     	<%= f.label :box_id %><br />

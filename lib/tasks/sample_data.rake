@@ -69,10 +69,10 @@ def make_photos
     { x: 640, y: 480 },
     { x: 300, y: 600 }
   ]
-  1.times do
+  5.times do
     users.each do |user|
       user.boxes.each do |b|
-        1.times do
+        10.times do
           name = Faker::PhoneNumber.phone_number
           description = Faker::Internet.domain_name
           temp = size[rand(3)]
@@ -82,4 +82,8 @@ def make_photos
       end
     end
   end
+end
+
+def make_users_like_photos
+
 end
