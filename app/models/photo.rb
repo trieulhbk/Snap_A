@@ -8,18 +8,18 @@ class Photo < ActiveRecord::Base
   validates :box_id, presence: true
   validates :source, presence: true
 
-  # before_validation :save_source_via_pc, :unless => :image_url_provided?
-  # before_validation :download_remote_image, :if => :image_url_provided?
+  before_validation :save_source_via_pc, :unless => :image_url_provided?
+  before_validation :download_remote_image, :if => :image_url_provided?
 
-  # validates_presence_of :image_remote_url, :if => :image_url_provided?, :message => 'is invalid or inaccessible'
+  validates_presence_of :image_remote_url, :if => :image_url_provided?, :message => 'is invalid or inaccessible'
 
-  # has_attached_file :image, :styles => { :small => "150x150>" },
-                    # :url  => "/assets/photos/:id/:style/:basename.:extension",
-                    # :path => ":rails_root/public/assets/photos/:id/:style/:basename.:extension"
+  has_attached_file :image, :styles => { :small => "150x150>" },
+                    :url  => "/assets/photos/:id/:style/:basename.:extension",
+                    :path => ":rails_root/public/assets/photos/:id/:style/:basename.:extension"
 
-  # validates_attachment_presence :image, :if => :upload_from_pc?
-  # validates_attachment_size :image, :less_than => 5.megabytes
-  # validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/png']
+  validates_attachment_presence :image, :if => :upload_from_pc?
+  validates_attachment_size :image, :less_than => 5.megabytes
+  validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/png']
 
   belongs_to :box
 
