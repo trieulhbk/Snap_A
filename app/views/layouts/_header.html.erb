@@ -2,13 +2,13 @@
   <div class="navbar-inner">
     <div class="container">
       <nav>
-        <form class="navbar-search pull-left" action="/search" method="post">
+        <form class="navbar-search" style="margin-left: 30px;" action="/search" method="post">
           <input type="text" class="search-query" name="search" placeholder="Search">
         </form>
-        <ul class= "nav">
+        <ul class= "nav" style="margin-left: 400px">
             <%= link_to "SNAP", root_path, id: "logo" %>
           </ul>
-        <ul class="nav pull-right">
+        <ul class="nav pull-right" style="margin-right: 30px">
           <li><%= link_to "Home", root_path %></li>
           <% if signed_in? %>
 
