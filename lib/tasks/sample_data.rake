@@ -69,10 +69,10 @@ def make_photos
     { x: 640, y: 480 },
     { x: 300, y: 600 }
   ]
-  5.times do
+  1.times do
     users.each do |user|
       user.boxes.each do |b|
-        10.times do
+        1.times do
           name = Faker::PhoneNumber.phone_number
           description = Faker::Internet.domain_name
           temp = size[rand(3)]

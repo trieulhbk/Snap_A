@@ -27,7 +27,12 @@ class BoxesController < ApplicationController
   end
 
   def show
-    @user=User.find(params[:user_id])
+    if params[:user_id] == nil
+      @user = current_user
+    else 
+      @user=User.find(params[:user_id])
+    end
+    
     @box=@user.boxes.find(params[:id])
     @photos = @box.photos.order("created_at DESC").paginate(page: params[:page],per_page: 15)
   end

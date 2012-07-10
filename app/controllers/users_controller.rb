@@ -15,6 +15,12 @@ class UsersController < ApplicationController
     @boxes = @user.boxes
   end
 
+  def send_invite
+    binding.pry
+    UserMailer.invite(params[:email]).deliver
+    redirect_to root_path
+  end
+
   def followers
     @user = User.find(params[:id])
     @followers = @user.followers

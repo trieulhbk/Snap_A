@@ -30,15 +30,14 @@
       </li>
     </ul>
   </nav> <!-- #site-nav -->
-  <section class="content">
+  <section class="content" style="border-left: 1px solid #CFCACA">
 
-<h1>All News</h1>
     <%= will_paginate %>
 
 
-  <ul class="news">
-    <%= render @notifications %>
-  </ul>
+    <ul class="news">
+      <%= render @notifications %>
+    </ul>
 
-  <%= will_paginate %>
-</section>
+    <%= will_paginate %>
+  </section>
