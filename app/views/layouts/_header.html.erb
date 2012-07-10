@@ -28,8 +28,8 @@
             <%= current_user.name%> <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
-            <li><%= link_to "Invite Friends", '#' %></li>
-            <li><%= link_to "Find Friends", '#' %></li>
+            <li><%= link_to "Invite Friends", find_friends_path %></li>
+            <li><%= link_to "Find Friends", '/find/facebook' %></li>
             <li class = "divider"></li>
             <li><%= link_to "Boxes", current_user %></li>
             <li><%= link_to "Pins", '#'%></li>

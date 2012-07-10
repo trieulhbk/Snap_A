@@ -1,6 +1,5 @@
 module SessionsHelper
 
-
   def sign_in(user)
     cookies.permanent[:persistence_token] = user.persistence_token
     self.current_user = user
@@ -34,6 +33,20 @@ module SessionsHelper
       store_location
       flash[:info] = "Please sign out to use this feature."
       redirect_to root_path
+    end
+  end
+
+  def signed_in_facebook
+    unless facebook?(current_user)
+      store_location
+      redirect_to find_friends_path, notice: "Please sign in Facebook."
+    end
+  end
+
+  def signed_in_twitter
+    unless twitter?(current_user)
+      store_location
+      redirect_to "#", notice: "Please sign in Twitter."
     end
   end
 

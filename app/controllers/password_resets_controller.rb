@@ -1,6 +1,6 @@
 class PasswordResetsController < ApplicationController 
   before_filter :not_signed_in_user
-  before_filter :load_user_using_perishable_token, :only => [:edit, :update] 
+  before_filter :load_user_using_persistence_token, :only => [:edit, :update] 
 
   def new  
   end  
@@ -22,19 +22,22 @@ class PasswordResetsController < ApplicationController
   end  
 
   def update  
+    binding.pry
     @user.password = params[:user][:password]  
     @user.password_confirmation = params[:user][:password_confirmation]  
     if @user.save  
       flash[:notice] = "Password successfully updated"  
-      redirect_to user_path  
+      sign_in @user
+      redirect_to user_path(@user)
     else  
       render :action => :edit  
     end  
   end  
   
   private  
-  def load_user_using_perishable_token  
-    @user = User.find_by_perishable_token(params[:id])  
+  def load_user_using_persistence_token  
+    @user = User.find_by_persistence_token(params[:id])
+    binding.pry
     unless @user  
       flash[:notice] = "We're sorry, but we could not locate your account. " +  
       "If you are having issues try copying and pasting the URL " +  

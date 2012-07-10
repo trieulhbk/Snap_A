@@ -1,4 +1,4 @@
-$("#follow_user_form").html("<%= escape_javascript(render('users/unfollow_user')) %>")
+$("#follow_user_<%= @user.id %>").html("<%= escape_javascript(render('users/unfollow_user', :@user => @user)) %>")
 <% @boxes.each do | box | %>
 $("#follow_box_<%= box.id %>").html("<%= escape_javascript(render('boxes/unfollow_box', box: box )) %>")
 <% end %>

@@ -23,13 +23,14 @@ SnapA::Application.routes.draw do
       get :followers
     end
   end
-  resources :password_resets, only: [ :new, :create, :edit, :update ]
+  resources :password_resets
   resources :categories
   resources :photos
   resources :sessions, only: [ :new, :create, :destroy]
   resources :user_box_follows, only: [ :create, :destroy]
   resources :user_user_relationships, only: [ :create, :destroy]
   resources :authentications
+  resources :find_friends
 
   root to: 'static_pages#home'
 
@@ -44,6 +45,7 @@ SnapA::Application.routes.draw do
 
   match '/auth/:provider/callback' => 'authentications#create'
   match '/auth/:provider/destroy' => 'authentications#destroy'
+  match '/find/:provider' => 'find_friends#find_facebook'
 
   match '/upload', to: 'photos#new'
   match '/upload/facebook', to: 'photos#facebook'
