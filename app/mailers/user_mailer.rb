@@ -4,6 +4,10 @@ class UserMailer < ActionMailer::Base
   def invite(email)
     @email = email
     mail(:to => email, :subject => "Invite")
-    
+  end
+
+  def reset(recipient)
+    @edit_password_reset_url = edit_password_reset_url(recipient.persistence_token)
+    mail(:to => recipient.email, :subject => "Password Reset Instructions")
   end
 end

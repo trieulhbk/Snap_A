@@ -15,6 +15,5 @@ class FindFriendsController < ApplicationController
     friends_id = me.friends.map(&:raw_attributes).map{|f| f['id']}
     friends_auth = Authentication.where('provider = "facebook" AND uid in (?)', friends_id)
     @friends_profile = friends_auth.map{|f| f.user if f.user.active?}
-    # binding.pry
   end
 end

@@ -6,10 +6,8 @@ class AuthenticationsController < ApplicationController
     omniauth = auth_hash
     token = omniauth['credentials']['token']
     token_secret = omniauth['credentials']['secret']
-    # binding.pry
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
     if authentication
-      # binding.pry
       if !current_user?(authentication.user) && !current_user.nil?
         flash[:info] = "Current #{omniauth['provider']} account is linked to other account. Please sign out #{omniauth['provider']}! "
         redirect_to root_path

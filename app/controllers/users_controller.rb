@@ -18,7 +18,6 @@ class UsersController < ApplicationController
   end
 
   def send_invite
-    binding.pry
     UserMailer.invite(params[:email]).deliver
     redirect_to root_path
   end
@@ -46,7 +45,7 @@ class UsersController < ApplicationController
     end
     if @user.save
       sign_in @user
-      flash[:success] = "Welcome to Sample App"
+      flash[:success] = "Welcome to Snap"
       redirect_to root_path
     else
       render 'new'
@@ -110,7 +109,6 @@ class UsersController < ApplicationController
         end
         name = Twitter.user.name
         email = ""
-        binding.pry
       end
       @user = User.new(:name => name, :email => email)
     end
