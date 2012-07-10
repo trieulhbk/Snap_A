@@ -1,6 +1,6 @@
 <h5 class="lead"><%= photo.name %></h5>
     	<% if photo.image_remote_url.nil? %>
-			<%= image_tag photo.image.url%>
+			<%=link_to image_tag(photo.image.url),photo.image.url, class: "photo"%>
 		<% else %>
 			<%= image_tag photo.source %>
 		<% end %>
@@ -11,5 +11,7 @@
 			<a class="btn btn-small" href="#"><i class="icon-warning-sign"></i></a>
 		</div>
 
-
+<script>
+$('.photo').colorbox({scalePhotos:true, maxHeight: "50%"});
+</script>
 			

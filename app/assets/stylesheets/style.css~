@@ -12,6 +12,7 @@ h1, h2 {
 }
 
 h1 {
+  margin-left: -100px;
   font-size: 36px;
 }
 
@@ -117,9 +118,6 @@ strong { font-weight: bold; }
 
 }
 
-.content {
-	padding-left: 200px;
-}
 
 .copy h2 {
   clear: both;

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120709084425) do
+ActiveRecord::Schema.define(:version => 20120710041257) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20120709084425) do
     t.datetime "updated_at",  :null => false
     t.string   "title"
     t.string   "description"
+    t.string   "category"
     t.integer  "category_id"
   end
 
@@ -109,6 +110,7 @@ ActiveRecord::Schema.define(:version => 20120709084425) do
     t.boolean  "active",              :default => true
     t.boolean  "admin",               :default => false
     t.string   "perishable_token",    :default => "",    :null => false
+    t.boolean  "banned",              :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
