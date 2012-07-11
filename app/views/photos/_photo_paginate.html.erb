@@ -11,9 +11,9 @@
       <a class="btn btn-small" style="background: initial; border: 0;" href="<%= edit_photo_path(photo) %>"><i class="icon-edit"></i></a>
       <a href="/photos/<%= photo.id%>" class="btn btn-small"  style="background: initial; border: 0;" data-confirm="You sure?" data-method="delete" rel="nofollow"><i class="icon-trash"></i></a>
       <a href="/reports/?photo=<%=photo.id%>" class="btn btn-small"  style="background: initial; border: 0;" data-confirm="You sure?" data-method="post" rel="nofollow"><i class="icon-warning-sign"></i></a>
-      </div>
-      <%= render 'photos/like_photo_form', photo: photo %>
-      </div>
+    </div>
+    <%= render 'photos/like_photo_form', photo: photo %>
+  </div>
 
 
   <div style="display: none"><%= will_paginate @photos %></div>
@@ -25,39 +25,39 @@
       <button class="btn btn-success btn-large" href="#"><b color= "white">LIKE ME!</b></button>
     </div>
   </div>
-  <%end%>
+<%end%>
 </div>
 
 
 
 <script type="text/javascript">
-jQuery(function() {                                              // <== Doc ready
+  jQuery(function() {                                              // <== Doc ready
 
-  //  jQuery(".btn-group").hide();                  // Initially hide all buttons
+      //  jQuery(".btn-group").hide();                  // Initially hide all buttons
 
-    jQuery('.show-image').hover(function() {
-         jQuery(this).find('.btn-group').show();         // use .find() !
-       }, function() {
+      jQuery('.show-image').hover(function() {
+        jQuery(this).find('.btn-group').show();         // use .find() !
+        }, function() {
         jQuery(this).find('.btn-group').hide();         // use .find() !
+        });
       });
-  });
 
 var $container = $('#container');
 
 $container.imagesLoaded(function(){
-  $container.masonry({
-    itemSelector: '.box',
-    columnWidth: 100
-  });
+    $container.masonry({
+itemSelector: '.box',
+columnWidth: 100
 });
+    });
 
 $container.infinitescroll({
 navSelector  : '.next_page',    // selector for the paged navigation
 nextSelector : '.next_page a',  // selector for the NEXT link (to page 2)
 itemSelector : '.box',         // selector for all items you'll retrieve
 loading: {
-  finishedMsg: 'No more pages to load.',
-  img: 'http://i.imgur.com/6RMhx.gif'
+finishedMsg: 'No more pages to load.',
+img: 'http://i.imgur.com/6RMhx.gif'
 }
 },
 // trigger Masonry as a callback
@@ -69,7 +69,7 @@ $newElems.imagesLoaded(function(){
   // show elems now they're ready
   $newElems.animate({ opacity: 1 });
   $container.masonry( 'appended', $newElems, true );
-});
+  });
 }
 );
 </script>
