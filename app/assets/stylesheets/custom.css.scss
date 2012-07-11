@@ -13,10 +13,10 @@ $grayMediumLight: #eaeaea;
 /* universal */
 
 html {
-  min-height: 800px;
+  min-height: 600px;
   min-width: 800px;
   width: 100% !important;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   background: #f7f5f5 url(../images/paper.jpg) repeat;
 }
 
@@ -302,7 +302,7 @@ aside {
 
 /* img */
 img {
-  padding-top: 30px;
+  /* padding-top: 30px; */
   max-width: 100%;
   height: auto;
   border: 0;
@@ -314,3 +314,14 @@ img {
   width: 35%;
 }
 
+ul.pinbar li {
+  line-height: inherit;
+}
+
+.btn-group {
+  position: absolute;
+}
+
+.btn.btn-small {
+  margin-bottom: 0px;
+}

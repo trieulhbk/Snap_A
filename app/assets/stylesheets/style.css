@@ -234,9 +234,9 @@ button {
 /**** Demos ****/
 
 #container {
-  min-height: 100%;
+  /* min-height: 100%; */
   /* margin-left: 30px; */
-  background: #f7f5f5 url(../images/paper.jpg) repeat;
+  /* background: #f7f5f5 url(../images/paper.jpg) repeat; */
   /* padding: 5px; */
   margin-bottom: 20px;
   border-radius: 5px;
@@ -280,7 +280,7 @@ button {
 
 
 .col1 { width: 80px; }
-.col2 { width: 175px; }
+.col2 { width: 14%; min-width: 170px; }
 .col3 { width: 280px; }
 .col4 { width: 380px; }
 .col5 { width: 480px; }

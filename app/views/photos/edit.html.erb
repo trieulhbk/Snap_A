@@ -1,11 +1,10 @@
 <% provide(:title, "Edit box") %>
   <h1>Edit photo information</h1>
 
-<div class="row">
-  <div class="span6 offset3">
+<div class="row center">
     <%= form_for(@photo) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
-      <div class="thumbnail">      
+      <div class="thumbnail">
       <% if @photo.image_remote_url.nil? %>
       <%= image_tag @photo.image.url%>
       <% else %>
@@ -21,5 +20,4 @@
     <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
     <% end %>
 
-  </div>
 </div>

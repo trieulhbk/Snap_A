@@ -29,43 +29,40 @@
     </div>
   </div>
 </div>
-
-
-
 <script type="text/javascript">
+
 
 function change_source(id){
   document.getElementById('popup').src=document.getElementById('img-src-'+id).src
-
 }
 
-jQuery(function() {                                              // <== Doc ready
 
-  //  jQuery(".btn-group").hide();                  // Initially hide all buttons
+  jQuery(function() {                                              // <== Doc ready
+      //  jQuery(".btn-group").hide();                  // Initially hide all buttons
 
-    jQuery('.show-image').hover(function() {
-         jQuery(this).find('.btn-group').show();         // use .find() !
-       }, function() {
+      jQuery('.show-image').hover(function() {
+        jQuery(this).find('.btn-group').show();         // use .find() !
+        }, function() {
         jQuery(this).find('.btn-group').hide();         // use .find() !
+        });
       });
-  });
 
 var $container = $('#container');
 
 $container.imagesLoaded(function(){
-  $container.masonry({
-    itemSelector: '.box',
-    columnWidth: 100
-  });
+    $container.masonry({
+itemSelector: '.box',
+columnWidth: 100
 });
+    });
 
 $container.infinitescroll({
 navSelector  : '.next_page',    // selector for the paged navigation
 nextSelector : '.next_page a',  // selector for the NEXT link (to page 2)
 itemSelector : '.box',         // selector for all items you'll retrieve
 loading: {
-  finishedMsg: 'No more pages to load.',
-  img: 'http://i.imgur.com/6RMhx.gif'
+finishedMsg: 'No more pages to load.',
+img: 'http://i.imgur.com/6RMhx.gif'
 }
 },
 // trigger Masonry as a callback
@@ -77,7 +74,7 @@ $newElems.imagesLoaded(function(){
   // show elems now they're ready
   $newElems.animate({ opacity: 1 });
   $container.masonry( 'appended', $newElems, true );
-});
+  });
 }
 );
 </script>

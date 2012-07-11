@@ -26,8 +26,6 @@ class PhotosController < ApplicationController
       	client = FBGraph::Client.new(:client_id => GRAPH_APP_ID, :secret_id => GRAPH_SECRET, :token => token)
         photos =client.selection.me.photos.limit(0).info!
         @tagged_photos = photos.data.data.map(&:source)
-        binding.pry
-
         user =FbGraph::User.me(token)
         @albums=user.albums.map(&:photos);
         store_location
