@@ -1,4 +1,5 @@
 <% provide(:title, 'Upload') %>
+<div class="container">
 <h1>Upload via facebook</h1>
 <ul class="thumbnails">
 	<% @albums.each do |album| %>
@@ -11,4 +12,4 @@
 		<%= render 'tagged_photo', tagged_photo: tagged_photo %>
 	<% end %>	
 </ul>
-
+</div>
