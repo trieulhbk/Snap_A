@@ -17,12 +17,7 @@
   </div>
 
 <%else%>
-  <div class="span6 offset3">
-    <%Notification.order("created_at DESC").each do |noti| %>
-      <li>
-        <% if noti.target_id == current_user.id && noti.relation_type == "user_user_relationships" %>
-          <%= User.find(noti.source_id).name%> followed you
-        </li>
-      <%end%>
-    <%end%>
-  <%end%>
+  <section class="content">
+    <%= render :partial => 'photos/photo_paginate' %>
+  </section>
+<%end%>

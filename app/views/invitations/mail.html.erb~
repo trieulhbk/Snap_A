@@ -1,6 +1,6 @@
 <%= render '/shared/invite' %>
 <%if signed_in? %>
-<div class="row center", style="margin-top: 60px;">
+<div class="row center", style="margin-top: 80px;">
       <%= form_tag(sendinvite_path) do %>
         <%= label_tag :email %>
         <%= text_field_tag :email %>

@@ -7,7 +7,7 @@ class SearchsController < ApplicationController
         @results.push photo
       end
     end
-      @photos = @results.paginate(page: params[:page],per_page: 15)
+      @photos = @results
   end
 
   def search_name

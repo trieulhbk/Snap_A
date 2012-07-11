@@ -55,5 +55,5 @@ class Photo < ActiveRecord::Base
     io.original_filename.blank? ? nil : io
   rescue
   end
-  
+
 end
