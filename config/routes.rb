@@ -29,6 +29,7 @@ SnapA::Application.routes.draw do
     end
   end
 
+  resources :verifications
   resources :password_resets
   resources :reports
   resources :categories

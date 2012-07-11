@@ -10,4 +10,9 @@ class UserMailer < ActionMailer::Base
     @edit_password_reset_url = edit_password_reset_url(recipient.persistence_token)
     mail(:to => recipient.email, :subject => "Password Reset Instructions")
   end
+
+  def verify(recipient)
+    @user_verification_url = verification_url(recipient.persistence_token)
+    mail(:to => recipient.email, :subject => "Password Reset Instructions")
+  end
 end
