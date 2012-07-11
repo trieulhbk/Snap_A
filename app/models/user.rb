@@ -132,8 +132,7 @@ class User < ActiveRecord::Base
   end
 
   def verify?
-    self.verified = true
-    self.save
+    self.verified
   end
 
   private

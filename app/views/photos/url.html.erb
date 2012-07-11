@@ -1,20 +1,30 @@
 <% provide(:title, 'Upload via URL') %>
 <h1>Upload via URL</h1>
 <div class="row center">
-    <%= form_for @photo, :html => { multipart: true } do |f| %>
+  <%= form_for @photo, :html => { multipart: true } do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
-    	<%= f.label :box_id %><br />
-    	<%= f.collection_select :box_id, current_user.boxes.all, :id, :name %>
+    <%= f.label :box_id %><br />
+    <%= f.collection_select :box_id, current_user.boxes.all, :id, :name %>
 
-    	<%= f.label :name %>
-        <%= f.text_field :name %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
 
-        <%= f.label :description %>
-        <%= f.text_area :description, rows: 3 %>
+    <%= f.label :description %>
+    <%= f.text_area :description, rows: 3 %>
 
-        URL: <%= f.text_field :image_url %>
+    URL: <%= f.text_field :image_url %>
 
-        <br>
-        <%= f.submit "UPLOAD", class: "btn btn-large btn-primary" %>
-      <% end %>
+  <br>
+  <%= f.submit "UPLOAD", class: "btn btn-large btn-primary" %>
+<% end %>
+<div class="btn-group">
+  <%= link_to "Upload via PC", upload_pc_path, class: "btn btn-large btn-primary" %>
+  <%= link_to "Upload via URL", upload_url_path, class: "btn btn-large btn-primary" %>
+  <% if current_user.authentications.find_by_provider('facebook').nil? %>
+    <%= link_to "Upload via Facebook", "/auth/facebook", class: "btn btn-large btn-primary"%>
+  <% else %>
+    <%= link_to "Upload via Facebook", upload_facebook_path, class: "btn btn-large btn-primary" %>
+  <% end %>
+</div>
+
 </div>

@@ -1,0 +1,183 @@
+
+html{background: #f7f5f5 url(../images/paper.jpg) repeat;}ul,ol,h3,h4,h5,h6,pre,code,form,fieldset,legend,p,blockquote,th,td{margin: 0;padding: 0;}table{border-collapse:collapse;border-spacing: 0;}fieldset,img{border: 0;}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym {border: 0;font-variant:normal;}sup{vertical-align:text-top;}sub{vertical-align:text-bottom;overflow:hidden;}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit; resize: none;outline:none;}legend{color:#000;}
+
+/* CREATE BOARD NAG CELL
+--------------------------------------------------------------------------------------- */
+#profile .createBoard.pinBoard {position: relative;}
+#profile .createBoard.pinBoard input {width: 222px; margin-bottom: 10px; text-align: center;}
+#profile .createBoard.pinBoard label {left: 0; text-align: center; width: 100%;}
+#profile .createBoard.pinBoard .createBoardSubmit {position: absolute; top: 115px; left: 50%; margin-left: -53px;}
+
+.noscroll.hidefixed #CategoriesBar.fixed, .noscroll.hidefixed #Header {display: none;}
+.noscroll.hidefixed#CategoriesBarPage #Header, .noscroll.hidefixed#profile #Header {display: block;}
+
+#ContextBar + #ColumnContainer {margin-top: 15px;}
+#ContextBar {position: relative; min-height: 24px; margin: 59px 0 15px; padding: 10px 0 12px; text-shadow: 0 1px rgba(255,255,255,0.9);}
+  #ContextBar.SearchNag { margin-top: 18px; }
+  #ContextBar.fixed {position: fixed; top: 15px; left: 15px;}
+  #ContextBar p {margin: 4px 0 0; padding: 0; font-size: 1.8em; line-height: 1em; font-weight: 300; color: #211922; border-width: 0;}
+  #ContextBar p span {margin-left: 5px;}
+  #ContextBar p span.hilight {font-size: 1em; font-weight: 600; float: none; vertical-align: 5%;}
+  #ContextBar p span.selected {margin: 0; color: #cb2027;}
+  #ContextBar p span.greyselected {margin: 0; color: #8c7e7e;}
+  #ContextBar a {font-weight: 300; text-decoration: underline;}
+
+/* Profile tabs */
+#profile #ContextBar { margin: 0px; padding: 0; background: #faf7f7; overflow: hidden; border-bottom: none; line-height: 48px; box-shadow: inset 0 1px #fff, 0 1px 3px rgba(34,25,25,0.4); -moz-box-shadow: inset 0 1px #fff, 0 1px 3px rgba(34,25,25,0.4); -webkit-box-shadow: inset 0 1px #fff, 0 1px 3px rgba(34,25,25,0.4); z-index:100; }
+#profile #ContextBar.fixed { left: 0; right: 0; top: -1px; }
+#profile #ContextBar .FixedContainer { overflow: hidden; margin: 0px auto -1px; }
+#profile #ContextBar a { text-decoration: none; }
+#profile #ContextBar ul { float: left; }
+#profile #ContextBar ul li { float: left; }
+#profile #ContextBar ul li a { display: block; padding: 0px 15px; font-size: 13px; color: #554747; border-top: 1px solid #fff; height: 48px; }
+#profile #ContextBar ul li a:hover { background-color: #E1DFDF; color: #554747; border-top-color: #E1DFDF; }
+#profile #ContextBar ul li a:active { background-color: #cb2027; color: #fff; border-top-color: #cb2027; text-shadow: none; }
+#profile #ContextBar ul li a.selected { position: relative; overflow: hidden; border-left: 1px solid #cdc5c5; border-right: 1px solid #cdc5c5; border-top: 1px solid #f3f3f2; background: #f1eeed; text-shadow: #fff 0 1px 0; background: #e0dcdb; background: -moz-linear-gradient(top,  #e0dcdb 0%, #f4f1f1 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e0dcdb), color-stop(100%,#f4f1f1)); background: -ms-linear-gradient(top,  #e0dcdb 0%,#f4f1f1 100%); background: linear-gradient(top,  #e0dcdb 0%,#f4f1f1 100%); }
+#profile #ContextBar ul li a.selected:active { color: #554747; }
+#profile #ContextBar ul li a.selected:before { position: absolute; left: 0; top: -10px; bottom: -10px; right: 0; content: ""; box-shadow: inset 0 0px 10px rgba(34,25,25,0.1); -moz-box-shadow: inset 0 0px 10px rgba(34,25,25,0.1); -webkit-box-shadow: inset 0 0px 10px rgba(34,25,25,0.1);  }
+#profile #ContextBar .action { letter-spacing: -.31em; word-spacing: -.43em; margin: 1px auto; width: 160px; text-align: center; }
+#profile #ContextBar .action a {  letter-spacing: normal; word-spacing: normal; }
+#profile #ContextBar .action .Tab, #profile #ContextBar .action #RearrangeCancel { display: inline-block; height: 24px; line-height: 24px; margin-top: -4px; vertical-align: middle; }
+#profile #ContextBar .action .Tab { margin-right: -1px; padding: 0 8px; }
+#profile #ContextBar .action .Tab.Left { border-radius: 4px 0 0 4px; -moz-border-radius: 4px 0 0 4px; -webkit-border-radius: 4px 0 0 4px; }
+#profile #ContextBar .action .Tab.Right { border-radius: 0 4px 4px 0; -moz-border-radius: 0 4px 4px 0; -webkit-border-radius: 0 4px 4px 0; }
+#profile #ContextBar .action #RearrangeButton { padding: 0 5px; }
+#profile #ContextBar .action #RearrangeButton em { background: url(../images/RearrangeIcon.png) no-repeat center; display: block; height: 24px; width: 25px; }
+#profile #ContextBar .action #RearrangeButton.RedButton em { background-image: url(../images/Rearrange-Confirm.png) }
+#profile #ContextBar .action #RearrangeCancel { background: url(../images/Rearrange-Cancel.png) no-repeat center center; width: 25px; margin-right: -25px; text-indent:-999px; overflow: hidden; }
+#profile #ContextBar .follow { float: right; }
+#profile #ContextBar .Button { font-weight: bold; }
+#profile #ColumnContainer {margin-top: 15px; }
+
+.FixedContainer {width: 852px; margin: 0 auto;}
+.FixedContainer .StaticForm {margin-top: 96px;}
+#profile .FixedContainer { width: 934px; }
+
+
+/* BUTTONS
+--------------------------------------------------------------------------------------- */
+
+/* New Buttons -- no nested spans */
+.Button {border: 1px solid transparent; -moz-border-radius: .3em; -webkit-border-radius: .3em; border-radius: .3em; -moz-box-shadow: 0 1px rgba(255,255,255,0.8), inset 0 1px rgba(255,255,255,0.35); -webkit-box-shadow: 0 1px rgba(255,255,255,0.8), inset 0 1px rgba(255,255,255,0.35); box-shadow: 0 1px rgba(255,255,255,0.8), inset 0 1px rgba(255,255,255,0.35); cursor: pointer; display: inline-block; font-family:"helvetica neue",arial,sans-serif; font-weight: bold; line-height: 1em; margin: 0; padding: .45em .825em .45em; text-align: center; -moz-transition: all .05s ease-in-out; -o-transition: all .05s ease-in-out; -webkit-transition: all .05s ease-in-out;}
+.Button:focus {outline: none;}
+.Button:hover {text-decoration: none;}
+.Button:active {-moz-transition: none; -o-transition: none; -webkit-transition: none;}
+button.Button::-moz-focus-inner {padding: 0; border: 0;}
+
+.Button.Button11 {-moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; font-size: 11px; }
+.Button.Button13 {-moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; font-size: 13px; }
+.Button.Button18 {-moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px; font-size: 18px; }
+.Button.Button24 {-moz-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px; font-size: 24px; }
+
+/* Red Button */
+.Button.RedButton {background-color: #d43638; background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#eb5367), to(#d43638), color-stop(.5,#e04751), color-stop(.5,#de404a));  background-image: -moz-linear-gradient(top, #eb5367, #e04751 50%, #de404a 50%, #d43638); background-image: -o-linear-gradient(top, #eb5367, #e04751 50%, #de404a 50%, #d43638); background-image: -webkit-linear-gradient(top, #eb5367, #e04751 50%, #de404a 50%, #d43638); border-color: #910101; color: #fcf9f9; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eb5367', endColorstr='#d43638'); text-shadow: 0 -1px rgba(34,25,25,0.5);}
+.Button.RedButton:hover {background-color: #d63e40; background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ea5d6e), to(#d63e40), color-stop(.5,#e3535d),color-stop(.5,#e04a54)); background-image: -moz-linear-gradient(top, #ea5d6e, #e3535d 50%, #e04a54 50%, #d63e40); background-image: -o-linear-gradient(top, #ea5d6e, #e3535d 50%, #e04a54 50%, #d63e40); background-image: -webkit-linear-gradient(top, #ea5d6e, #e3535d 50%, #e04a54 50%, #d63e40); border-color: #ad0303; color: #fff; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ea5d6e', endColorstr='#d63e40'); text-shadow: 0 -1px rgba(34,25,25,0.3);}
+.Button.RedButton:active {background-color: #c83031; background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#d5414b), to(#c83031), color-stop(.5,#d5414b),color-stop(.5,#d33d46)); background-image: -moz-linear-gradient(top, #dd4b5d, #d5414b 50%, #d33d46 50%, #c83031); background-image: -o-linear-gradient(top, #dd4b5d, #d5414b 50%, #d33d46 50%, #c83031); background-image: -webkit-linear-gradient(top, #dd4b5d, #d5414b 50%, #d33d46 50%, #c83031); border-color: #510000; color: #f2f0f0; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dd4b5d', endColorstr='#c83031'); text-shadow: 0 -1px rgba(34,25,25,0.6);}
+
+.Button.RedButton.Button11:hover {box-shadow: 0 1px rgba(255,255,255,0.8), inset 0 1px rgba(255,255,255,0.35), 0 0 5px rgba(235,82,82,0.25); -moz-box-shadow: 0 1px rgba(255,255,255,0.8), inset 0 1px rgba(255,255,255,0.35), 0 0 5px rgba(235,82,82,0.25); -webkit-box-shadow:  0 1px rgba(255,255,255,0.8), inset 0 1px rgba(255,255,255,0.35), 0 0 5px rgba(235,82,82,0.25);}
+.Button.RedButton.Button11:active {box-shadow: inset 0 1px 2px rgba(34,25,25,0.25), 0 0 1px rgba(235,82,82,0.35); -moz-box-shadow: inset 0 1px 2px rgba(34,25,25,0.25), 0 0 1px rgba(235,82,82,0.35); -webkit-box-shadow: inset 0 1px 2px rgba(34,25,25,0.25), 0 0 2px rgba(235,82,82,0.35);}
+
+.Button.RedButton.Button13:hover {box-shadow: 0 1px rgba(255,255,255,0.8), inset 0 1px rgba(255,255,255,0.35), 0 0 6px rgba(235,82,82,0.25); -moz-box-shadow: 0 1px rgba(255,255,255,0.8), inset 0 1px rgba(255,255,255,0.35), 0 0 6px rgba(235,82,82,0.25); -webkit-box-shadow:  0 1px rgba(255,255,255,0.8), inset 0 1px rgba(255,255,255,0.35), 0 0 6px rgba(235,82,82,0.25);}
+.Button.RedButton.Button13:active {box-shadow: inset 0 1px 2px rgba(34,25,25,0.25), 0 0 2px rgba(235,82,82,0.35); -moz-box-shadow: inset 0 1px 2px rgba(34,25,25,0.25), 0 0 2px rgba(235,82,82,0.35); -webkit-box-shadow: inset 0 1px 2px rgba(34,25,25,0.25), 0 0 2px rgba(235,82,82,0.35);}
+
+.Button.RedButton.Button18:hover {box-shadow: 0 1px rgba(255,255,255,0.8), inset 0 1px rgba(255,255,255,0.35), 0 0 10px rgba(235,82,82,0.25); -moz-box-shadow: 0 1px rgba(255,255,255,0.8), inset 0 1px rgba(255,255,255,0.35), 0 0 10px rgba(235,82,82,0.25); -webkit-box-shadow:  0 1px rgba(255,255,255,0.8), inset 0 1px rgba(255,255,255,0.35), 0 0 10px rgba(235,82,82,0.25);}
+.Button.RedButton.Button18:active {box-shadow: inset 0 1px 2px rgba(34,25,25,0.25), 0 0 3px rgba(235,82,82,0.35); -moz-box-shadow: inset 0 1px 2px rgba(34,25,25,0.25), 0 0 3px rgba(235,82,82,0.35); -webkit-box-shadow: inset 0 1px 2px rgba(34,25,25,0.25), 0 0 3px rgba(235,82,82,0.35);}
+
+.Button.RedButton.Button24:hover {box-shadow: 0 1px rgba(255,255,255,0.8), inset 0 1px rgba(255,255,255,0.35), 0 0 14px rgba(235,82,82,0.25); -moz-box-shadow: 0 1px rgba(255,255,255,0.8), inset 0 1px rgba(255,255,255,0.35), 0 0 14px rgba(235,82,82,0.25); -webkit-box-shadow:  0 1px rgba(255,255,255,0.8), inset 0 1px rgba(255,255,255,0.35), 0 0 14px rgba(235,82,82,0.25);}
+.Button.RedButton.Button24:active {box-shadow: inset 0 1px 2px rgba(34,25,25,0.25), 0 0 4px rgba(235,82,82,0.35); -moz-box-shadow: inset 0 1px 2px rgba(34,25,25,0.25), 0 0 4px rgba(235,82,82,0.35); -webkit-box-shadow: inset 0 1px 2px rgba(34,25,25,0.25), 0 0 4px rgba(235,82,82,0.35);}
+
+/* White Button */
+.Button.WhiteButton {background-color: #f0eded; background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fdfafb), to(#f0eded), color-stop(.5,#f9f7f7),color-stop(.5,#f6f3f4)); background-image: -moz-linear-gradient(top, #fdfafb, #f9f7f7 50%, #f6f3f4 50%, #f0eded); background-image: -o-linear-gradient(top, #fdfafb, #f9f7f7 50%, #f6f3f4 50%, #f0eded); background-image: -webkit-linear-gradient(top, #fdfafb, #f9f7f7 50%, #f6f3f4 50%, #f0eded); border-color: #bbb; color: #524d4d; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdfafb', endColorstr='#f0eded'); text-shadow: 0 1px rgba(255,255,255,0.9);}
+.Button.WhiteButton:hover {background-color: #f2f0f0; background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fdfcfc), to(#f2f0f0), color-stop(.5,#fbf9f9),color-stop(.5,#f7f5f6)); background-image: -moz-linear-gradient(top, #fdfcfc, #fbf9f9 50%, #f7f5f6 50%, #f2f0f0); background-image: -o-linear-gradient(top, #fdfcfc, #fbf9f9 50%, #f7f5f6 50%, #f2f0f0); background-image: -webkit-linear-gradient(top, #fdfcfc, #fbf9f9 50%, #f7f5f6 50%, #f2f0f0); border-color: #c3c3c3; color: #666060; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdfcfc', endColorstr='#f2f0f0'); text-shadow: 0 1px rgba(255,255,255,1);}
+.Button.WhiteButton:active {background-color: #ebe8e8; background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f8f4f5), to(#ebe8e8), color-stop(.5,#f3f0f0),color-stop(.5,#f1eeef)); background-image: -moz-linear-gradient(top, #f8f4f5, #f3f0f0 50%, #f1eeef 50%, #ebe8e8); background-image: -o-linear-gradient(top, #f8f4f5, #f3f0f0 50%, #f1eeef 50%, #ebe8e8); background-image: -webkit-linear-gradient(top, #f8f4f5, #f3f0f0 50%, #f1eeef 50%, #ebe8e8); border-color: #b7b7b7; color: #454141; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f8f4f5', endColorstr='#ebe8e8'); text-shadow: 0 1px rgba(255,255,255,0.8);}
+
+.Button.WhiteButton.Button11:hover {box-shadow: 0 1px rgba(255,255,255,0.8), inset 0 1px rgba(255,255,255,0.35), 0 0 5px rgba(232,230,230,0.75); -moz-box-shadow: 0 1px rgba(255,255,255,0.8), inset 0 1px rgba(255,255,255,0.35), 0 0 5px rgba(232,230,230,0.75); -webkit-box-shadow:  0 1px rgba(255,255,255,0.8), inset 0 1px rgba(255,255,255,0.35), 0 0 5px rgba(232,230,230,0.75);}
+.Button.WhiteButton.Button11:active {box-shadow: inset 0 1px 2px rgba(34,25,25,0.25), 0 0 1px rgba(232,230,230,0.5); -moz-box-shadow: inset 0 1px 2px rgba(34,25,25,0.25), 0 0 1px rgba(232,230,230,0.5); -webkit-box-shadow: inset 0 1px 2px rgba(34,25,25,0.25), 0 0 2px rgba(232,230,230,0.5);}
+
+.Button.WhiteButton.Button13:hover {box-shadow: 0 1px rgba(255,255,255,0.8), inset 0 1px rgba(255,255,255,0.35), 0 0 6px rgba(232,230,230,0.75); -moz-box-shadow: 0 1px rgba(255,255,255,0.8), inset 0 1px rgba(255,255,255,0.35), 0 0 6px rgba(232,230,230,0.75); -webkit-box-shadow:  0 1px rgba(255,255,255,0.8), inset 0 1px rgba(255,255,255,0.35), 0 0 6px rgba(232,230,230,0.75);}
+.Button.WhiteButton.Button13:active {box-shadow: inset 0 1px 2px rgba(34,25,25,0.25), 0 0 2px rgba(232,230,230,0.5); -moz-box-shadow: inset 0 1px 2px rgba(34,25,25,0.25), 0 0 2px rgba(232,230,230,0.5); -webkit-box-shadow: inset 0 1px 2px rgba(34,25,25,0.25), 0 0 2px rgba(232,230,230,0.5);}
+
+.Button.WhiteButton.Button18:hover {box-shadow: 0 1px rgba(255,255,255,0.8), inset 0 1px rgba(255,255,255,0.35), 0 0 10px rgba(232,230,230,0.75); -moz-box-shadow: 0 1px rgba(255,255,255,0.8), inset 0 1px rgba(255,255,255,0.35), 0 0 10px rgba(232,230,230,0.75); -webkit-box-shadow:  0 1px rgba(255,255,255,0.8), inset 0 1px rgba(255,255,255,0.35), 0 0 10px rgba(232,230,230,0.75);}
+.Button.WhiteButton.Button18:active {box-shadow: inset 0 1px 2px rgba(34,25,25,0.25), 0 0 3px rgba(232,230,230,0.5); -moz-box-shadow: inset 0 1px 2px rgba(34,25,25,0.25), 0 0 3px rgba(232,230,230,0.5); -webkit-box-shadow: inset 0 1px 2px rgba(34,25,25,0.25), 0 0 3px rgba(232,230,230,0.5);}
+
+.Button.WhiteButton.Button24:hover {box-shadow: 0 1px rgba(255,255,255,0.8), inset 0 1px rgba(255,255,255,0.35), 0 0 14px rgba(232,230,230,0.75); -moz-box-shadow: 0 1px rgba(255,255,255,0.8), inset 0 1px rgba(255,255,255,0.35), 0 0 14px rgba(232,230,230,0.75); -webkit-box-shadow: 0 1px rgba(255,255,255,0.8), inset 0 1px rgba(255,255,255,0.35), 0 0 14px rgba(232,230,230,0.75);}
+.Button.WhiteButton.Button24:active {box-shadow: inset 0 1px 2px rgba(34,25,25,0.25), 0 0 4px rgba(232,230,230,0.5); -moz-box-shadow: inset 0 1px 2px rgba(34,25,25,0.25), 0 0 4px rgba(232,230,230,0.5); -webkit-box-shadow: inset 0 1px 2px rgba(34,25,25,0.25), 0 0 4px rgba(232,230,230,0.5);}
+
+.Button.WhiteButton.ContrastButton {border: 0; -moz-box-shadow: inset 0 1px rgba(255,255,255,0.35), 0 0 0 1px rgba(140,126,126,0.5); -webkit-box-shadow: inset 0 1px rgba(255,255,255,0.35), 0 0 0 1px rgba(140,126,126,0.5); box-shadow: inset 0 1px rgba(255,255,255,0.35), 0 0 0 1px rgba(140,126,126,0.5);}
+.Button.WhiteButton.ContrastButton:hover {-moz-box-shadow: inset 0 1px rgba(255,255,255,0.35), 0 0 0 1px rgba(140,126,126,0.5), 0 1px 2px rgba(35,24,24,0.75); -webkit-box-shadow: inset 0 1px rgba(255,255,255,0.35), 0 0 0 1px rgba(140,126,126,0.5), 0 1px 2px rgba(35,24,24,0.75); box-shadow: inset 0 1px rgba(255,255,255,0.35), 0 0 0 1px rgba(140,126,126,0.5), 0 1px 2px rgba(35,24,24,0.75);}
+.Button.WhiteButton.ContrastButton:active {-moz-box-shadow: inset 0 1px 2px rgba(34,25,25,0.25), 0 0 0 1px rgba(140,126,126,0.5), 0 0 1px rgba(232,230,230,0.5); -webkit-box-shadow: inset 0 1px 2px rgba(34,25,25,0.25), 0 0 0 1px rgba(140,126,126,0.5), 0 0 1px rgba(232,230,230,0.5); box-shadow: inset 0 1px 2px rgba(34,25,25,0.25), 0 0 0 1px rgba(140,126,126,0.5), 0 0 1px rgba(232,230,230,0.5);}
+
+.Button.WhiteButton.ContrastButton.disabled {-moz-box-shadow: inset 0 1px rgba(255,255,255,0.35), 0 0 0 1px rgba(140,126,126,0.5) !important; -webkit-box-shadow: inset 0 1px rgba(255,255,255,0.35), 0 0 0 1px rgba(140,126,126,0.5) !important; box-shadow: inset 0 1px rgba(255,255,255,0.35), 0 0 0 1px rgba(140,126,126,0.5) !important;}
+
+/* Disabled Button */
+.Button.disabled {background: #f2f0f0 !important; border-color: #d1cdcd !important; -moz-box-shadow: 0 1px rgba(255,255,255,0.8), inset 0 1px rgba(255,255,255,0.35) !important; -webkit-box-shadow: 0 1px rgba(255,255,255,0.8), inset 0 1px rgba(255,255,255,0.35) !important; box-shadow: 0 1px rgba(255,255,255,0.8), inset 0 1px rgba(255,255,255,0.35) !important; color: #d1cdcd !important; cursor: default; filter: progid:DXImageTransform.Microsoft.gradient(enabled = false) !important; text-shadow: 0 -1px rgba(34,25,25,0.01) !important;}
+.Button.disabled.clickable {cursor: pointer;}
+
+/* Inline Button */
+.Button.InlineButton {border: none; -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0; display: block; margin: 1px; padding: 0.65em 0.825em;}
+
+.Button.Indicator {border-width: 0; -moz-box-shadow: 0 0 #fff, 0 1px 3px rgba(34,25,25,0.5); -webkit-box-shadow: 0 0 #fff, 0 1px 3px rgba(34,25,25,0.5); box-shadow: 0 0 #fff, 0 1px 3px rgba(34,25,25,0.5); display: block; font-size: 15px; text-align: center; position: fixed; z-index: 4;}
+
+#ColumnContainer {position: relative; min-height: 500px; margin: 60px auto 0;}
+#ColumnContainer.empty { background: url(../images/building.gif) no-repeat center; }
+#ContextBar + #ColumnContainer {margin-top: 15px;}
+
+
+.sortable {display: block; margin-left: -15px !important; zoom: 1;}
+.sortable li {float: left; width: 18%; margin: 0 0 15px 15px;}
+.sortable .pinBoard { position: relative; }
+#SortableButtons {display: none; margin: 15px 0; padding: 15px; text-align: center; overflow: hidden; }
+#SortableButtons h2, #SortableButtons h3 { text-shadow: #fff 0 1px 0; }
+#SortableButtons h2 { font-size: 24px; font-weight:400; }
+#SortableButtons h3 { font-size: 13px; font-weight:300; }
+
+/* BOARD CELL
+--------------------------------------------------------------------------------------- */
+.pinBoard {width: 222px !important; padding: 0 !important; background: none; box-shadow: none; -moz-box-shadow: none; -webkit-box-shadow: none; margin-bottom: 20px; }
+.pinBoard h3, .pinBoard h4 { text-align: center; padding: 5px 15px 0; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
+  .pinBoard h3 { padding-bottom: 0; }
+  .pinBoard h3 a {font-size: 13px; font-weight: 600; color: #584d4d; text-shadow: 0 1px 0 #fff; overflow: hidden; padding-bottom: 0; }
+  .pinBoard h4 {font-size: 11px; font-weight: 600; color: #a59292; text-shadow: #fff; overflow: hidden; padding-top: 0; padding-bottom: 5px;}
+  .pinBoard h4.user { line-height: 18px; }
+  .pinBoard h4.user img { width: 18px; height: 18px; margin-right: 5px; vertical-align: bottom; }
+  .pinBoard .board { box-shadow: 0 2px 3px rgba(0,10,10,0.38); -moz-box-shadow: 0 2px 3px rgba(0,10,10,0.38); -webkit-box-shadow: 0 2px 3px rgba(0,10,10,0.38); margin-top: 5px; position: relative; }
+  .pinBoard .board a.link { zoom: 1; display: block; position: absolute; top: 0; left: 0; width: 222px; z-index:1; height:207px; background-color:#fff; opacity: 0; filter: alpha(opacity=0); }
+  .pinBoard .empty { background: #EFEFEF; }
+  .pinBoard .cover { height: 150px; width: 100%; display: block; text-align: center; margin-bottom:1px; overflow: hidden; position: relative; position: relative; }
+  .pinBoard .cover img {  }
+  .pinBoard .thumbs { display: block; width: 224px; }
+  .pin.pinBoard .actions { left: 0; right: 0; top: 115px; text-align: center; }
+  .pin.pinBoard .actions a {float: none;}
+  .pinBoard h3 { height: 20px;}
+  .pinBoard .curatedBy {padding: 9px 15px 0; overflow: hidden;}
+    .pinBoard .curatedBy img {float: left; width: 18px; height: 18px; margin-right: 4px;}
+    .pinBoard .curatedBy p {float: left; width: 170px; margin: 2px 0 0; font-size: 11px; white-space: nowrap; overflow: hidden;}
+    .pinBoard .holder { overflow: hidden; width: 222px; background-color: #fff; }
+    .pinBoard .holder .thumbs img, .pinBoard .holder .thumbs .empty {float: left; width: 55px; height: 55px; margin: 0 1px 0 0;}
+    .pin.domainPins { padding: 0; width: 222px; }
+    .pin.domainPins h3 { padding: 10px 15px 0; font-size: 13px; font-weight: 300; }
+    .pin.domainPins .link {background: url(../images/BoardBackground_forDomainPins.png) 15px 9px no-repeat; height: auto; padding: 10px 0 15px 15px; display: block; overflow: hidden;}
+    .pin.domainPins .link img { width: 61px; height: 61px; }
+  .pinBoard .likesComments {margin: 0; padding: 0 15px 10px; background-color: #fff;}
+  .pinBoard .followBoard { padding: 0; text-align: center; border-top:1px #ccc solid; }
+  .pinBoard .followBoard .BoardMeta {float: left; width: auto; margin-top: 8px; font-size: 11px;}
+
+/* Pin Activity */
+.pin.activity { background: #fff; box-shadow: 0 1px 3px rgba(34,25,25,0.4); -moz-box-shadow: 0 1px 2px rgba(34,25,25,0.4); -webkit-box-shadow: 0 1px 3px rgba(34,25,25,0.4); position: absolute }
+.pin.activity div.info { background-position: 15px 0px; background-repeat: no-repeat; border-bottom: 1px solid #ccc; padding: 0 15px 10px 35px; margin: 0 -15px 15px; }
+.pin.activity .actions { top: auto; }
+.pinBoard.activity { padding: 15px !important; width: 192px !important; }
+.pinBoard.activity .board, .pinBoard.activity .holder { overflow: hidden; width: 191px; }
+.pinBoard.activity .board a.link { height: 180px; width: 192px; }
+.pinBoard.activity .cover { height: 130px; }
+.pinBoard.activity .holder .cover img { width: 100%; }
+.pinBoard.activity h3, .pinBoard.activity h4 { display: none; }
+.pinBoard.activity .board { box-shadow: none; -moz-box-shadow: none; -webkit-box-shadow: none; }
+.pinBoard.activity .board .followBoard { border: none; margin-top:10px; }
+.pinBoard.activity .board .followBoard .Button { display: block; }
+.pinBoard.activity .holder .thumbs img, .pinBoard.activity .holder .thumbs .empty { width: 47px; height: 47px; }
+.user.activity a.ImgLink { width: 192px; display: block; margin-bottom: 10px; }
+.user.activity .PersonIdentity { display: none; }
+.pin .stats { overflow: hidden; }
+.pin .stats span { float: left; margin-right: 10px; }
+.pin.activity p.stats { margin: 0.8em 0; }

@@ -15,6 +15,16 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @boxes = @user.boxes
+    @count_photo = 0
+    @user.boxes.each do |box|
+      @count_photo += box.photos.count
+    end
+    @count_like = 0
+    @user.user_photo_actions.each do |r|
+      if r.action == :like
+        count_like += 1
+      end
+    end
   end
 
   def send_invite
@@ -78,6 +88,7 @@ class UsersController < ApplicationController
     mail = UserMailer.verify(user)
     mail.deliver
   end
+
 
 
   def toggle_active
