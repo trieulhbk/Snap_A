@@ -7,13 +7,6 @@
     <%= link_to "Log in with Twitter", "/auth/twitter",
       class: "btn btn-large btn-primary" %>
     <br>
-    <div class="send span4 offset5", style="margin-top: 5px;">
-      <%= form_tag(sendinvite_path) do %>
-        <%= label_tag :email %>
-        <%= text_field_tag :email %>
-        <%= submit_tag "Send", class: "btn btn-normal btn-primary" %>
-      <% end %>
-    </div>
 
     <%=image_tag("hr.png")%>
     <br>

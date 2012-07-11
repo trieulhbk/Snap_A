@@ -1,4 +1,4 @@
-<script src="http://connect.facebook.net/en_US/all.js"></script>
+$.getScript("http://connect.facebook.net/en_US/all.js", function() {
       // assume we are already logged in
   FB.init({appId: <%= GRAPH_APP_ID %>, xfbml: true, cookie: true});
 
@@ -7,5 +7,6 @@
       method: 'apprequests',
       message: 'try out this app http://0.0.0.0:3000/',
     });
-  return false;
+    return false;
+  });    
 });
