@@ -3,6 +3,7 @@
   <div class ="pull-left">
     <h1>Edit Profile</h1>
   </div>
+Couldn't find Box with id=7 [WHERE "boxes"."user_id" = 1]
 </section>
 <section style="margin-left: 30px;">
   <hr>
@@ -29,7 +30,7 @@
         <%= f.password_field :password_confirmation %>
       </div>
     </section>
-    <section>
+
       <div class="span12 pull-left">
         <hr>
         <%= f.label :Facebook %>
@@ -69,7 +70,6 @@
         <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
       <% end %>
     </div>
-  </section>
 </section>
 
 
