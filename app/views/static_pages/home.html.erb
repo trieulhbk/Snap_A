@@ -6,11 +6,7 @@
       class: "btn btn-large btn-primary" %>
     <%= link_to "Log in with Twitter", "/auth/twitter",
       class: "btn btn-large btn-primary" %>
-    <%= form_tag(sendinvite_path) do %>
-      <%= label_tag :email %>
-      <%= text_field_tag :email %>
-      <%= submit_tag "Send", class: "btn btn-normal btn-primary" %>
-    <% end %>
+    <br>
     <%=image_tag("hr.png")%>
     <%= form_tag(sessions_path) do %>
       <%= text_field_tag :email, "Email" %>

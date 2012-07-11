@@ -1,4 +1,5 @@
 class FindFriendsController < ApplicationController
+  include SessionsHelper
   before_filter :signed_in_user, only: [:find_facebook]
   before_filter :signed_in_facebook, only: [:find_facebook]
 
@@ -9,7 +10,7 @@ class FindFriendsController < ApplicationController
   end
 
   def find_facebook
-    authentication = current_user.authentications.find_by_provider(params[:provider])
+    authentication = current_user.authentications.find_by_provider('facebook')
     token = authentication.access_token
     me = FbGraph::User.me(token)
     friends_id = me.friends.map(&:raw_attributes).map{|f| f['id']}
