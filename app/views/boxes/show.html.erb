@@ -2,13 +2,13 @@
   <div class="page-header"><h1>  <%if current_user?(@user) %>
     <%= link_to " E d i t ", edit_box_path(@box), class: "btn btn-primary btn-large"%>
     <%= @box.name %></h1>
-
-  <% else %>
-    <%= render 'follow_box_form', box: @box if @box.id != nil%>
-    <a href="<%= @box.id %>/followers"><%= UserBoxFollow.find_all_by_box_id(@box.id).count %> followers</a>
-  <%end%>
   </div>
+  <% else %>
+<div class="page-header"><h1> Author: <%= @user.name %> </h1></div>
+   <%= render 'follow_box_form', box: @box if @box.id != nil%>
+  <%end%>
   <section class="content">
     <%= render :partial => 'photos/photo_paginate' %>
   </section>
 </div>
+

@@ -3,9 +3,7 @@ class Box < ActiveRecord::Base
 
   validates :name, presence: true, length: {maximum: 50}
 
-  belongs_to :owner, class_name: "User", 
-  foreign_key: "user_id"
-  
+  belongs_to :owner, class_name: "User", foreign_key: "user_id"
   belongs_to :category
 
   has_many :user_box_follows, foreign_key: "box_id",

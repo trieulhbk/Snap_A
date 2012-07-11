@@ -28,13 +28,8 @@ class BoxesController < ApplicationController
 
   def show
     store_location
-    if params[:user_id] == nil
-      @user = current_user
-    else 
-      @user=User.find(params[:user_id])
-    end
-    
-    @box=@user.boxes.find(params[:id])
+    @box=Box.find(params[:id])
+    @user = @box.owner
     @photos = @box.photos.order("created_at DESC").paginate(page: params[:page],per_page: 15)
   end
 
@@ -47,9 +42,9 @@ class BoxesController < ApplicationController
 
   def destroy
     # User.find(params[:id]).destroy
-    box = Box.find(params[:box_id]).destroy
+    box = Box.find(params[:id]).destroy
     delete_rel_to_box(box)
-    flash[:success] = "Box #{params[:box_id]} destroyed."
+    flash[:success] = "Box #{params[:id]} destroyed."
     redirect_to boxes_path
   end
 
@@ -62,9 +57,9 @@ class BoxesController < ApplicationController
 
   def update
     @box = Box.find(params[:id])
-    if @box.update_attributes(params[:user])
+    if @box.update_attributes(params[:box])
       flash[:success] = "Box info updated"
-      redirect_back_or @box
+      redirect_to current_user
     else
       render 'edit'
     end
