@@ -38,7 +38,8 @@ SnapA::Application.routes.draw do
   resources :user_user_relationships, only: [ :create, :destroy]
   resources :user_photo_actions, only: [ :create, :destroy]
   resources :authentications
-  resources :find_friends
+  resources :find_friends, only: [ :find_facebook]
+  resources :invitations, only: [ :index, :facebook, :twitter, :mail]
 
   root to: 'static_pages#home'
 
@@ -53,7 +54,13 @@ SnapA::Application.routes.draw do
 
   match '/auth/:provider/callback' => 'authentications#create'
   match '/auth/:provider/destroy' => 'authentications#destroy'
-  match '/find/:provider' => 'find_friends#find_facebook'
+  
+  match '/entry/findfriends' => 'find_friends#find_facebook'
+
+  match '/invite/facebook' => 'invitations#facebook'
+  match '/invite/twitter' => 'invitations#twitter'
+  match '/invite/mail' => 'invitations#mail'
+  match '/invite' => 'invitations#index'
 
   match '/upload', to: 'photos#new'
   match '/upload/facebook', to: 'photos#facebook'

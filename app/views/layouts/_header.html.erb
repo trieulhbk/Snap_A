@@ -19,7 +19,11 @@
               <ul class="dropdown-menu">
                 <li><%= link_to "Upload via PC", upload_pc_path %></li>
                 <li><%= link_to "Upload via URL", upload_url_path %></li>
-                <li><%= link_to "Upload via Facebook", upload_facebook_path %></li>
+                <% if current_user.authentications.find_by_provider('facebook').nil? %>
+                  <%= link_to "Upload via Facebook", "/auth/facebook"%>
+                <% else %>
+                  <%= link_to "Upload via Facebook", upload_facebook_path%>
+                <% end %>
               </ul>
             </li>
 
@@ -28,8 +32,8 @@
             <%= current_user.name%> <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
-            <li><%= link_to "Invite Friends", find_friends_path %></li>
-            <li><%= link_to "Find Friends", '/find/facebook' %></li>
+            <li><%= link_to "Invite Friends", '/invite' %></li>
+            <li><%= link_to "Find Friends", '/entry/findfriends' %></li>
             <li class = "divider"></li>
             <li><%= link_to "Boxes", current_user %></li>
             <li><%= link_to "Pins", '#'%></li>

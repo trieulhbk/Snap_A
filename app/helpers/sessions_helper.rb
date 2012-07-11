@@ -39,14 +39,14 @@ module SessionsHelper
   def signed_in_facebook
     unless facebook?(current_user)
       store_location
-      redirect_to find_friends_path, notice: "Please sign in Facebook."
+      redirect_to edit_user_path(current_user), notice: "Please sign in Facebook."
     end
   end
 
   def signed_in_twitter
     unless twitter?(current_user)
       store_location
-      redirect_to "#", notice: "Please sign in Twitter."
+      redirect_to edit_user_path(current_user), notice: "Please sign in Twitter."
     end
   end
 

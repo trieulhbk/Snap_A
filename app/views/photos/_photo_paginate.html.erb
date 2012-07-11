@@ -9,12 +9,13 @@
     <div class="btn-group">
       <a class="btn btn-small" style="background: initial; border: 0;" href="#ZoomIn" data-toggle = "modal"><i class="icon-zoom-in"></i></a>
       <a class="btn btn-small" style="background: initial; border: 0;" href="<%= edit_photo_path(photo) %>"><i class="icon-edit"></i></a>
-      <a href="/photos/1" class="btn btn-small"  style="background: initial; border: 0;" data-confirm="You sure?" data-method="delete" rel="nofollow"><i class="icon-trash"></i></a>
-      <a class="btn btn-small"  style="background: initial; border: 0;" href="#"><i class="icon-warning-sign"></i></a>
+      <a href="/photos/<%= photo.id%>" class="btn btn-small"  style="background: initial; border: 0;" data-confirm="You sure?" data-method="delete" rel="nofollow"><i class="icon-trash"></i></a>
+      <a class="btn btn-small"  style="background: initial; border: 0;" href="/reports/?photo=<%=photo.id%>"><i class="icon-warning-sign"></i></a>
+      </div>
       <%= render 'photos/like_photo_form', photo: photo %>
-    </div>
+      </div>
 
-  </div>
+ 
   <div style="display: none"><%= will_paginate @photos %></div>
   <div class="modal hide fade" id="ZoomIn">
     <div class="modal-body">
