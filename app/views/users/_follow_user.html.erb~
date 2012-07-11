@@ -1,4 +1,7 @@
-<%= form_for(current_user.user_user_relationships.create(following_id: @user.id),  remote: true) do |f| %>
-  <div><%= f.hidden_field :following_id %></div>
-  <%= f.submit "Follow All", class: "btn btn-large btn-primary" %>
+  <span id="follow_user_<%= @user.id %>">
+<%= form_for(current_user.user_user_relationships.build(following_id: @user.id),  remote: true) do |f| %>
+  <span><%= f.hidden_field :following_id %></span>
+  <%= f.submit "Follow All", class: "Button13 Button WhiteButton
+" %>
 <% end %>
+</span>

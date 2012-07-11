@@ -21,6 +21,7 @@
 
 
 <%else%>
+
 <div class="span6 offset3">
   <%Notification.order("created_at DESC").each do |noti| %>
   <% if noti.target_id == current_user.id %>
@@ -56,25 +57,8 @@
  --> 
   <%end%>
   <%end%>
-  <%= link_to 'Send Request to your friends', '#', :id => :app_request %>
-
-  <html xmlns:fb="http://www.facebook.com/2008/fbml">
-  <body>
-    <script src="http://connect.facebook.net/en_US/all.js"></script>
-    <div id="fb-root"></div>
-    <script>
-      // assume we are already logged in
-      FB.init({appId: <%= GRAPH_APP_ID %>, xfbml: true, cookie: true});
-
-      $('#app_request').click(function () {
-        FB.ui({
-          method: 'apprequests',
-          message: 'try out this app http://0.0.0.0:3000/',
-        });
-        return false;
-      });
-      </script>
-    </body>
-    </html>
-    <%end%>
-  </div>
+  
+  <section class="content">
+    <%= render :partial => 'photos/photo_paginate' %>
+  </section>
+<%end%>

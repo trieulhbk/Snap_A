@@ -1,6 +1,6 @@
 <%= render '/shared/invite' %>
 
- <section class="content" style="margin-top: 30px;">
+ <section class="content" style="margin-top: 15px;">
 <%= link_to 'Send Request to your friends', '#', :id => :app_request, class: "btn btn-large btn-primary" %>
   <div id="fb-root"></div>
 </br>

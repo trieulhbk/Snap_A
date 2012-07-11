@@ -10,5 +10,5 @@
   </div>
   <br>
 </div>
-<%= render :partial => 'users/box_show' %>
+<%= render :partial => 'boxes/box_show' %>
 

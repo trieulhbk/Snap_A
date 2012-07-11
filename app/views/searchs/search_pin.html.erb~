@@ -1,2 +1,17 @@
-<h1>Search#search_pin</h1>
-<p>Find me in app/views/search/search_pin.html.erb</p>
+<p>
+<div class="row pull-left">
+  <div class="span6" style="font-size: 20px;margin-top:5%">
+    <a href =  "/search/?search=<%="#{params[:search]}" %>" style="text-decoration: underline;color: black">Box</a>
+    ·
+    <a href =  "/search/name/?search=<%="#{params[:search]}" %>" style="text-decoration: underline;color: black">Name</a>
+    ·
+    <span class = "selected" style="color: #CB2027"> Pin </span>
+
+    <span class = "greyselected" style="color: #8C7E7E" >   — search results for <%= "#{params[:search]}" %>  </span>
+  </div>
+  <br>
+</div>
+</p>
+<section class = "content">
+<%= render :partial => 'photos/photo_paginate' %>
+</section>

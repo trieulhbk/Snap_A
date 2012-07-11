@@ -45,10 +45,12 @@
       </ul>
 
       <div class="action">
-
+        <%if current_user?(@user) %>
         <a class="Button13 Button WhiteButton" href="/users/<%="#{@user.id}"%>/edit">Edit Profile</a>
         <a id="RearrangeCancel" class="close hidden" tooltip="&lt;strong&gt;Cancel&lt;/strong&gt;" href="#">close</a>
-
+      <%else%>
+        <%= render "users/follow_user_form", :@user => @user %>
+      <%end%>
       </div>
 
     </div>
