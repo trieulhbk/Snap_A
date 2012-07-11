@@ -61,6 +61,8 @@ class User < ActiveRecord::Base
   def follow!(other_user)
     if !following?(other_user)
       user_user_relationships.create!(following_id: other_user.id)
+      Notification.create!(source_id: self.id, target_id: other_user.id,
+       relation_type: "user_user_relationships")
       other_user.boxes.each do | box |
         follow_box!(box)
       end
@@ -102,6 +104,9 @@ class User < ActiveRecord::Base
     end
 
     user_photo_actions.create!(photo_id: photo.id, action: action)
+    Notification.create!(source_id: self.id, target_id: photo.box.owner.id, 
+      relation_type: "user_photo_actions like #{photo.id}")
+
   end
 
   def un_act_on_photo!(photo, action)

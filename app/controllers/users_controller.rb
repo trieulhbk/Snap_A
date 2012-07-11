@@ -37,10 +37,27 @@ class UsersController < ApplicationController
     @followers = @user.followers
   end
 
+
   def following
     @user = User.find(params[:id])
     @following = @user.following_users
   end
+
+  def photos
+    @photos = []
+    @user = User.find(params[:id])
+    @user.boxes.each do |box|
+      @photos[@photos.length..@photos.length] = box.photos
+    end
+
+
+  end
+
+  def likedphotos
+    @user = User.find(params[:id])
+    @photos = @user.action_photos
+  end
+
 
   def new
 
@@ -88,7 +105,6 @@ class UsersController < ApplicationController
     mail = UserMailer.verify(user)
     mail.deliver
   end
-
 
 
   def toggle_active
