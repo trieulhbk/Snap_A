@@ -1,0 +1,16 @@
+<li>
+<span class="content">
+  <%= link_to User.find(report.source_id).name , User.find(report.source_id) %>
+<%if notification.title == "user_report_photo" %>
+  this <%= link_to "photo" , Photo.find(report.target_id) %>
+<%end%>
+<%if report.title == "user_report_user" %>
+  <%= link_to " #{User.find(report.target_id).name}" , User.find(report.target_id) %>
+<%end%>
+</span>
+<span class="timestamp">
+  <%= time_ago_in_words(notification.created_at) %> ago.
+</span>
+
+<hr>
+</li>

@@ -1,10 +1,5 @@
 /**** Base styles ****/
 
-
-html {
-  overflow-y: scroll;
-}
-
 h1, h2 {
   font-weight: 100;
   line-height: 1.2em;
@@ -239,12 +234,13 @@ button {
 /**** Demos ****/
 
 #container {
-  margin-left: 30px;
-  background: #FFF;
-  padding: 5px;
+  min-height: 100%;
+  /* margin-left: 30px; */
+  background: #f7f5f5 url(../images/paper.jpg) repeat;
+  /* padding: 5px; */
   margin-bottom: 20px;
   border-radius: 5px;
-  clear: both;
+  clear: none;
   -webkit-border-radius: 5px;
      -moz-border-radius: 5px;
           border-radius: 5px;
@@ -272,7 +268,7 @@ button {
 .box img,
 #tumblelog img {
   display: block;
-  width: 100%;
+  width: 100% !important;
 }
 
 .rtl .box {
@@ -284,7 +280,7 @@ button {
 
 
 .col1 { width: 80px; }
-.col2 { width: 175px; }
+.col2 { width: 14%; }
 .col3 { width: 280px; }
 .col4 { width: 380px; }
 .col5 { width: 480px; }

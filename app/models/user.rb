@@ -80,8 +80,6 @@ class User < ActiveRecord::Base
   def follow_box!(box)
     if !following_box?(box)
       user_box_follows.create!(box_id: box.id)
-      Notification.create!(source_id: self.id, target_id: box.owner.id, 
-        relation_type: "user_box_follows #{box.id}")      
     end
   end
 
@@ -124,12 +122,6 @@ class User < ActiveRecord::Base
       end
     end
     false
-  end
-
-  def deliver_password_reset_instructions
-    reset_perishable_token!
-    mail = Notifier.password_reset_instructions(self)
-    mail.deliver
   end
 
   private

@@ -1,0 +1,12 @@
+<%if signed_in? %>
+<%if signed_in_facebook %>
+<%= link_to 'Send Request to your friends', '#', :id => :app_request, class: "btn btn-large btn-primary" %>
+<div id="fb-root"></div>
+</br>
+<%= link_to "Find friends with Facebook", "/find/facebook", 
+class: "btn btn-large btn-primary" %>
+<%else %>
+<%= link_to "Log in with Facebook", "/auth/facebook", 
+class: "btn btn-large btn-primary" %>
+<%end%>
+<%end%>

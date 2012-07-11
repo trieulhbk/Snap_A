@@ -1,7 +1,6 @@
 <% provide(:title, 'Upload') %>
 <h1>Upload</h1>
-<div class="row">
-  <div class="span6 offset3">
+<div class="row center">
     <div class="btn-group span6">
     <%= link_to "Upload via PC", upload_pc_path, class: "btn btn-large btn-primary" %>
     <%= link_to "Upload via URL", upload_url_path, class: "btn btn-large btn-primary" %>
@@ -10,6 +9,5 @@
         <% else %>
           <%= link_to "Upload via Facebook", upload_facebook_path, class: "btn btn-large btn-primary" %>
         <% end %>
-    </div>
   </div>
 </div>

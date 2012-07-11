@@ -102,3 +102,7 @@ def make_photos
     end
   end
 end
+
+def make_users_like_photos
+
+end

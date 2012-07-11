@@ -27,6 +27,7 @@ class BoxesController < ApplicationController
   end
 
   def show
+    store_location
     if params[:user_id] == nil
       @user = current_user
     else 

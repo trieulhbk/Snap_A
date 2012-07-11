@@ -1,0 +1,13 @@
+<%= render '/shared/invite' %>
+</div>
+<div class="row">
+  <ul class="nav nav-list">
+    <% @friends_profile.each do |user| %>
+    <li class="users">
+      <%= link_to user.name, user_path(user)%>
+    </li>
+    <% @user = user %>
+    <%= render 'users/follow_user_form', user: @user %>
+    <%end%>
+  </ul>
+</div>

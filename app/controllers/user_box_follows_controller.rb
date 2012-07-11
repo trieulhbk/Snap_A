@@ -10,6 +10,9 @@ class UserBoxFollowsController < ApplicationController
     end
     if !current_user.following_box?(@box)
       current_user.follow_box!(@box)
+      Notification.create!(source_id: self.id, target_id: box.owner.id, 
+        relation_type: "user_box_follows #{box.id}")      
+
       respond_to do |format|
         format.html { redirect_to @user }
         format.js

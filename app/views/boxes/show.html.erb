@@ -1,17 +1,13 @@
-
-<h3> Name: <%= @box.name %> ; Id: <%= @box.id %> </h3>
-	<%if current_user?(@user) %>
-	<%= link_to "edit", edit_box_path(@box)%>
-	<%else%>
-	<h4>Author: <%= @user.name %> </h4>
-	<%= render 'follow_box_form', box: @box if @box.id != nil%>
-	<a href="<%= @box.id %>/followers"><%= UserBoxFollow.find_all_by_box_id(@box.id).count %> followers</a>
-	<%end%>
-
-<hr/>
-
-<hr/>
+<div style="margin-left: 30px;">
+  <h3> Name: <%= @box.name %> ; Id: <%= @box.id %> </h3>
+  <%if current_user?(@user) %>
+    <%= link_to "edit", edit_box_path(@box)%>
+  <%else%>
+    <h4>Author: <%= @user.name %> </h4>
+    <%= render 'follow_box_form', box: @box if @box.id != nil%>
+    <a href="<%= @box.id %>/followers"><%= UserBoxFollow.find_all_by_box_id(@box.id).count %> followers</a>
+  <%end%>
   <section class="content">
     <%= render :partial => 'photos/photo_paginate' %>
   </section>
-
+</div>

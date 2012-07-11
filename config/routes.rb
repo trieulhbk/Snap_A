@@ -11,16 +11,16 @@ SnapA::Application.routes.draw do
 
   match '/admin', to: 'users#admin_page'
   match '/search/name/' , to: 'searchs#search_name'
-  match '/search/box/',to: 'searchs#search_box'
+  match '/search/pin/',to: 'searchs#search_pin'
   match '/search', to: 'searchs#search_page'
   match '/toggle', to: 'users#toggle_active'
 
   get 'boxes/edit'
   get 'boxes/delete'
-  
+
   resources :users do
       member do
-      get :following, :followers
+      get :following, :followers, :photos
     end
   end
   resources :boxes do
@@ -28,8 +28,9 @@ SnapA::Application.routes.draw do
       get :followers
     end
   end
+
+  resources :password_resets
   resources :reports
-  resources :password_resets, only: [ :new, :create, :edit, :update ]
   resources :categories
   resources :photos
   resources :sessions, only: [ :new, :create, :destroy]
@@ -37,6 +38,8 @@ SnapA::Application.routes.draw do
   resources :user_user_relationships, only: [ :create, :destroy]
   resources :user_photo_actions, only: [ :create, :destroy]
   resources :authentications
+  resources :find_friends, only: [ :find_facebook]
+  resources :invitations, only: [ :index, :facebook, :twitter, :mail]
 
   root to: 'static_pages#home'
 
@@ -45,12 +48,19 @@ SnapA::Application.routes.draw do
   match '/signin', to: 'sessions#new'
   match '/about', to: 'static_pages#about'
   match '/signout', to: 'sessions#destroy', via: :delete
-
+  match '/sendinvite', to: 'users#send_invite'
   match '/resetpassword', to: 'password_resets#new'
   # match '/editpassword', to: 'password_resets#edit'
 
   match '/auth/:provider/callback' => 'authentications#create'
   match '/auth/:provider/destroy' => 'authentications#destroy'
+  
+  match '/entry/findfriends' => 'find_friends#find_facebook'
+
+  match '/invite/facebook' => 'invitations#facebook'
+  match '/invite/twitter' => 'invitations#twitter'
+  match '/invite/mail' => 'invitations#mail'
+  match '/invite' => 'invitations#index'
 
   match '/upload', to: 'photos#new'
   match '/upload/facebook', to: 'photos#facebook'

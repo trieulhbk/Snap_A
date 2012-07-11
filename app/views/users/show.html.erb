@@ -1,18 +1,39 @@
-<h2> Show boxes | <%=@user.name %> </h2>
-<% if current_user?(@user) %>
-<h3> Boxes of signed user </h3>
-<div id="box_frame">
-  <h5><%= render @boxes %></h5>
+
+<%= render :partial => 'pin_bar' %>
+
+<div id="ColumnContainer" style="margin-left: 7%">
+  <ul class="sortable">
+    <% @user.boxes.each do |box| %>
+      <li>
+    <div class="pin pinBoard">
+      <h3 class="serif"><a href="/boxes/<%="#{box.id}"%>"><%="#{box.name}"%></a></h3>
+      <h4>
+        <%=box.photos.count%> pin
+      </h4>
+      <div class="board">
+        <a href="/boxes/<%="#{box.id}"%>" class="link">&nbsp;</a>
+        <div class="holder">
+          <span class="cover">
+            <%if box.photos.first.nil? %>
+              <img src= "" style="opacity: 1; " onload="this.style.opacity=1" onerror="this.src = this.src.replace('_222.jpg', '_b.jpg'); this.onerror = null; return false;">
+            <%else%>
+                <img src="<%= "#{box.photos.first.source}"%>" style="opacity: 1; " onload="this.style.opacity=1" onerror="this.src = this.src.replace('_222.jpg', '_b.jpg'); this.onerror = null; return false;">
+              <%end%>
+          </span>
+          <span class="thumbs">
+            <span class="empty"></span>
+            <span class="empty"></span>
+            <span class="empty"></span>
+            <span class="empty"></span>
+          </span>
+        </div>
+        <div class="followBoard">
+          <a href="/boxes/<%="#{box.id}"%>"  class="Button13 Button WhiteButton InlineButton">Edit</a>
+        </div>
+      </div>
+    </div>
+    </li>
+  <%end%>
+  </ul>
+
 </div>
-<%= render 'new_box_form'%>
-
-<% else %>
-<h3> Boxes of the other user </h3>
-
-<%= render 'follow_user_form' %>
-<%= link_to "#{@user.followers.count} followers", followers_user_path(@user) %>
-<%= link_to "#{@user.following_users.count} following", following_user_path(@user) %>
-<hr/>
-<%= render @boxes %>
-
-<% end %>
