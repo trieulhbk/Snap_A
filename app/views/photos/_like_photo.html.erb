@@ -1,7 +1,7 @@
 <span id="like_photo_<%= photo.id %>">
 <%= form_for(current_user.user_photo_actions.build(photo_id: photo.id, action: :like), remote: true) do |f| %>
  	<div><%= f.hidden_field :photo_id %></div>
-	<%= f.submit "like", class: "btn btn-large" %>
-<% end %>	
+	<%= f.submit " like ", class: "btn btn-small" ,style:"float: right; width: 50px; background: initial; border:0; color: #0A00FF" %>
+<% end %>
 </span>
 

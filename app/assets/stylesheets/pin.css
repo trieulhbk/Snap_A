@@ -136,7 +136,7 @@ button.Button::-moz-focus-inner {padding: 0; border: 0;}
 .pinBoard {width: 222px !important; padding: 0 !important; background: none; box-shadow: none; -moz-box-shadow: none; -webkit-box-shadow: none; margin-bottom: 20px; }
 .pinBoard h3, .pinBoard h4 { text-align: center; padding: 5px 15px 0; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
   .pinBoard h3 { padding-bottom: 0; }
-  .pinBoard h3 a {font-size: 15px; font-weight: 600; color: #584d4d; text-shadow: 0 1px 0 #fff; overflow: hidden; padding-bottom: 0; }
+  .pinBoard h3 a {font-size: 13px; font-weight: 600; color: #584d4d; text-shadow: 0 1px 0 #fff; overflow: hidden; padding-bottom: 0; }
   .pinBoard h4 {font-size: 11px; font-weight: 600; color: #a59292; text-shadow: #fff; overflow: hidden; padding-top: 0; padding-bottom: 5px;}
   .pinBoard h4.user { line-height: 18px; }
   .pinBoard h4.user img { width: 18px; height: 18px; margin-right: 5px; vertical-align: bottom; }

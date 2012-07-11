@@ -21,6 +21,10 @@ module SessionsHelper
     user == current_user
   end
 
+  def box_owner?(box)
+    current_user == User.find(box.user_id)
+  end
+
   def signed_in_user
     unless signed_in?
       store_location
