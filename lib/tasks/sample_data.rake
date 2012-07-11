@@ -28,9 +28,16 @@ def make_users
 end
 
 def make_categories
-  20.times do |n|
-    name = Faker::Address.city
-    Category.create!(name: name)
+  name=[ "Architecture", "Art", "Cars & Motorcycle", "Design", "DIY & Crafts", "Education",
+          "Films & Musics & Books", "Fitness", "Food & Drinks", "Gardening", "Geek", "Hair & Beauty",
+          "History", "Holiday", "Home Decor", "Humor", "Kids", "My Life", "Women 's Apparel", "Men 's Apparel",
+          "Outdoors", "People", "Pets", "Photography", "Print & Posters", "Products", "Science & Nature",
+          "Sports", "Technology", "Travel & Places", "Wedding & Events", "Others"
+  ]
+  i = 0
+  while i < 32 do
+    Category.create!(name: name[i])
+    i += 1
   end
 end
 

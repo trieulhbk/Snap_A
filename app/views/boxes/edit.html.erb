@@ -1,21 +1,18 @@
 <% provide(:title, "Edit box") %>
-<div class ="pull-left">
   <h1>Update your box information</h1>
-</div>
-<%= button_to "Delete Board", { :controller => 'boxes', action: :delete, :box_id => @box.id }, :method => :delete %>
 
-<div class="row">
-  <div class="span6 offset3">
+  <div class="row center">
+    <a href="/boxes/<%= @box.id%>" class="btn btn-large btn-primary" data-confirm="You sure?" data-method="delete">Delete</a>
     <%= form_for(@box) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 
-     <%= f.label :name %>
+      <%= f.label :name %>
       <%= f.text_field :name, placeholder: "Board Name" %>
       <%= f.label :category_id %>
       <%= f.select :category_id, Category.all.collect { |n| [n.name, n.id] } %>
 
-    <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
-  <% end %>
+      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+    <% end %>
+
 
   </div>
-</div>
