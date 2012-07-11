@@ -14,21 +14,32 @@
         <a href="/boxes/<%="#{box.id}"%>" class="link">&nbsp;</a>
         <div class="holder">
           <span class="cover">
-            <%if box.photos.first.nil? %>
+            <%if box.photos.last.nil? %>
               <img src= "" style="opacity: 1; " onload="this.style.opacity=1" onerror="this.src = this.src.replace('_222.jpg', '_b.jpg'); this.onerror = null; return false;">
             <%else%>
-                <img src="<%= "#{box.photos.first.source}"%>" style="opacity: 1; " onload="this.style.opacity=1" onerror="this.src = this.src.replace('_222.jpg', '_b.jpg'); this.onerror = null; return false;">
+            <% if box.photos.last.image_remote_url.nil? %>
+              <img src="<%=box.photos.last.image.url%>": 1; " onload="this.style.opacity=1" onerror="this.src = this.src.replace('_222.jpg', '_b.jpg'); this.onerror = null; return false;">
+            <% else %>
+              <img src="<%=box.photos.last.source%>": 1; " onload="this.style.opacity=1" onerror="this.src = this.src.replace('_222.jpg', '_b.jpg'); this.onerror = null; return false;">
+            <% end %>
               <%end%>
           </span>
           <span class="thumbs">
-            <span class="empty"></span>
-            <span class="empty"></span>
-            <span class="empty"></span>
-            <span class="empty"></span>
+            <% box.photos.order("created_at ASC").limit(4).each do |photo| %>
+            <%if photo.nil? %>
+              <img src= "" style="opacity: 1; " onload="this.style.opacity=1" onerror="this.src = this.src.replace('_222.jpg', '_b.jpg'); this.onerror = null; return false;">
+            <%else%>
+            <% if photo.image_remote_url.nil? %>
+              <img src="<%=photo.image.url%>">
+            <% else %>
+              <img src="<%=photo.source%>">
+            <% end %>
+              <%end%>
+            <%end%>
           </span>
         </div>
         <div class="followBoard">
-          <a href="/boxes/<%="#{box.id}"%>"  class="Button13 Button WhiteButton InlineButton">Edit</a>
+          <a href="/boxes/<%="#{box.id}"%>/edit"  class="Button13 Button WhiteButton InlineButton">Edit</a>
         </div>
       </div>
     </div>
