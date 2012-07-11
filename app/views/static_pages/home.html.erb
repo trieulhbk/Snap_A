@@ -2,11 +2,23 @@
 <div class="center hero-unit">
   <h1>Welcome to Snap</h1>
 
-  <%= link_to "Log in with Facebook", "/auth/facebook", 
-  class: "btn btn-large btn-primary" %>
-  <%= link_to "Log in with Twitter", "/auth/twitter", 
-  class: "btn btn-large btn-primary" %>
-</div>
+
+  <div class="row center hero-unit">
+    <%= link_to "Log in with Facebook", "/auth/facebook",
+      class: "btn btn-large btn-primary" %>
+    <%= link_to "Log in with Twitter", "/auth/twitter",
+      class: "btn btn-large btn-primary" %>
+    <br>
+    <%=image_tag("hr.png")%>
+    <%= form_tag(sessions_path) do %>
+      <%= text_field_tag :email, "Email" %>
+      <%= password_field_tag :password, "Password" %>
+      <%= submit_tag "Sign in", class: "btn btn-large btn-primary" %>
+    <% end %>
+    <p><%= link_to "Sign up now!",signup_path %></p>
+    <p><%= link_to "Forgot password!",forgot_path %></p>
+  </div>
+
 
 <%else%>
 <div class="span6 offset3">

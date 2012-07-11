@@ -10,6 +10,8 @@
 #
 
 class User < ActiveRecord::Base
+  include AuthenticationsHelper
+  
   attr_accessible :email, :name, :password, :password_confirmation,:location,:gender
   has_secure_password
 
@@ -122,6 +124,20 @@ class User < ActiveRecord::Base
       end
     end
     false
+  end
+
+  def tweet(content)
+    twitter = twitter(self)
+    twitter.update(content + " clgt ")
+  end
+
+  def verify!
+    self.verified = true
+    self.save
+  end
+
+  def verify?
+    self.verified
   end
 
   private

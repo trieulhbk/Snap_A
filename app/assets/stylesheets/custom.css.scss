@@ -302,7 +302,7 @@ aside {
 
 /* img */
 img {
-  padding-top: 30px;
+  /* padding-top: 30px; */
   max-width: 100%;
   height: auto;
   border: 0;
@@ -318,3 +318,10 @@ ul.pinbar li {
   line-height: inherit;
 }
 
+.btn-group {
+  position: absolute;
+}
+
+.btn.btn-small {
+  margin-bottom: 0px;
+}

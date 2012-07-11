@@ -16,6 +16,7 @@ def make_users
     password: "foobar",
     password_confirmation: "foobar")
    admin.toggle!(:admin)
+   admin.verify!
   10.times do |n|
     name  = Faker::Name.name
     email = "example-#{n+1}@railstutorial.org"
