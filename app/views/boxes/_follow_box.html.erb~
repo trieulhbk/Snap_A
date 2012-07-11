@@ -1,6 +1,6 @@
 <span id="follow_box_<%= box.id %>">
 <%= form_for(current_user.user_box_follows.build(box_id: box.id), remote: true) do |f| %>
  	<div><%= f.hidden_field :box_id %></div>
-	<%= f.submit "Follow", class: "Button13 Button WhiteButton InlineButton", style:"width: 100%" %>
+	<%= f.submit "Follow", class: "Button13 Button WhiteButton InlineButton" style:"width: 100%" %>
 <% end %>	
 </span>

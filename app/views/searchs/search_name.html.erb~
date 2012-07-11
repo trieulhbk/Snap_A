@@ -1,12 +1,18 @@
-<div class="row">
-  <div class="span6 offset3">
-    <span class = "selected"> Name </span>
-    <a href =  "/search/category/?search=<%="#{params[:search]}" %>" >Category</a>
-  </div>
+<p>
+<div class="row pull-left">
+  <div class="span6" style="font-size: 20px;margin-top:5%">
+    <a href =  "/search/?search=<%="#{params[:search]}" %>" style="text-decoration: underline;color: black">Box</a>
+    ·
+    <span class = "selected" style="color: #CB2027"> Name </span>
+    ·
+    <a href =  "/search/pin/?search=<%="#{params[:search]}" %>" style="text-decoration: underline;color: black">Pin</a>
 
+    <span class = "greyselected" style="color: #8C7E7E" >   — search results for <%= "#{params[:search]}" %>  </span>
+  </div>
 </div>
-<div class="row">
-  <ul class="nav nav-list">
+</p>
+<div class="content">
+  <ul class="nav nav-list " style = "width: 130%;margin-top: 3%;margin-left:30px">
     <% @users.each do |user| %>
       <li class="users">
       <%= link_to user.name, '#'%>
@@ -14,3 +20,4 @@
     <%end%>
   </ul>
 </div>
+

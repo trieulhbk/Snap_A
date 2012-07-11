@@ -1,9 +1,6 @@
-
-<%= render :partial => 'pin_bar' %>
-
 <div id="ColumnContainer" style="margin-left: 30px">
   <ul class="sortable">
-    <% @user.boxes.each do |box| %>
+    <% @boxes.each do |box| %>
       <li>
     <div class="pin pinBoard">
       <h3 class="serif"><a href="/boxes/<%="#{box.id}"%>"><%="#{box.name}"%></a></h3>

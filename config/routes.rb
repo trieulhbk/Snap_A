@@ -29,6 +29,7 @@ SnapA::Application.routes.draw do
     end
   end
 
+  resources :verifications
   resources :password_resets
   resources :reports
   resources :categories
@@ -49,7 +50,7 @@ SnapA::Application.routes.draw do
   match '/about', to: 'static_pages#about'
   match '/signout', to: 'sessions#destroy', via: :delete
   match '/sendinvite', to: 'users#send_invite'
-  match '/resetpassword', to: 'password_resets#new'
+  match '/forgot', to: 'password_resets#new'
   # match '/editpassword', to: 'password_resets#edit'
 
   match '/auth/:provider/callback' => 'authentications#create'
