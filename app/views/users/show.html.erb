@@ -1,4 +1,6 @@
-<%= render 'boxes/new_box_form' %>
+<% if current_user?(@user) %>
+  <%= render 'boxes/new_box_form' %>
+<%end%>
 
 <%= render :partial => 'pin_bar' %>
 
