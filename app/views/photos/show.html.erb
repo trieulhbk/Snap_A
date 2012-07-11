@@ -1,0 +1,10 @@
+<div class="modal-body">
+  <% if @photo.image_remote_url.nil? %>
+  <img src="<%=@photo.image.url%>" >
+  <% else %>
+  <%= image_tag @photo.source %>
+  <% end %>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-success btn-large" href="#"><b color= "white">LIKE!</b></button>
+</div>
