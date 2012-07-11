@@ -17,11 +17,12 @@ html {
   min-width: 800px;
   width: 100% !important;
   /* overflow-y: scroll; */
-  background: #f7f5f5 url(../images/paper.jpg) repeat;
+  background-image: url(images/paper.jpg);
+  background-repeat: repeat;
 }
 
 body {
-  background: #f7f5f5 url(../images/paper.jpg) repeat;
+  background-color: transparent;
   padding-top: 45px;
 }
 
@@ -235,7 +236,7 @@ aside {
 
 .container {
   width: 100% !important;
-  background: #f7f5f5 url(../images/paper.jpg) repeat;
+  /* background: #f7f5f5 url(../images/paper.jpg) repeat; */
   margin-bottom: 20px;
   border-radius: 5px;
   clear: none;
@@ -325,3 +326,31 @@ ul.pinbar li {
 .btn.btn-small {
   margin-bottom: 0px;
 }
+
+
+#nav, #nav ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+#nav a {
+	display: block;
+	width: 10em;
+}
+
+#nav li {
+	float: left;
+	width: 10em;
+}
+
+#nav li ul {
+	position: absolute;
+	width: 10em;
+	left: -999em;
+}
+
+#nav li:hover ul {
+	left: auto;
+}
+
