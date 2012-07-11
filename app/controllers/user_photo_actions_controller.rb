@@ -12,7 +12,7 @@ class UserPhotoActionsController < ApplicationController
 				format.html { redirect_to @photo }
 				format.js
 			end
-			Notification.create(source_id: current_user.id,target_id: @photo.id,relation_type: "user_photo_actions")
+
 		end
 
 	end
