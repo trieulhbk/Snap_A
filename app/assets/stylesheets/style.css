@@ -234,9 +234,9 @@ button {
 /**** Demos ****/
 
 #container {
-  min-height: 100%;
+  /* min-height: 100%; */
   /* margin-left: 30px; */
-  background: #f7f5f5 url(../images/paper.jpg) repeat;
+  /* background: #f7f5f5 url(../images/paper.jpg) repeat; */
   /* padding: 5px; */
   margin-bottom: 20px;
   border-radius: 5px;

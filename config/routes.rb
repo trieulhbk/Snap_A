@@ -54,7 +54,7 @@ SnapA::Application.routes.draw do
 
   match '/auth/:provider/callback' => 'authentications#create'
   match '/auth/:provider/destroy' => 'authentications#destroy'
-  
+
   match '/entry/findfriends' => 'find_friends#find_facebook'
 
   match '/invite/facebook' => 'invitations#facebook'

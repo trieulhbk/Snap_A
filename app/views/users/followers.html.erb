@@ -1,5 +1,7 @@
 <h1> user: <%= @user.name %> </h1>
 <h2> <strong><%= @followers.count %></strong> Followers </h2>
+<%= render :partial => 'pin_bar' %>
+
 <% @followers.each do | follower | %>
 <%= render "users/user_show", user: follower %>
 <%end%>

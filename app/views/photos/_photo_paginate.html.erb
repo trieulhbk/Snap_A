@@ -15,9 +15,9 @@
       <%= render 'photos/like_photo_form', photo: photo %>
       </div>
 
- 
+
   <div style="display: none"><%= will_paginate @photos %></div>
-  <div class="modal hide fade" id="ZoomIn">
+  <div class="modal hide" id="ZoomIn">
     <div class="modal-body">
       <%= image_tag(photo.image.url,align: "center")%>
     </div>
