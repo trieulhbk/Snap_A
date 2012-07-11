@@ -1,42 +1,28 @@
 <%if !signed_in? %>
-  <div class="center hero-unit">
-    <h1>Welcome to Snap</h1>
+  <h1>Welcome to Snap</h1>
 
+  <div class="row center hero-unit">
     <%= link_to "Log in with Facebook", "/auth/facebook",
       class: "btn btn-large btn-primary" %>
     <%= link_to "Log in with Twitter", "/auth/twitter",
       class: "btn btn-large btn-primary" %>
     <br>
-    <div class="send span4 offset5", style="margin-top: 5px;">
-      <%= form_tag(sendinvite_path) do %>
-        <%= label_tag :email %>
-        <%= text_field_tag :email %>
-        <%= submit_tag "Send", class: "btn btn-normal btn-primary" %>
-      <% end %>
-    </div>
-
     <%=image_tag("hr.png")%>
-    <br>
-    <div class="span4 offset5" style="margin-top: 10px;">
-      <%= form_tag(sessions_path) do %>
-        <%= text_field_tag :email, "Email" %>
-
-        <%= password_field_tag :password, "Password" %>
-
-        <%= submit_tag "Sign in", class: "btn btn-large btn-primary" %>
-      <% end %>
-
-      <p><%= link_to "Sign up now!",signup_path %></p>
-    </div>
+    <%= form_tag(sessions_path) do %>
+      <%= text_field_tag :email, "Email" %>
+      <%= password_field_tag :password, "Password" %>
+      <%= submit_tag "Sign in", class: "btn btn-large btn-primary" %>
+    <% end %>
+    <p><%= link_to "Sign up now!",signup_path %></p>
   </div>
 
 <%else%>
-<div class="span6 offset3">
-  <%Notification.order("created_at DESC").each do |noti| %>
-  <li>
-    <% if noti.target_id == current_user.id && noti.relation_type == "user_user_relationships" %>
-    <%= User.find(noti.source_id).name%> followed you
-  </li>
-  <%end%>
-  <%end%>
+  <div class="span6 offset3">
+    <%Notification.order("created_at DESC").each do |noti| %>
+      <li>
+        <% if noti.target_id == current_user.id && noti.relation_type == "user_user_relationships" %>
+          <%= User.find(noti.source_id).name%> followed you
+        </li>
+      <%end%>
+    <%end%>
   <%end%>

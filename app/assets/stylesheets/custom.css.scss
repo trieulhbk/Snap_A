@@ -14,6 +14,7 @@ $grayMediumLight: #eaeaea;
 
 html {
   min-height: 800px;
+  min-width: 800px;
   width: 100% !important;
   overflow-y: scroll;
   background: #f7f5f5 url(../images/paper.jpg) repeat;
@@ -269,6 +270,7 @@ aside {
 }
 
 .navbar-fixed-top {
+  min-width: 800px;
   box-shadow: 0 1px 3px rgba(34,25,25,0.4);
   border-bottom: 1px solid #CFCACA;
   border-top: 1px solid #CFCACA;
@@ -308,6 +310,7 @@ img {
 }
 
 .row {
-  margin-left: auto;
+  margin: 0px auto;
+  width: 35%;
 }
 

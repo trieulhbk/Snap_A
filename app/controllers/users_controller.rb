@@ -46,7 +46,7 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       flash[:success] = "Welcome to Snap"
-      redirect_to root_path
+      redirect_back_or root_path
     else
       render 'new'
     end
