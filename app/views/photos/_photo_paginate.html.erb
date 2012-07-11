@@ -2,37 +2,42 @@
   <% @photos.each do |photo| %>
   <div class = "box col2">
     <% if photo.image_remote_url.nil? %>
-    <img src="<%=photo.image.url%>" data-toggle = "modal" href="#ZoomIn">
+    <% source= photo.image.url %>
     <% else %>
-    <%= image_tag photo.source %>
+    <% source= photo.source %>
     <% end %>
+    <img id="img-src-<%= photo.id %>" src="<%=source%>" data-toggle = "modal" href="#ZoomIn" onclick="change_source(<%= photo.id %>)">
     <div class="btn-group">
-      <a class="btn btn-small" style="background: initial; border: 0;" href="#ZoomIn" data-toggle = "modal"><i class="icon-zoom-in"></i></a>
+      <a class="btn btn-small" style="background: initial; border: 0;" href="#ZoomIn" data-toggle = "modal" onclick="change_source(<%= photo.id %>)"><i class="icon-zoom-in"></i></a>
+      <% if box_owner?(photo.box) %>
       <a class="btn btn-small" style="background: initial; border: 0;" href="<%= edit_photo_path(photo) %>"><i class="icon-edit"></i></a>
       <a href="/photos/<%= photo.id%>" class="btn btn-small"  style="background: initial; border: 0;" data-confirm="You sure?" data-method="delete" rel="nofollow"><i class="icon-trash"></i></a>
-      <a href="/reports/?photo=<%=photo.id%>" class="btn btn-small"  style="background: initial; border: 0;" data-confirm="You sure?" data-method="post" rel="nofollow"><i class="icon-warning-sign"></i></a>
-    </div>
-    <%= render 'photos/like_photo_form', photo: photo %>
-  </div>
+      <% end %>
+      <a class="btn btn-small"  style="background: initial; border: 0;" href="/reports/?photo=<%=photo.id%>"><i class="icon-warning-sign"></i></a>
+      </div>
+      <%= render 'photos/like_photo_form', photo: photo %>
+      </div>
+      <div style="display: none"><%= will_paginate @photos %></div>
+  <%end%>
 
-
-  <div style="display: none"><%= will_paginate @photos %></div>
-  <div class="modal hide" id="ZoomIn">
+  <div class="modal hide fade" id="ZoomIn">
     <div class="modal-body">
-      <%= image_tag(photo.image.url,align: "center")%>
+      <img id="popup"src="">
     </div>
     <div class="modal-footer">
       <button class="btn btn-success btn-large" href="#"><b color= "white">LIKE ME!</b></button>
     </div>
   </div>
-<%end%>
 </div>
-
-
-
 <script type="text/javascript">
-  jQuery(function() {                                              // <== Doc ready
 
+
+function change_source(id){
+  document.getElementById('popup').src=document.getElementById('img-src-'+id).src
+}
+
+
+  jQuery(function() {                                              // <== Doc ready
       //  jQuery(".btn-group").hide();                  // Initially hide all buttons
 
       jQuery('.show-image').hover(function() {
