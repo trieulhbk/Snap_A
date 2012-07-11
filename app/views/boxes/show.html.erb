@@ -4,7 +4,6 @@
     <%= @box.name %></h1>
 
   <% else %>
-    <h4>Author: <%= @user.name %> </h4>
     <%= render 'follow_box_form', box: @box if @box.id != nil%>
     <a href="<%= @box.id %>/followers"><%= UserBoxFollow.find_all_by_box_id(@box.id).count %> followers</a>
   <%end%>

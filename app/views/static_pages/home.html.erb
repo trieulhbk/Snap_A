@@ -1,7 +1,5 @@
 <%if !signed_in? %>
-<div class="center hero-unit">
   <h1>Welcome to Snap</h1>
-
 
   <div class="row center hero-unit">
     <%= link_to "Log in with Facebook", "/auth/facebook",
@@ -19,45 +17,7 @@
     <p><%= link_to "Forgot password!",forgot_path %></p>
   </div>
 
-
 <%else%>
-
-<div class="span6 offset3">
-  <%Notification.order("created_at DESC").each do |noti| %>
-  <% if noti.target_id == current_user.id %>
-  <% if noti.relation_type == "user_user_relationships" %>
-  <li>
-    <%= link_to User.find(noti.source_id).name, user_path(User.find(noti.source_id)) %> followed you
-  </li>
-  <%else%> <% if noti.relation_type.to(22) == "user_photo_actions like" %>
-  <li>
-    <% photo_id = noti.relation_type.from(24) %>
-    <% photo = Photo.find(photo_id) %>
-    <%= link_to User.find(noti.source_id).name, user_path(User.find(noti.source_id)) %>
-    like your <%= link_to "#{photo.name} photo", photo_path(photo) %>
-  </li>
-  <%else%> <% if noti.relation_type.to(15) == "user_box_follows" %>
-
-  <% box_id = noti.relation_type.from(17) %>
-  <% box = Box.find(box_id) %>
-  <li>
-    <%= link_to User.find(noti.source_id).name, user_path(User.find(noti.source_id)) %> 
-    follow your <%= link_to "#{box.name} box", box_path(box) %>
-  </li>
-  <%end%>
-  <%end%>
-
-
-  <%end%>
-  <% else %> 
-<!--   <div>
-    <%= User.find(noti.source_id).name %> <%= noti.relation_type %> 
-    <%= User.find(noti.target_id).name %> 
-  </div>
- --> 
-  <%end%>
-  <%end%>
-  
   <section class="content">
     <%= render :partial => 'photos/photo_paginate' %>
   </section>
