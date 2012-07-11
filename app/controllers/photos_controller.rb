@@ -26,6 +26,7 @@ class PhotosController < ApplicationController
       	client = FBGraph::Client.new(:client_id => GRAPH_APP_ID, :secret_id => GRAPH_SECRET, :token => token)
         photos =client.selection.me.photos.limit(0).info!
         @tagged_photos = photos.data.data.map(&:source)
+        binding.pry
 
         user =FbGraph::User.me(token)
         @albums=user.albums.map(&:photos);
@@ -37,7 +38,7 @@ class PhotosController < ApplicationController
 		@photo=Photo.new(params[:photo])
 		if @photo.save
 			flash[:success] = "Upload new photo successfully"
-			redirect_to upload_path
+			redirect_back_or upload_path
 		else
 			flash[:error] = "Upload failed"
 			render 'pc'
