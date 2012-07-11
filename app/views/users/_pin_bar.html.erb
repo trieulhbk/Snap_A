@@ -1,0 +1,57 @@
+<body id="profile" class="hidefixed" >
+  <div id="ContextBar" class="container sticky" style= "margin-top: 20%">
+    <div class="FixedContainer">
+      <ul class="links pinbar">
+
+        <li>
+        <a href="/users/<%="#{@user.id}"%>" class="selected">
+          <strong><%=@user.boxes.count%></strong> Boxes
+        </a>
+        </li>
+
+
+        <li>
+        <a href="/users/<%="#{@user.id}"%>/photos">
+          <strong>
+
+            <%= @count_photo%>
+          </strong> Photos
+        </a>
+        </li>
+
+
+        <li>
+        <a href="/users/<%="#{@user.id}"%>/like">
+          <strong><%=@count_like%></strong> Like
+        </a>
+        </li>
+
+      </ul>
+
+      <ul class="follow pinbar">
+
+        <li>
+        <a href="/users/<%="#{@user.id}"%>/followers">
+          <strong><%=@user.followers.count%></strong> Followers
+        </a>
+        </li>
+
+
+        <li>
+        <a href="/users/<%="#{@user.id}"%>/following">
+          <strong><%=@user.following_users.count%></strong> Following
+        </a>
+        </li>
+      </ul>
+
+      <div class="action">
+
+        <a class="Button13 Button WhiteButton" href="/users/<%="#{@user.id}"%>/edit">Edit Profile</a>
+        <a id="RearrangeCancel" class="close hidden" tooltip="&lt;strong&gt;Cancel&lt;/strong&gt;" href="#">close</a>
+
+      </div>
+
+    </div>
+  </div>
+  <div style="height: 49px; display: none; width: 10px; "></div>
+</body>
