@@ -14,7 +14,7 @@ class UserBoxFollowsController < ApplicationController
         format.html { redirect_to @user }
         format.js
       end
-      Notification.create(source_id: current_user.id,target_id: @box.id,relation_type: "user_box_follows")
+
     end
   end
 

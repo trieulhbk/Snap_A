@@ -6,6 +6,7 @@ namespace :db do
     make_boxes
     make_photos
     make_relationships
+    # make_notifications
   end
 end
 
@@ -51,6 +52,18 @@ def make_relationships
   followers.each      { |follower| follower.follow!(user) }
 end
 
+def make_notifications
+  users = User.all[3..10]
+  users.each do |user|
+  Notification.create!(source_id: user.id, target_id: 1, relation_type: "user_user_relationships")
+end
+  liked_photo = User.first.boxes[0].photos[0]
+
+  users.each do |user|
+   Notification.create!(source_id: user.id, target_id: 1, relation_type: "user_photo_actions like #{liked_photo.id}") 
+  end
+
+end
 def make_user_box_rel
 
   boxes = Box.all[1..4]
@@ -58,6 +71,12 @@ def make_user_box_rel
 
   boxes.each do | box |
     following_box_user.follow_box!(box)
+  end
+
+  target_box = User.first.boxes[0]
+  users = User.all[3..5]
+  users.each do |user|
+    user.follow_box!(target_box)
   end
 end
 
