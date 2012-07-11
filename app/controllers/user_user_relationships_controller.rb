@@ -11,7 +11,7 @@ class UserUserRelationshipsController < ApplicationController
       format.html { redirect_to @user }
       format.js
     end
-    Notification.create!(source_id: current_user.id,target_id: @user.id,relation_type: "user_user_relationships")
+
     end
   end
 
