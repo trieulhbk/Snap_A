@@ -7,7 +7,7 @@ class ReportsController < ApplicationController
   if params[:user]
     Report.create(source_id: current_user.id,target_id: params[:user],title: "user_report_user")
   end
-  redirect_to root_path
+  redirect_back_or root_path
  end
 
  def index

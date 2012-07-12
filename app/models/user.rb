@@ -132,8 +132,7 @@ class User < ActiveRecord::Base
   end
 
   def verify!
-    self.verified = true
-    self.save
+    self.update_attribute("verified",true)
   end
 
   def verify?

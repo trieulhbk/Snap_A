@@ -1,5 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
+    store_location
     @set = []
     if signed_in?
       Notification.all.each do |noti|
