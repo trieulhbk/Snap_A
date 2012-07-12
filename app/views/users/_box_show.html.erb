@@ -1,24 +1,3 @@
-<script>
-$(function() {
-  // $(document).on('submit', '.modal-body form', function() {
-  //   var $this = $(this);
-
-  //   $("#message").show().text("Saving");
-
-  //   $.ajax({
-  //     url: $this.attr('action'),
-  //     type: 'POST',
-  //     data: $this.serialize(),
-  //     success: function() {
-  //      $("#message").text("Saved!").fadeOut(1000);
-
-  //     }
-  //   });
-
-  //   return false;
-  // })
-})
-</script>
 <div id="ColumnContainer" style="margin-left: 30px">
   <ul class="sortable">
     <% @boxes.each do |box| %>
@@ -54,28 +33,34 @@ $(function() {
           <a href="/boxes/<%="#{box.id}"%>" class="link">&nbsp;</a>
           <div class="holder">
             <span class="cover">
+              <% @count = 0%>
               <%if box.photos.last.nil? %>
-              <img src= "" style="opacity: 1; " onload="this.style.opacity=1" onerror="this.src = this.src.replace('_222.jpg', '_b.jpg'); this.onerror = null; return false;">
               <%else%>
+                <% @count = 1 %>
               <% if box.photos.last.image_remote_url.nil? %>
               <img src="<%=box.photos.last.image.url%>": 1; " onload="this.style.opacity=1" onerror="this.src = this.src.replace('_222.jpg', '_b.jpg'); this.onerror = null; return false;">
               <% else %>
               <img src="<%=box.photos.last.source%>": 1; " onload="this.style.opacity=1" onerror="this.src = this.src.replace('_222.jpg', '_b.jpg'); this.onerror = null; return false;">
               <% end %>
-              <%end%>
+            <%end%>
+            <%if @count == 0 %> <span class="cover empty"></span> <%end%>
             </span>
             <span class="thumbs">
+              <% @count = 4 %>
               <% box.photos.order("created_at ASC").limit(4).each do |photo| %>
               <%if photo.nil? %>
-              <img src= "" style="opacity: 1; " onload="this.style.opacity=1" onerror="this.src = this.src.replace('_222.jpg', '_b.jpg'); this.onerror = null; return false;">
               <%else%>
+                <% @count = @count -1 %>
               <% if photo.image_remote_url.nil? %>
               <img src="<%=photo.image.url%>">
               <% else %>
               <img src="<%=photo.source%>">
               <% end %>
               <%end%>
-              <%end%>
+            <%end%>
+            <% @count.times do %>
+              <span class="empty"></span>
+            <% end%>
             </span>
           </div>
           <div class="followBoard">
@@ -87,10 +72,25 @@ $(function() {
           </div>
         </div>
       </div>
-    </li>
+      </li>
     <%end%>
-  </ul>
+    <% @new_box = @user.boxes.build %>
+      <li class="Form FancyForm" 4="">
+      <div class="pin pinBoard createBoard">
+          <%= form_for(@new_box) do |f| %>
+        <div class="FancyContainer">
+            <%= f.text_field :name,placeholder: "Box Name" %>
+          <%# <input type="text" name="boardName" id="boardName" placeholder="Box Name"> %>
+          <%# <span class="fff"></span> %>
+        </div>
 
-</div>
+        <%= f.submit "Create Box" , class: "Button RedButton Button13 createBoardSubmit", style: "width: 89px;margin-left: -43px"%>
+        <img src="http://passets-ec.pinterest.com/images/BoardCellRep.png">
+      </div>
+      </li>
+    <%end%>
+    </ul>
+
+  </div>
 
 

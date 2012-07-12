@@ -8,7 +8,7 @@ class UserUserRelationshipsController < ApplicationController
     @boxes = @user.boxes
 
     respond_to do |format|
-      format.html { redirect_to @user }
+      format.html { redirect_back_or @user }
       format.js
     end
 
