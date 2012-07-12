@@ -1,8 +1,13 @@
 class StaticPagesController < ApplicationController
   def home
+
+
     store_location
     @set = []
     if signed_in?
+      if current_user.following_boxes.count == 0
+        redirect_to all_path
+      end
       current_user.following_boxes.each do |b|
         @set.concat b.photos
       end

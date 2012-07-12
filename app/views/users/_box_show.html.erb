@@ -30,6 +30,7 @@
           <%=box.photos.count%> pin
         </h4>
         <div class="board">
+          <a href="/boxes/<%="#{box.id}"%>" class="link">&nbsp;</a>
           <div class="holder">
             <span class="cover">
               <% @count = 0%>
@@ -37,49 +38,49 @@
               <%else%>
                 <% @count = 1 %>
               <% if box.photos.last.image_remote_url.nil? %>
-              <img src="<%=box.photos.last.image.url%>": 1; " onload="this.style.opacity=1" onerror="this.src = this.src.replace('_222.jpg', '_b.jpg'); this.onerror = null; return false;">
-              <% else %>
-              <img src="<%=box.photos.last.source%>": 1; " onload="this.style.opacity=1" onerror="this.src = this.src.replace('_222.jpg', '_b.jpg'); this.onerror = null; return false;">
-              <% end %>
+                <img src="<%=box.photos.last.image.url%>": 1; " onload="this.style.opacity=1" onerror="this.src = this.src.replace('_222.jpg', '_b.jpg'); this.onerror = null; return false;">
+            <% else %>
+                <img src="<%=box.photos.last.source%>": 1; " onload="this.style.opacity=1" onerror="this.src = this.src.replace('_222.jpg', '_b.jpg'); this.onerror = null; return false;">
+            <% end %>
             <%end%>
-            <%if @count == 0 %> <span class="cover empty"></span> <%end%>
+              <%if @count == 0 %> <span class="cover empty"></span> <%end%>
             </span>
             <span class="thumbs">
               <% @count = 4 %>
               <% box.photos.order("created_at ASC").limit(4).each do |photo| %>
-              <%if photo.nil? %>
+                <%if photo.nil? %>
               <%else%>
                 <% @count = @count -1 %>
               <% if photo.image_remote_url.nil? %>
-              <img src="<%=photo.image.url%>">
-              <% else %>
-              <img src="<%=photo.source%>">
-              <% end %>
-              <%end%>
+                <img src="<%=photo.image.url%>">
+            <% else %>
+                <img src="<%=photo.source%>">
+            <% end %>
             <%end%>
-            <% @count.times do %>
-              <span class="empty"></span>
+            <%end%>
+              <% @count.times do %>
+                <span class="empty"></span>
             <% end%>
             </span>
           </div>
           <div class="followBoard">
             <% if current_user?(@user) %>
-            <a href="#edit<%= box.id %>"  class="Button13 Button WhiteButton InlineButton" data-toggle="modal" >Edit</a>
-            <%else%>
-            <%= render "boxes/follow_box_form",:box => box %>
-            <%end%>
+              <a href="#edit<%= box.id %>"  class="Button13 Button WhiteButton InlineButton" data-toggle="modal" >Edit</a>
+          <%else%>
+              <%= render "boxes/follow_box_form",:box => box %>
+          <%end%>
           </div>
         </div>
       </div>
       </li>
     <%end%>
-    <% if params[:search].nil? %>
-    <% @new_box = @user.boxes.build %>
+      <% if params[:search].nil? %>
+        <% @new_box = @user.boxes.build %>
       <li class="Form FancyForm" 4="">
       <div class="pin pinBoard createBoard">
-          <%= form_for(@new_box) do |f| %>
-        <div class="FancyContainer">
-            <%= f.text_field :name,placeholder: "Box Name" %>
+        <%= form_for(@new_box) do |f| %>
+          <div class="FancyContainer">
+          <%= f.text_field :name,placeholder: "Box Name" %>
           <%# <input type="text" name="boardName" id="boardName" placeholder="Box Name"> %>
           <%# <span class="fff"></span> %>
         </div>

@@ -12,7 +12,7 @@ class BoxesController < ApplicationController
     if @box.save
       follower_follow_this_box(@box)
       # redirect_to root_path
-      redirect_back_or user_path(@user)
+      redirect_back_or user_path(current_user)
     else
       # @micropost = current_user.microposts.build(params[:micropost])
       # if @micropost.save
@@ -25,7 +25,6 @@ class BoxesController < ApplicationController
   end
 
   def show
-    store_location
     @box=Box.find(params[:id])
     @user = @box.owner
     @photos = @box.photos.order("created_at DESC").paginate(page: params[:page],per_page: 15)

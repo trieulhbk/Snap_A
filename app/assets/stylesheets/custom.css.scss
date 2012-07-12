@@ -354,3 +354,22 @@ ul.pinbar li {
 	left: auto;
 }
 
+
+.notification {
+ 
+  width: 200px;
+  float: left;
+  margin: 0 3px 0 0;
+  border: 1px;
+}
+
+#upload-facebook-flash {
+  position: fixed;
+  top: 650px;
+  left: 20px;
+  z-index: 100;
+  background-color: #FFFF33;
+  color: green;
+  height: 30px;
+
+}
