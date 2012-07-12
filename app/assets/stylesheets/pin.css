@@ -1,5 +1,6 @@
 
-html{background: #f7f5f5 url(../images/paper.jpg) repeat;}ul,ol,h3,h4,h5,h6,pre,code,form,fieldset,legend,p,blockquote,th,td{margin: 0;padding: 0;}table{border-collapse:collapse;border-spacing: 0;}fieldset,img{border: 0;}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym {border: 0;font-variant:normal;}sup{vertical-align:text-top;}sub{vertical-align:text-bottom;overflow:hidden;}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit; resize: none;outline:none;}legend{color:#000;}
+ul,ol,h3,h4,h5,h6,pre,code,form,fieldset,legend,p,blockquote,th,td{margin: 0;padding: 0;}table{border-collapse:collapse;border-spacing: 0;}fieldset,img{border: 0;}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym {border: 0;font-variant:normal;}sup{vertical-align:text-top;}sub{vertical-align:text-bottom;overflow:hidden;}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit; resize: none;outline:none;}legend{color:#000;}
+
 
 /* CREATE BOARD NAG CELL
 --------------------------------------------------------------------------------------- */
@@ -222,3 +223,36 @@ a.remove_activity_invite:hover {text-decoration: none !important;}
 body#building {height: 100%;}
 #floater {position: relative; float: left; height:5 0%; margin-bottom: -200px; width: 1px;}
 #centered {position: relative; clear: left; height: 400px; width: 400px; margin: 0 auto;}
+
+
+
+/* LIQUID HEADER
+--------------------------------------------------------------------------------------- */
+#Header {position: fixed; z-index: 103; top: 0; right: 0; left: 0; height: 44px; background-color: #faf7f7; box-shadow: inset 0 1px #fff, 0 1px 3px rgba(34,25,25,0.4); -moz-box-shadow: inset 0 1px #fff, 0 1px 2px rgba(34,25,25,0.4); -webkit-box-shadow: inset 0 1px #fff, 0 1px 3px rgba(34,25,25,0.4);}
+/* For when there is a second bar under the header */
+#CategoriesBarPage #Header {position: relative; z-index: 105; box-shadow: 0 0 transparent; -moz-box-shadow: 0 0 transparent; -webkit-box-shadow: 0 0 transparent;}
+#Pinterest {position: absolute; top: 9px; left: 50%; margin-left: -50px;}
+
+#Search {float: left; margin: 8px 0 0;}
+#Search input {float: left; width: 183px; background-color: #faf7f7; border: 1px solid; border-color: #c2c0c0 #cccaca #d1cfcf; box-shadow: 0 1px #fff, inset 0 1px rgba(34,25,25,0.05); -moz-box-shadow: 0 1px #fff, inset 0 1px rgba(34,25,25,0.05); -webkit-box-shadow: 0 1px #fff, inset 0 1px rgba(34,25,25,0.05); font-size: 13px; line-height: 1.3;}
+#Search input:focus {background-color: #fff; box-shadow: 0 1px #fff, inset 0 1px rgba(34,25,25,0.1); -moz-box-shadow: 0 1px #fff, inset 0 1px rgba(34,25,25,0.1); -webkit-box-shadow: 0 1px #fff, inset 0 1px rgba(34,25,25,0.1);}
+#Search a {float: left; margin-left: -1px; padding: 7px 7px 2px; min-height: 17px; border: 1px solid; border-color: #c2c0c0 #cccaca #d1cfcf; box-shadow: 0 1px rgba(255,255,255,0.9), inset 0 0 2px rgba(255,255,255,0.75); -moz-box-shadow: 0 1px rgba(255,255,255,0.9), inset 0 0 2px rgba(255,255,255,0.75); -webkit-box-shadow: 0 1px rgba(255,255,255,0.9), inset 0 0 2px rgba(255,255,255,0.75);}
+#Search a:active {box-shadow: inset 0 1px 1px rgba(34,29,29,0.15); -moz-box-shadow: inset 0 1px 1px rgba(34,29,29,0.15); -webkit-box-shadow: inset 0 1px 1px rgba(34,29,29,0.15);}
+
+.HeaderContainer li {position: relative; display: inline; font-size: 13px;}
+.HeaderContainer .nav {position: relative; display: inline-block; color: #524d4d; text-shadow: 0 1px rgba(255,255,255,1);}
+.HeaderContainer .nav span {position: absolute; background-position: top center; background-repeat: no-repeat;}
+.HeaderContainer .nav:hover span {background-position: center;}
+.HeaderContainer .nav:active span {background-position: bottom center;}
+.HeaderContainer li:hover .nav {color: #221919;}
+
+.HeaderContainer li ul {position: absolute; display: none; width: 140px; background-color: #fff; border-top: 1px solid #cccaca; box-shadow: 0 2px 4px rgba(34,25,25,0.5); -moz-box-shadow: 0 2px 4px rgba(34,25,25,0.5); -webkit-box-shadow: 0 2px 4px rgba(34,25,25,0.5);}
+.HeaderContainer li:hover ul {display: block;}
+.HeaderContainer li ul li:first-child a {padding-top: 10px;}
+.HeaderContainer li ul li:last-child a {padding-bottom: 10px;}
+.HeaderContainer li ul a {display: block; padding: 5px 10px; text-align: left; font-weight: normal; color: #524d4d;}
+.HeaderContainer li ul a:hover {color: #221919; text-decoration: none; background-color: #e1dfdf;}
+.HeaderContainer li ul a:active {color: #fff; background-color: #cb2027;}
+
+.HeaderContainer .beforeDivider a {padding-bottom: 10px;}
+.HeaderContainer .divider a {padding-top: 10px; border-top: 1px solid #e1dfdf;}

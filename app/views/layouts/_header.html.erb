@@ -6,8 +6,151 @@
           <input type="text" class="search-query" name="search" placeholder="Search">
         </form>
         <ul class= "nav" style="left: 30%;">
-            <%= link_to "SNAP", root_path, id: "logo" %>
+          <ul class="LiquidContainer HeaderContainer">
+            <li class="submenu">
+              <a id="logo" href="#all" class="nav">SNAP<span></span></a>&nbsp;·
+              <ul id="CategoriesDropdown">
+                <li>
+                  <span class="SubmenuColumn">
+
+                    <a href="/all/?category=architecture">
+                      Architecture
+                    </a>
+                    <a href="/all/?category=art">
+                      Art
+                    </a>
+                    <a href="/all/?category=cars_motorcycles">
+                      Cars &amp; Motorcycles
+                    </a>
+
+
+                    <a href="/all/?category=design">
+                      Design
+                    </a>
+
+
+                    <a href="/all/?category=diy_crafts">
+                      DIY &amp; Crafts
+                    </a>
+
+
+                    <a href="/all/?category=education">
+                      Education
+                    </a>
+
+                    <a href="/all/?category=film_music_books">
+                      Film, Music &amp; Books
+                    </a>
+
+                    <a href="/all/?category=fitness">
+                      Fitness
+                    </a>
+
+                    <a href="/all/?category=food_drink">
+                      Food &amp; Drink
+                    </a>
+
+                    <a href="/all/?category=gardening">
+                      Gardening
+                    </a>
+
+                    <a href="/all/?category=geek">
+                      Geek
+                    </a>
+
+                    <a href="/all/?category=hair_beauty">
+                      Hair &amp; Beauty
+                    </a>
+
+                    <a href="/all/?category=history">
+                      History
+                    </a>
+
+                    <a href="/all/?category=holidays">
+                      Holidays
+                    </a>
+
+                    <a href="/all/?category=home">
+                      Home Decor
+                    </a>
+
+                    <a href="/all/?category=humor">
+                      Humor
+                    </a>
+                  </span>
+
+                  <span class="SubmenuColumn">
+
+                    <a href="/all/?category=kids">
+                      Kids
+                    </a>
+
+                    <a href="/all/?category=mylife">
+                      My Life
+                    </a>
+
+                    <a href="/all/?category=women_apparel">
+                      Women's Apparel
+                    </a>
+
+                    <a href="/all/?category=men_apparel">
+                      Men's Apparel
+                    </a>
+
+                    <a href="/all/?category=outdoors">
+                      Outdoors
+                    </a>
+
+                    <a href="/all/?category=people">
+                      People
+                    </a>
+
+                    <a href="/all/?category=pets">
+                      Pets
+                    </a>
+
+                    <a href="/all/?category=photography">
+                      Photography
+                    </a>
+
+                    <a href="/all/?category=prints_posters">
+                      Print &amp; Posters
+                    </a>
+
+                    <a href="/all/?category=products">
+                      Products
+                    </a>
+
+                    <a href="/all/?category=science">
+                      Science &amp; Nature
+                    </a>
+
+                    <a href="/all/?category=sports">
+                      Sports
+                    </a>
+
+                    <a href="/all/?category=technology">
+                      Technology
+                    </a>
+
+                    <a href="/all/?category=travel_places">
+                      Travel &amp; Places
+                    </a>
+
+                    <a href="/all/?category=wedding_events">
+                      Wedding &amp; Events
+                    </a>
+
+                    <a href="/all/?category=other">
+                      Other
+                    </a>
+
+                  </span>
+                </li>
+              </ul>
+            </li>
           </ul>
+        </ul>
         <ul class="nav pull-right" style="margin-right: 30px;">
           <li><%= link_to "Home", root_path %></li>
           <% if signed_in? %>
@@ -27,26 +170,28 @@
               </ul>
             </li>
 
-          <li id="fat-menu" class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <%= current_user.name%> <b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu">
-            <li><%= link_to "Invite Friends", '/invite' %></li>
-            <li><%= link_to "Find Friends", '/entry/findfriends' %></li>
-            <li class = "divider"></li>
-            <li><%= link_to "Boxes", current_user %></li>
-            <li><%= link_to "Pins", '#'%></li>
-            <li><%= link_to "Likes",'#'%></li>
-            <li class="divider"></li>
-            <% if current_user.admin? %>
-              <li><%= link_to "Admin" ,admin_path %></li>
-            <li class="divider"></li>
-          <%end%>
-            <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-            <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
-          </ul>
-          </li>
+            <li id="fat-menu" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <%= current_user.name%> <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Invite Friends", '/invite' %></li>
+                <li><%= link_to "Find Friends", '/entry/findfriends' %></li>
+                <li class = "divider"></li>
+                <li><%= link_to "Boxes", current_user %></li>
+                <li><%= link_to "Pins", photos_user_path(current_user)%></li>
+                <li><%= link_to "Likes",likedphotos_user_path(current_user)%></li>
+                <li class="divider"></li>
+                <% if current_user.admin? %>
+                  <li><%= link_to "Admin" ,admin_path %></li>
+                  <li class="divider"></li>
+                <%end%>
+                <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+                <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
+              </ul>
+            </li>
+          <% else %>
+            <li><%= link_to "Sign in", signin_path %></li>
           <% end %>
         </ul>
       </nav>

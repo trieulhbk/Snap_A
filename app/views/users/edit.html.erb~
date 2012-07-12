@@ -1,27 +1,77 @@
 <% provide(:title, "Edit user") %>
-<h1>Update your profile</h1>
-
-<div class="row">
-  <div class="span6 offset3">
-    <%= form_for(@user) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-
-    <%= f.label :password_confirmation, "Confirm Password" %>
-    <%= f.password_field :password_confirmation %>
-
-    <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
-  <% end %>
-
-    <%= gravatar_for @user %>
-    <a href="http://gravatar.com/emails">change</a>
+<section style="margin-left: 30px;">
+  <div class ="pull-left">
+    <h1>Edit Profile</h1>
   </div>
-</div>
+</section>
+<section style="margin-left: 30px;">
+  <hr>
+  <%= form_for(@user)  do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <section>
+      <div class="span6 pull-left">
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+
+        <%= f.label :gender %>
+        <%= f.select :gender,["Male","Female","Gay","Lesbian"] %>
+
+        <%= f.label :location %>
+        <%= f.text_field :location%>
+
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+
+        <%= f.label :password_confirmation, "Confirm Password" %>
+        <%= f.password_field :password_confirmation %>
+      </div>
+    </section>
+    <section>
+      <div class="span12 pull-left">
+        <hr>
+        <%= f.label :Facebook %>
+        <div class="btn-group" data-toggle="buttons-radio">
+          <%if facebook?(current_user)%>
+            <a class="btn active">ON</a>
+            <a href= "/auth/facebook/destroy" class="btn">OFF</a>
+          <%else%>
+            <a href= "/auth/facebook" class="btn">ON</a>
+            <a class="btn active">OFF</a>
+          <%end%>
+        </div>
+	<br><br>
+        <%= f.label :Twitter %>
+        <div class="btn-group" data-toggle="buttons-radio">
+          <%if twitter?(current_user)%>
+            <a class="btn active">ON</a>
+            <a href= "/auth/twitter/destroy" class="btn">OFF</a>
+          <%else%>
+            <a href= "/auth/twitter" class="btn">ON</a>
+            <a class="btn active">OFF</a>
+          <%end%>
+        </div>
+	
+	<br>
+        <hr>
+        <%= f.label :Subcribe %>
+        <div class="btn-group" data-toggle="buttons-radio">
+          <%if current_user.active?%>
+            <a class="btn active">ON</a>
+            <a href= "/toggle" class="btn">OFF</a>
+          <%else%>
+            <a href= "/toggle" class="btn">ON</a>
+            <a class="btn active">OFF</a>
+          <%end%>
+        </div>
+	<br><br>
+        <hr>
+        <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+      <% end %>
+    </div>
+  </section>
+</section>
+
+

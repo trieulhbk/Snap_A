@@ -1,51 +1,96 @@
+<script>
+$(function() {
+  // $(document).on('submit', '.modal-body form', function() {
+  //   var $this = $(this);
+
+  //   $("#message").show().text("Saving");
+
+  //   $.ajax({
+  //     url: $this.attr('action'),
+  //     type: 'POST',
+  //     data: $this.serialize(),
+  //     success: function() {
+  //      $("#message").text("Saved!").fadeOut(1000);
+
+  //     }
+  //   });
+
+  //   return false;
+  // })
+})
+</script>
 <div id="ColumnContainer" style="margin-left: 30px">
   <ul class="sortable">
     <% @boxes.each do |box| %>
-      <li>
-    <div class="pin pinBoard">
-      <h3 class="serif"><a href="/boxes/<%="#{box.id}"%>"><%="#{box.name}"%></a></h3>
-      <h4>
-        <%=box.photos.count%> pin
-      </h4>
-      <div class="board">
-        <a href="/boxes/<%="#{box.id}"%>" class="link">&nbsp;</a>
-        <div class="holder">
-          <span class="cover">
-            <%if box.photos.last.nil? %>
-              <img src= "" style="opacity: 1; " onload="this.style.opacity=1" onerror="this.src = this.src.replace('_222.jpg', '_b.jpg'); this.onerror = null; return false;">
-            <%else%>
-            <% if box.photos.last.image_remote_url.nil? %>
-              <img src="<%=box.photos.last.image.url%>": 1; " onload="this.style.opacity=1" onerror="this.src = this.src.replace('_222.jpg', '_b.jpg'); this.onerror = null; return false;">
-            <% else %>
-              <img src="<%=box.photos.last.source%>": 1; " onload="this.style.opacity=1" onerror="this.src = this.src.replace('_222.jpg', '_b.jpg'); this.onerror = null; return false;">
-            <% end %>
-              <%end%>
-          </span>
-          <span class="thumbs">
-            <% box.photos.order("created_at ASC").limit(4).each do |photo| %>
-            <%if photo.nil? %>
-              <img src= "" style="opacity: 1; " onload="this.style.opacity=1" onerror="this.src = this.src.replace('_222.jpg', '_b.jpg'); this.onerror = null; return false;">
-            <%else%>
-            <% if photo.image_remote_url.nil? %>
-              <img src="<%=photo.image.url%>">
-            <% else %>
-              <img src="<%=photo.source%>">
-            <% end %>
-              <%end%>
-            <%end%>
-          </span>
-        </div>
-        <div class="followBoard">
-          <% if current_user?(@user) %>
-            <a href="/boxes/<%="#{box.id}"%>/edit"  class="Button13 Button WhiteButton InlineButton">Edit</a>
-          <%else%>
-            <%= render "boxes/follow_box_form",:box => box %>
-          <%end%>
-        </div>
+
+    <div class="modal hidden" id="edit<%= box.id %>">
+      <div class="modal-header">
+        <h1>Update your box information</h1>
+      </div>
+
+      <div class="row center modal-body">
+
+        <%= form_for(box) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+
+        <%= f.label :name %>
+        <%= f.text_field :name, placeholder: "Board Name" %>
+        <%= f.label :category_id %>
+        <%= f.select :category_id, Category.all.collect { |n| [n.name, n.id] } %>
+        <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+        <a href="/boxes/<%= box.id%>" class="btn btn-large btn-primary" data-confirm="You sure?" data-method="delete">Delete</a>
+        <div id="message"></div>
+        <% end %>
       </div>
     </div>
+
+    <li>
+      <div class="pin pinBoard">
+        <h3 class="serif"><a href="/boxes/<%="#{box.id}"%>"><%="#{box.name}"%></a></h3>
+        <h4>
+          <%=box.photos.count%> pin
+        </h4>
+        <div class="board">
+          <a href="/boxes/<%="#{box.id}"%>" class="link">&nbsp;</a>
+          <div class="holder">
+            <span class="cover">
+              <%if box.photos.last.nil? %>
+              <img src= "" style="opacity: 1; " onload="this.style.opacity=1" onerror="this.src = this.src.replace('_222.jpg', '_b.jpg'); this.onerror = null; return false;">
+              <%else%>
+              <% if box.photos.last.image_remote_url.nil? %>
+              <img src="<%=box.photos.last.image.url%>": 1; " onload="this.style.opacity=1" onerror="this.src = this.src.replace('_222.jpg', '_b.jpg'); this.onerror = null; return false;">
+              <% else %>
+              <img src="<%=box.photos.last.source%>": 1; " onload="this.style.opacity=1" onerror="this.src = this.src.replace('_222.jpg', '_b.jpg'); this.onerror = null; return false;">
+              <% end %>
+              <%end%>
+            </span>
+            <span class="thumbs">
+              <% box.photos.order("created_at ASC").limit(4).each do |photo| %>
+              <%if photo.nil? %>
+              <img src= "" style="opacity: 1; " onload="this.style.opacity=1" onerror="this.src = this.src.replace('_222.jpg', '_b.jpg'); this.onerror = null; return false;">
+              <%else%>
+              <% if photo.image_remote_url.nil? %>
+              <img src="<%=photo.image.url%>">
+              <% else %>
+              <img src="<%=photo.source%>">
+              <% end %>
+              <%end%>
+              <%end%>
+            </span>
+          </div>
+          <div class="followBoard">
+            <% if current_user?(@user) %>
+            <a href="#edit<%= box.id %>"  class="Button13 Button WhiteButton InlineButton" data-toggle="modal" >Edit</a>
+            <%else%>
+            <%= render "boxes/follow_box_form",:box => box %>
+            <%end%>
+          </div>
+        </div>
+      </div>
     </li>
-  <%end%>
+    <%end%>
   </ul>
 
 </div>
+
+

@@ -1,6 +1,6 @@
   <span id="unfollow_user_<%= @user.id %>">
 <%= form_for(current_user.user_user_relationships.find_by_following_id(@user),
              html: { method: :delete }, remote: true) do |f| %>
-  <%= f.submit "Unfollow All", class: "Button13 Button WhiteButton" %>
+  <%= f.submit "Unfollow All", class: "Button13 Button WhiteButton disabled clickable" %>
 <% end %>
 </span>

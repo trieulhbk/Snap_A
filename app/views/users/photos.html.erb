@@ -1,26 +1,5 @@
-  <br/>
-  <br/>
-  <br/>
-  <br/>
   <h2>photos of <%= @user.name %> user</h2>
-  <% @photos.each do |photo| %>
-  <div class = "box col2">
-  	<% if photo.image_remote_url.nil? %>
-  	<img src="<%=photo.image.url%>" data-toggle = "modal" href="#ZoomIn">
-  	<% else %>
-  	<%= image_tag photo.source %>
-  	<% end %>
-  	<div> <%= photo.name %></div>
-<!--   	<%= Notification.find_all_by_relation_type("user_photo_actions like #{photo.id}").count %> -->
-  	<div style="color: gray"><%= UserPhotoAction.find_all_by_photo_id(photo.id).count %> likes 
-  	<br/>
 
-  	pinned on <%= link_to photo.box.name, box_path( photo.box) %>
-  	</div>
-  		<% if !current_user?(@user) %>
-  	<%= render 'photos/like_photo_form', photo: photo %>
-  	<% else %>
-  	<%= link_to "edit", "/photos/#{photo.id}/edit" %>
-  	<%end%>
-  </div>
-  <%end%>
+ <section class="content" style="margin-left: 30px;">
+    <%= render :partial => 'photos/photo_paginate' %>
+  </section>

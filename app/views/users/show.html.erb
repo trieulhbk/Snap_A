@@ -1,58 +1,7 @@
-
-
-
-<%= render 'boxes/new_box_form' %>
+<% if current_user?(@user) %>
+  <%= render 'boxes/new_box_form' %>
+<%end%>
 
 <%= render :partial => 'pin_bar' %>
 
-<div id="ColumnContainer" style="margin-left: 30px">
-  <ul class="sortable">
-    <% @user.boxes.each do |box| %>
-      <li>
-    <div class="pin pinBoard">
-      <h3 class="serif"><a href="/boxes/<%="#{box.id}"%>"><%="#{box.name}"%></a></h3>
-      <h4>
-        <%=box.photos.count%> pin
-      </h4>
-      <div class="board">
-        <a href="/boxes/<%="#{box.id}"%>" class="link">&nbsp;</a>
-        <div class="holder">
-          <span class="cover">
-            <%if box.photos.last.nil? %>
-              <img src= "" style="opacity: 1; " onload="this.style.opacity=1" onerror="this.src = this.src.replace('_222.jpg', '_b.jpg'); this.onerror = null; return false;">
-            <%else%>
-            <% if box.photos.last.image_remote_url.nil? %>
-              <img src="<%=box.photos.last.image.url%>": 1; " onload="this.style.opacity=1" onerror="this.src = this.src.replace('_222.jpg', '_b.jpg'); this.onerror = null; return false;">
-            <% else %>
-              <img src="<%=box.photos.last.source%>": 1; " onload="this.style.opacity=1" onerror="this.src = this.src.replace('_222.jpg', '_b.jpg'); this.onerror = null; return false;">
-            <% end %>
-              <%end%>
-          </span>
-          <span class="thumbs">
-            <% box.photos.order("created_at ASC").limit(4).each do |photo| %>
-            <%if photo.nil? %>
-              <img src= "" style="opacity: 1; " onload="this.style.opacity=1" onerror="this.src = this.src.replace('_222.jpg', '_b.jpg'); this.onerror = null; return false;">
-            <%else%>
-            <% if photo.image_remote_url.nil? %>
-              <img src="<%=photo.image.url%>">
-            <% else %>
-              <img src="<%=photo.source%>">
-            <% end %>
-              <%end%>
-            <%end%>
-          </span>
-        </div>
-        <div class="followBoard">
-          <% if current_user?(@user) %>
-            <a href="/boxes/<%="#{box.id}"%>/edit"  class="Button13 Button WhiteButton InlineButton">Edit</a>
-          <%else%>
-            <%= render "boxes/follow_box_form",:box => box %>
-          <%end%>
-        </div>
-      </div>
-    </div>
-    </li>
-  <%end%>
-  </ul>
-
-</div>
+<%= render :partial => 'box_show' %>
