@@ -46,7 +46,7 @@ def make_boxes
   users = User.all(limit: 5)
   5.times do
     name = Faker::Company.name
-    category = rand(20) + 1
+    category = rand(32) + 1
     users.each { |user| user.boxes.create!(name: name, category_id: category)}
   end
 end
@@ -68,7 +68,7 @@ end
   liked_photo = User.first.boxes[0].photos[0]
 
   users.each do |user|
-   Notification.create!(source_id: user.id, target_id: 1, relation_type: "user_photo_actions like #{liked_photo.id}") 
+   Notification.create!(source_id: user.id, target_id: 1, relation_type: "user_photo_actions like #{liked_photo.id}")
   end
 
 end

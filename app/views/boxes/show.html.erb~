@@ -1,62 +1,13 @@
-<h1><%=@box.name%></h1>
-<ul class="thumbnails">
-<% @photos.each do |photo| %>
-  <li class="span3">   	
-    <div class="thumbnail">
-    	<%= render 'photo', photo: photo %>
-	</div>
-</li>
-	<% end %>
-</ul>
-
-<% provide(:title, 'All products') %>
-<h1>All Products</h1>
-
-<div id="container" class="transitions-enabled infinite-scroll clearfix">
-  <% @products.each do |product| %>
-    <div class = "box col3">
-    <span class="content">Name : <%= product.name %> | Price: <%= product.price %> </span>
-    <span class="timestamp">
-      Added <%= time_ago_in_words(product.created_at) %> ago.
-    </span>
+<div style="margin-left: 30px;">
+  <div class="page-header"><h1>  <%if current_user?(@user) %>
+    <%= link_to " E d i t ", edit_box_path(@box), class: "btn btn-primary btn-large"%>
+    <%= @box.name %></h1>
   </div>
-  <div class="box col3">
-    <p>
-    <a href= "/" title="Kien dep trai"><img src="http://img.2sao.vietnamnet.vn/2011/03/05/16/20/0503snsd0004.jpg" alt="SNSD"  /></a>
-    </p>
-  </div>
-  <div style="display: none"><%= will_paginate %></div>
-<%end%>
-</div>
-<script type="text/javascript">
-var $container = $('#container');
+  <% else %>
+<div class="page-header"><h1> Author: <%= @user.name %> </h1></div>
+   <%= render 'follow_box_form', box: @box if @box.id != nil%>
+  <%end%>
+  <section class="content">
+    <%= render :partial => 'photos/photo_paginate' %>
+  </section>
 
-$container.imagesLoaded(function(){
-    $container.masonry({
-itemSelector: '.box',
-columnWidth: 100
-});
-    });
-
-$container.infinitescroll({
-  navSelector  : '.next_page',    // selector for the paged navigation
-  nextSelector : '.next_page a',  // selector for the NEXT link (to page 2)
-  itemSelector : '.box',         // selector for all items you'll retrieve
-  loading: {
-  finishedMsg: 'No more pages to load.',
-  img: 'http://i.imgur.com/6RMhx.gif'
-  }
-},
-// trigger Masonry as a callback
-function( newElements ) {
-// hide new items while they are loading
-var $newElems = $( newElements ).css({ opacity: 0 });
-// ensure that images load before adding to masonry layout
-$newElems.imagesLoaded(function(){
-  // show elems now they're ready
-  $newElems.animate({ opacity: 1 });
-  $container.masonry( 'appended', $newElems, true );
-  });
-}
-);
-</script>

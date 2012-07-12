@@ -19,12 +19,13 @@ class UsersController < ApplicationController
     @user.boxes.each do |box|
       @count_photo += box.photos.count
     end
-    @count_like = 0
-    @user.user_photo_actions.each do |r|
-      if r.action == :like
-        count_like += 1
-      end
-    end
+    @count_like = @user.user_photo_actions.count
+    # @count_like = 0
+    # @user.user_photo_actions.each do |r|
+      # if r.action == :like
+        # count_like += 1
+      # end
+    # end
   end
 
   def send_invite
@@ -49,13 +50,13 @@ class UsersController < ApplicationController
     @user.boxes.each do |box|
       @photos[@photos.length..@photos.length] = box.photos
     end
-
+    @photos = Photo.order("created_at DESC").paginate(page: params[:page],per_page: 15)
 
   end
 
   def likedphotos
     @user = User.find(params[:id])
-    @photos = @user.action_photos
+    @photos = @user.action_photos.paginate(page: params[:page],per_page: 15)
   end
 
 
