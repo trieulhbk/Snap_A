@@ -1,25 +1,35 @@
-<li>
-  <span class="content">
-    <%if notification.relation_type.to(15) == "user_box_follows" %>
 
-      <span class="label label-important">User Box</span>
-      <%= link_to User.find(notification.source_id).name , User.find(notification.source_id) %>
-      started following <%= Box.find(notification.relation_type.from(17)).owner.name %>'s <%= link_to "#{Box.find(notification.relation_type.from(17)).name}", Box.find(notification.relation_type.from(17))%> box
-    <%end%>
-    <%if notification.relation_type == "user_user_relationships" %>
+<% Notification.find_all_by_target_id(current_user.id).each do | noti | %>
+
+  <li>
+
+    <% if noti.relation_type == "user_user_relationships" %>
       <span class="label label-info">User User</span>
-      <%= link_to User.find(notification.source_id).name , User.find(notification.source_id) %>
-      started following <%= link_to "#{User.find(notification.target_id).name}" , User.find(notification.target_id) %>'s boards
+      <%= link_to User.find(noti.source_id).name, user_path(User.find(noti.source_id)) %>
+      followed you
+    <%else%>
+      <% if noti.relation_type.to(22) == "user_photo_actions like" %>
+        <span class="label label-success">User Photo</span>
+        <% photo_id = noti.relation_type.from(24) %>
+        <%= link_to User.find(noti.source_id).name, user_path(User.find(noti.source_id)) %>
+        liked your <%= link_to "#{Photo.find(photo_id).name} name", photo_path(Photo.find(photo_id)) %>
+    <% else %> <% if noti.relation_type.to(15) == "user_box_follows" %>
+      <span class="label label-important">User Box</span>
+      <% box_id = noti.relation_type.from(17) %>
+      <%= link_to User.find(noti.source_id).name, user_path(User.find(noti.source_id)) %>
+      follow your <%= link_to Box.find(box_id).name, box_path(Box.find(box_id)) %> box
+    <% else %>
+      <%= User.find(noti.source_id).name%> <%= noti.relation_type %> <%= User.find(noti.target_id).name %>
     <%end%>
-    <%if notification.relation_type.to(22) == "user_photo_actions like"%>
-      <span class="label label-success">User Photo</span>
-      <%= link_to User.find(notification.source_id).name , User.find(notification.source_id) %>
-      liked <%= Photo.find(notification.relation_type.from(24)).box.owner.name %>'s <%= link_to "#{Photo.find(notification.relation_type.from(24)).name}", Photo.find(notification.relation_type.from(24))%> photo
-    <%end%>
-  </span>
-  <span class="timestamp">
-    <%= time_ago_in_words(notification.created_at) %> ago.
-  </span>
+  <%end%>
+<% end %>
+<span class="timestamp">
+  <%= time_ago_in_words(noti.created_at) %> ago.
+</span>
 
-  <hr>
 </li>
+<hr/>
+
+  <%end%>
+
+

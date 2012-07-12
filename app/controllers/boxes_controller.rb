@@ -6,8 +6,6 @@ class BoxesController < ApplicationController
   end
 
   def create
-
-
     name = params[:box][:name]
     @box = current_user.boxes.build(name: name, category_id: params[:box][:category_id])
 
@@ -36,16 +34,17 @@ class BoxesController < ApplicationController
   def followers
     @followers = Box.find(params[:id]).users
     if @followers == nil
-      a
     end
   end
 
   def destroy
     # User.find(params[:id]).destroy
-    box = Box.find(params[:id]).destroy
+    box = Box.find(params[:id])
+    user = box.owner
+    box.destroy
     delete_rel_to_box(box)
     flash[:success] = "Box #{params[:id]} destroyed."
-    redirect_back_or user_path(@user)
+    redirect_to user_path(user)
   end
 
   def delete
@@ -59,7 +58,7 @@ class BoxesController < ApplicationController
     @box = Box.find(params[:id])
     if @box.update_attributes(params[:box])
       flash[:success] = "Box info updated"
-      redirect_to current_user
+      redirect_to box_path(@box)
     else
       render 'edit'
     end

@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    store_location
     @user = User.find(params[:id])
     @boxes = @user.boxes
     @count_photo = 0

@@ -27,7 +27,7 @@ class Photo < ActiveRecord::Base
 
   has_many :attaching_users, through: :user_photo_actions, source: :user
 
-  belongs_to :box
+  belongs_to :box, dependent:   :destroy
 
   private
 
