@@ -1,4 +1,5 @@
 
 // $("#upload-facebook-flash").html("<%= escape_javascript(render('layouts/flash', :flash => flash )) %>");
-$("#upload-facebook-flash").html("<%= flash_facebook %>")
-$("#upload-facebook-flash").slideDown().delay(1000).slideUp();
+
+$("#upload-facebook-flash").html("<%= @flashfacebook %>");
+$("#upload-facebook-flash").slideDown().delay(200).slideUp();
