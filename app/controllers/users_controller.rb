@@ -46,6 +46,7 @@ class UsersController < ApplicationController
   end
 
   def photos
+    store_location
     @photos = []
     @user = User.find(params[:id])
     @user.boxes.each do |box|

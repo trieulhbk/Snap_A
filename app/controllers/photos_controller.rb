@@ -3,6 +3,7 @@ class PhotosController < ApplicationController
 	before_filter :authenticated_user, only: [:facebook]
 
 	def index
+		store_location
 		@photos = Photo.order("created_at DESC").paginate(page: params[:page],per_page: 15)
 	end
 
@@ -71,9 +72,11 @@ class PhotosController < ApplicationController
 	end
 
 	def destroy
-		Photo.find(params[:id]).destroy
+		photo = Photo.find(params[:id])
+		box = photo.box
+		photo.destroy
 		flash[:success] = "Photo deleted"
-		redirect_to boxes_path
+		redirect_back_or box_path(box)
 	end
 
 	def authenticated_user
