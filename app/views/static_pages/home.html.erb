@@ -19,9 +19,44 @@
 
 <%else%>
 
-<%= render 'notifications/user_notification' %>
+  <div id="wrapper" class="BoardLayout" style="opacity: 1; visibility: visible; ">
+  <div id="ColumnContainer" style="margin-top: 49px; height: auto; ">
+    <div class="feed pin" style="position: absolute;top: 10px; left: 30px;border: 1px solid #CFCACA;-webkit-box-shadow: 0 1px 10px rgba(34, 25, 25, 0.4);box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4); background-color: white; width: 222px ">
+
+      <div class="section" id="UserRecommendations" style="margin-left: 5px;margin-right: 5px">
+
+      <% if !@friends_profile.nil? %>
+  <a href="/invite/facebook/" id="SeeAllRecommendations">See All</a>
+    <h2 style="text-align: left">Friends to Follow</h2>
   <section class="content" style="margin-left: 30px;">
 
-    <%= render :partial => 'photos/photo_paginate' %>
-  </section>
+    <span class="story nohover FollowStory">
+      <% @friends_profile.each do |user| %>
+        <% @user = user %>
+      <% if !current_user.following?(@user) %>
+        <span id="follow_user_<%= @user.id %>">
+        <%= form_for(current_user.user_user_relationships.build(following_id: @user.id)) do |f| %>
+          <span><%= f.hidden_field :following_id %></span>
+        <%= f.submit "Follow", class: "Button Button11 RedButton followuserbutton" %>
+      <% end %>
+      </span>
+      <span class="profile">
+        <a href="/users/<%="#{user.id}"%>"><strong><%= user.name%></strong></a>
+      </span>
+    <%end%>
+  <%end%>
+<%end%>
+    </span>
+  </div>
+
+  <div id="recent_activity_holder" class="section">
+    <h2 style="text-align: left;margin-left: 5px">N o t i f i c a t i o n</h2>
+      <%= render 'notifications/user_notification' %>
+  </div>
+</div>
+<section class="content" style="margin-right: 0px;margin-left: 300px">
+  <%= render :partial => 'photos/photo_paginate' %>
+</section>
+</div>
+</div>
 <%end%>

@@ -187,12 +187,12 @@ button.Button::-moz-focus-inner {padding: 0; border: 0;}
 /* FEED
 --------------------------------------------------------------------------------------- */
 .feed .section {margin-bottom: 30px;}
-.feed h2 {font-size: 13px; font-weight: 300; border-bottom: 1px solid #e1dfdf;}
+.feed h2 {padding-top: 5px;padding-bottom: 5px; font-size: 14px; font-weight: 300; border-bottom: 1px solid #e1dfdf;}
 .feed .story {position: relative; display: block; padding: 10px 0; margin-left: -15px; padding: 10px 35px 0px 15px; font-size: 11px; font-weight: normal; color: #221919;}
 .feed .story span {display: block;}
 .feed .story .hidden {display: none;}
 .feed .story .times {display: block; color: #cb2027; position: absolute; z-index: 10; text-align: center; width: 20px; font-size: 14px; left: 225px; top: -5px;}
-/*.feed .story .overlay {width: 20px; height: 20px; background: #fff; position: absolute; top: -5px; left: 225px; z-index: 5;}
+/*.feed .story .overlay {wi	dth: 20px; height: 20px; background: #fff; position: absolute; top: -5px; left: 225px; z-index: 5;}
 .feed .story:hover .overlay,
 .feed .story .overlay:hover  {opacity: 1;}*/
 a.remove_activity_rec:hover,
@@ -200,13 +200,13 @@ a.remove_activity_invite:hover {text-decoration: none !important;}
 .feed .story .Button {float: right; margin-left: 4px;}
 .feed .story .profile img {float: left; width: 30px; height: 30px; margin: 0 6px 0 -36px;}
 .feed .story .profile span {float: left; width: 92px;}
-.feed a.story {margin: 0 -15px; padding: 5px 15px 5px 51px; overflow: hidden;}
+.feed a.story {margin: 0 0px; padding: 5px 15px 5px 51px; overflow: hidden;}
 .feed span.story {margin: 0 -15px; padding: 5px 15px 5px 51px; overflow: hidden;}
 .feed h2 + .story {padding-top: 10px;}
 .feed a.story:last-child {padding-bottom: 15px;}
 .feed .all {width: 100%; float: left; margin: 10px 0 20px;}
 .feed .story:hover {text-decoration: none; background-color: #f2f0f0;}
-.feed .story.nohover { overflow: visible; min-height: 25px; margin-bottom: 5px; }
+.feed .story.nohover { overflow: visible; min-height: 25px; margin-bottom: 5px;margin-right: 10px }
 .feed .story.nohover:hover {background-color: transparent;}
 .feed .story:active {color: #cb2027; background-color: #ccc;}
 .feed .story .remove {position: absolute; background: transparent; top: 14px; left: -16px; display: none; padding: 3px; border: 1px solid transparent; border-radius: 2px; -moz-border-radius: 2px; -webkit-border-radius: 2px;}
@@ -214,7 +214,7 @@ a.remove_activity_invite:hover {text-decoration: none !important;}
 .feed .story .remove:hover {background-color: #fff; border-color: #ccc;}
 .FirstThree {max-height: 126px; overflow: visible;}
 #recent_activity_holder {margin-bottom: 0;}
-#SeeAllRecommendations { float: right; margin-top: 2px; }
+#SeeAllRecommendations { float: right; margin-top: 5px; }
 .RemoveStory {position: absolute; right: -6px; background: #FFFFFF; padding: 3px 5px 5px; box-shadow: 1px 0 2px rgba(34,25,25,0.25); display: none;}
 .RemoveStory:hover { text-decoration: none;}
 .feed .story:hover .RemoveStory { display: block; }
@@ -257,6 +257,8 @@ body#building {height: 100%;}
 .HeaderContainer .beforeDivider a {padding-bottom: 10px;}
 .HeaderContainer .divider a {padding-top: 10px; border-top: 1px solid #e1dfdf;}
 
+#wrapper {position: relative; width: auto; min-width: 933px; margin: 0 auto; border: none;}
+.BoardLayout { visibility: hidden; /*opacity: 0;*/}
 #CategoriesDropdown {
   margin-top: 30px;
   margin-left: -100px;

@@ -1,6 +1,11 @@
 class VerificationsController < ApplicationController
   before_filter :load_user_using_persistence_token
 
+  def new
+    deliver_verification_instructions(@user)
+    flash[:notice] = "Email has been resend."
+  end
+
   def show
     if @user
       @user.verify!

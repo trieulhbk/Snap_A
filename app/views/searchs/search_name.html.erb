@@ -15,7 +15,7 @@
   <ul class="nav nav-list " style = "width: 130%;margin-top: 5%;margin-left:30px">
     <% @users.each do |user| %>
       <li class="users">
-      <%= link_to user.name, '#'%>
+      <%= link_to user.name, user%>
       </li>
     <%end%>
   </ul>
