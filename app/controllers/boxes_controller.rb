@@ -6,8 +6,13 @@ class BoxesController < ApplicationController
   end
 
   def create
+    if !params[:box][:name].nil? && !params[:box][:name] == ""
     name = params[:box][:name]
-    @box = current_user.boxes.build(name: name, category_id: params[:box][:category_id])
+    if !params[:box][:category_id].nil?
+      @box = current_user.boxes.build(name: name, category_id: params[:box][:category_id])
+    else
+       @box = current_user.boxes.build(name: name, category_id: 32)
+    end
 
     if @box.save
       follower_follow_this_box(@box)
@@ -21,6 +26,10 @@ class BoxesController < ApplicationController
       # else
       render 'static_pages/home'
       # end
+    end
+    else
+      flash[:error] = "Name field is empty"
+      redirect_back_or user_path(current_user)
     end
   end
 

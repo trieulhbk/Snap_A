@@ -6,7 +6,7 @@ class CategoriesController < ApplicationController
     if params[:category_id].nil? || Category.count < params[:category_id].to_i
       Category.all.each do |c|
         c.boxes.each do |b|
-          @photos[@photos.length..@photos.length] = b.photos
+          @photos.concat b.photos
 
           # b.photos.each do |p|
           # @photos.push p
@@ -16,7 +16,7 @@ class CategoriesController < ApplicationController
     else
       @category = Category.find(params[:category_id])
       @category.boxes.each do |b|
-        @photos[@photos.length..@photos.length] = b.photos
+        @photos.concat b.photos
 
         # b.photos.each do |p|
         # @photos.push p
