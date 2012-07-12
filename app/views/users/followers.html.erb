@@ -1,7 +1,65 @@
-<h1> user: <%= @user.name %> </h1>
-<h2> <strong><%= @followers.count %></strong> Followers </h2>
-<%= render :partial => 'pin_bar' %>
+<body id="profile" class="hidefixed" >
+  <div id="ContextBar" class="container sticky" style= "margin-top: 20%">
+    <div class="FixedContainer">
+      <ul class="links pinbar">
 
+        <li>
+        <a href="/users/<%="#{@user.id}"%>">
+          <strong><%=@user.boxes.count%></strong> Boxes
+        </a>
+        </li>
+
+
+        <li>
+        <a href="/users/<%="#{@user.id}"%>/photos">
+          <strong>
+
+            <%= @count_photo%>
+          </strong> Photos
+        </a>
+        </li>
+
+
+        <li>
+        <a href="/users/<%="#{@user.id}"%>/likedphotos">
+          <strong><%=@count_like%></strong> Like
+        </a>
+        </li>
+
+      </ul>
+
+      <ul class="follow pinbar">
+
+        <li>
+        <a href="/users/<%="#{@user.id}"%>/followers"  class="selected">
+          <strong><%=@user.followers.count%></strong> Followers
+        </a>
+        </li>
+
+
+        <li>
+        <a href="/users/<%="#{@user.id}"%>/following">
+          <strong><%=@user.following_users.count%></strong> Following
+        </a>
+        </li>
+      </ul>
+
+      <div class="action">
+        <%if current_user?(@user) %>
+        <a class="Button13 Button WhiteButton" href="/users/<%="#{@user.id}"%>/edit">Edit Profile</a>
+        <a id="RearrangeCancel" class="close hidden" tooltip="&lt;strong&gt;Cancel&lt;/strong&gt;" href="#">close</a>
+      <%else%>
+        <%= render "users/follow_user_form", :@user => @user %>
+      <%end%>
+      </div>
+
+    </div>
+  </div>
+  <div style="height: 49px; display: none; width: 10px; "></div>
+</body>
+
+<section class="content" style="margin-left: 30px;margin-top:10px">
 <% @followers.each do | follower | %>
 <%= render "users/user_show", user: follower %>
 <%end%>
+</section>

@@ -25,7 +25,6 @@ class BoxesController < ApplicationController
   end
 
   def show
-    store_location
     @box=Box.find(params[:id])
     @user = @box.owner
     @photos = @box.photos.order("created_at DESC").paginate(page: params[:page],per_page: 15)

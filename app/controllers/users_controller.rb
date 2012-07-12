@@ -83,6 +83,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    store_location
     @user = User.find(params[:id])
     @current_user = current_user
   end
