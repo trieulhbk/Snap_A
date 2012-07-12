@@ -43,7 +43,8 @@
     <div align="center" ><img id="popup"src="" style="height: 350px; width: auto;"  > </div>
   </div>
   <div class="modal-footer">
-    <button class="btn btn-success btn-large" href="#"><b color= "white">LIKE!</b></button>
+    
+    <span id="like_button">abc</span>
   </div>
 </div>
 </div>
@@ -51,7 +52,15 @@
 
 
   function change_source(id){
-    document.getElementById('popup').src=document.getElementById('img-src-'+id).src
+    $('#popup').attr('src', $('#img-src-'+id).attr('src'));
+    
+    if ( $('#like_photo_' + id).length > 0){
+
+      $('#like_button').html($('#like_photo_' + id).html());
+    }
+    else 
+      $('#like_button').html($('#unlike_photo_' + id).html());
+
   }
 
 
