@@ -2,7 +2,6 @@ class UserBoxFollowsController < ApplicationController
   def create
     # find box
     box_id = params[:user_box_follow][:box_id]
-
     @box = Box.find(box_id)
     if @box == nil
       a
