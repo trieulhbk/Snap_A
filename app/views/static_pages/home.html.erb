@@ -27,6 +27,7 @@
     <h2 style="text-align: left">Friends to Follow</h2>
 
     <span class="story nohover FollowStory">
+      <% if !@friends_profile.nil? %>
       <% @friends_profile.each do |user| %>
         <% @user = user %>
       <% if !current_user.following?(@user) %>
@@ -40,7 +41,8 @@
         <a href="/users/<%="#{user.id}"%>"><strong><%= user.name%></strong></a>
       </span>
     <%end%>
-    <%end%>
+  <%end%>
+<%end%>
     </span>
   </div>
 

@@ -10,7 +10,7 @@ class AuthenticationsController < ApplicationController
     if authentication
       if !current_user?(authentication.user) && !current_user.nil?
         flash[:info] = "Current #{omniauth['provider']} account is linked to other account. Please sign out #{omniauth['provider']}! "
-        redirect_to root_path
+        redirect_back_or root_path
       else
         # User is already registered with application
         flash[:info] = 'Signed in successfully.'

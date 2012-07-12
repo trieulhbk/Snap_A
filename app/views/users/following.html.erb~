@@ -38,7 +38,7 @@
 
 
         <li>
-        <a href="/users/<%="#{@user.id}"%>/following" class="selected">
+        <a href="/users/<%="#{@user.id}"%>/following">
           <strong><%=@user.following_users.count%></strong> Following
         </a>
         </li>
