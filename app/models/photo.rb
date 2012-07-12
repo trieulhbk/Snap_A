@@ -22,7 +22,7 @@ class Photo < ActiveRecord::Base
   validates_attachment_size :image, :less_than => 5.megabytes
   validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/png']
 
-  has_many :user_photo_actions, foreign_key: "photo_id", 
+  has_many :user_photo_actions, foreign_key: "photo_id",
   dependent: :destroy
 
   has_many :attaching_users, through: :user_photo_actions, source: :user
@@ -55,5 +55,5 @@ class Photo < ActiveRecord::Base
     io.original_filename.blank? ? nil : io
   rescue
   end
-  
+
 end

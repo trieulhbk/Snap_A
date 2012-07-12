@@ -256,3 +256,8 @@ body#building {height: 100%;}
 
 .HeaderContainer .beforeDivider a {padding-bottom: 10px;}
 .HeaderContainer .divider a {padding-top: 10px; border-top: 1px solid #e1dfdf;}
+
+#CategoriesDropdown {
+  margin-top: 30px;
+  margin-left: -100px;
+}

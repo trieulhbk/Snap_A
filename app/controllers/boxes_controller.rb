@@ -14,7 +14,7 @@ class BoxesController < ApplicationController
     if @box.save
       follower_follow_this_box(@box)
       # redirect_to root_path
-      redirect_to upload_path
+      redirect_back_or user_path(@user)
     else
       # @micropost = current_user.microposts.build(params[:micropost])
       # if @micropost.save
@@ -45,7 +45,7 @@ class BoxesController < ApplicationController
     box = Box.find(params[:id]).destroy
     delete_rel_to_box(box)
     flash[:success] = "Box #{params[:id]} destroyed."
-    redirect_to boxes_path
+    redirect_back_or user_path(@user)
   end
 
   def delete

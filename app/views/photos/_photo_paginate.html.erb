@@ -23,9 +23,14 @@
         <!--   	<%= Notification.find_all_by_relation_type("user_photo_actions like #{photo.id}").count %> -->
         <div style="color: gray"><%= UserPhotoAction.find_all_by_photo_id(photo.id).count %> likes
           <br/>pinned on <%= link_to photo.box.name, box_path( photo.box) %>
-      </div>
+        <% if !current_user?(photo.box.owner)%>
+          of <%= link_to photo.box.owner.name, user_path(photo.box.owner) %>
+      <% else %>
+        of <%= link_to "You", user_path(current_user) %>
+    <% end %>
+  </div>
 
-    </div>
+</div>
   </div>
 
 </div>
