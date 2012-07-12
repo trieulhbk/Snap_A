@@ -6,8 +6,8 @@
 				<%= image_tag source %>
 			</a>
 		</td>
-		<td>
-			<%= form_for @photo, :html => { multipart: true} do |f| %>
+		<td >
+			<%= form_for(@photo, :html => { multipart: true}, remote: true) do |f| %>
     		<%= render 'shared/error_messages', object: f.object %>
     		<%= f.label :box_id %><br />
  			<%= f.collection_select :box_id, current_user.boxes.all, :id, :name %>

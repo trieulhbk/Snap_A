@@ -1,3 +1,7 @@
+
+<div class="notification">
+  <h4> Recently Activity </h4>
+</br>
   <% Notification.find_all_by_target_id(current_user.id).each do | noti | %>
 
 <li>
@@ -11,12 +15,12 @@
       <span class="label label-success">User Photo</span>
       <% photo_id = noti.relation_type.from(24) %>
         <%= link_to User.find(noti.source_id).name, user_path(User.find(noti.source_id)) %> 
-        liked your <%= link_to "#{Photo.find(photo_id).name} name", photo_path(Photo.find(photo_id)) %>
+        liked your <%= link_to "#{Photo.find(photo_id).name} photo", photo_path(Photo.find(photo_id)) %>
         <% else %> <% if noti.relation_type.to(15) == "user_box_follows" %>
           <span class="label label-important">User Box</span>
         <% box_id = noti.relation_type.from(17) %>
           <%= link_to User.find(noti.source_id).name, user_path(User.find(noti.source_id)) %> 
-          follow your <%= link_to Box.find(box_id).name, box_path(Box.find(box_id)) %> box
+          follow your <%= link_to "#{Box.find(box_id).name} box", box_path(Box.find(box_id)) %>
           <% else %> 
             <%= User.find(noti.source_id).name%> <%= noti.relation_type %> <%= User.find(noti.target_id).name %>
           <%end%>
@@ -30,5 +34,5 @@
   <hr/>
 
   <%end%>
-
+</div>
 

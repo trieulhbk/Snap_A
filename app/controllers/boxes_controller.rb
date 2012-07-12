@@ -27,7 +27,7 @@ class BoxesController < ApplicationController
   end
 
   def show
-    store_location
+
 
     @box=Box.find(params[:id])
     @user = @box.owner

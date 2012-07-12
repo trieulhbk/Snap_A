@@ -21,8 +21,13 @@
       <div style="position: relative; margin-left: 3px;">
         <%= photo.name %>
         <!--   	<%= Notification.find_all_by_relation_type("user_photo_actions like #{photo.id}").count %> -->
-        <div style="color: gray"><%= UserPhotoAction.find_all_by_photo_id(photo.id).count %> likes
-          <br/>pinned on <%= link_to photo.box.name, box_path( photo.box) %>
+        <div style="color: gray"> 
+          <% if UserPhotoAction.find_all_by_photo_id(photo.id).count > 0 %>
+          <%= UserPhotoAction.find_all_by_photo_id(photo.id).count %> likes
+          <%end%>
+          <br/> <%= link_to "#{photo.box.owner.name}", user_path(photo.box.owner)  unless current_user?(photo.box.owner)  %>
+            
+          pinned on <%= link_to photo.box.name, box_path( photo.box) %>
       </div>
 
     </div>
