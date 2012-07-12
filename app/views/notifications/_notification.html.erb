@@ -1,0 +1,25 @@
+<li>
+  <span class="content">
+    <%if notification.relation_type.to(15) == "user_box_follows" %>
+
+      <span class="label label-important">User Box</span>
+      <%= link_to User.find(notification.source_id).name , User.find(notification.source_id) %>
+      started following <%= Box.find(notification.relation_type.from(17)).owner.name %>'s <%= link_to "#{Box.find(notification.relation_type.from(17)).name}", Box.find(notification.relation_type.from(17))%> box
+    <%end%>
+    <%if notification.relation_type == "user_user_relationships" %>
+      <span class="label label-info">User User</span>
+      <%= link_to User.find(notification.source_id).name , User.find(notification.source_id) %>
+      started following <%= link_to "#{User.find(notification.target_id).name}" , User.find(notification.target_id) %>'s boxes
+    <%end%>
+    <%if notification.relation_type.to(22) == "user_photo_actions like"%>
+      <span class="label label-success">User Photo</span>
+      <%= link_to User.find(notification.source_id).name , User.find(notification.source_id) %>
+      liked <%= Photo.find(notification.relation_type.from(24)).box.owner.name %>'s <%= link_to "#{Photo.find(notification.relation_type.from(24)).name}", Photo.find(notification.relation_type.from(24))%> photo
+    <%end%>
+  </span>
+  <span class="timestamp">
+    <%= time_ago_in_words(notification.created_at) %> ago.
+  </span>
+
+  <hr>
+</li>
