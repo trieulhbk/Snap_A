@@ -37,13 +37,13 @@
 <div style="display: none"><%= will_paginate @photos %></div>
 <%end%>
 
-<div class="modal hide fade" id="ZoomIn">
+<div class="modal hide " id="ZoomIn">
   <div class="modal-body">
 
     <div align="center" ><img id="popup"src="" style="height: 350px; width: auto;"  > </div>
   </div>
   <div class="modal-footer">
-    
+
     <span id="like_button">abc</span>
   </div>
 </div>
@@ -53,12 +53,12 @@
 
   function change_source(id){
     $('#popup').attr('src', $('#img-src-'+id).attr('src'));
-    
+
     if ( $('#like_photo_' + id).length > 0){
 
       $('#like_button').html($('#like_photo_' + id).html());
     }
-    else 
+    else
       $('#like_button').html($('#unlike_photo_' + id).html());
 
   }
