@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
 
   def index
+    store_location
     @photos=[]
     if params[:category_id].nil? || Category.count < params[:category_id].to_i
       Category.all.each do |c|
