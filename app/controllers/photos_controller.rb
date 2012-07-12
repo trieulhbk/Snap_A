@@ -35,14 +35,16 @@ class PhotosController < ApplicationController
 	def create
 		@photo=Photo.new(params[:photo])
 		if @photo.save
-			flash[:success] = "Upload new photo successfully"
+# 			flash[:success] = "Upload new photo successfully"
+			flash_facebook = "Upload new photo successfully"
 			respond_to do |format|
 				format.html { redirect_back_or upload_path }
 				format.js
 			end
 			# redirect_back_or upload_path
 		else
-			flash[:error] = "Upload failed"
+			# flash[:error] = "Upload failed"
+			flash_facebook = "Upload failed"
 			respond_to do |format|
 				format.html { render 'pc' }
 				format.js

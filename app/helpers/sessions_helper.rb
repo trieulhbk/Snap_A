@@ -22,7 +22,7 @@ module SessionsHelper
   end
 
   def box_owner?(box)
-    current_user == User.find(box.user_id)
+    !box.nil? && current_user == User.find(box.user_id)
   end
 
   def signed_in_user
