@@ -10,5 +10,5 @@ class Box < ActiveRecord::Base
   dependent: :destroy
 
   has_many :users, through: :user_box_follows, source: :user
-  has_many :photos
+  has_many :photos, dependent:   :destroy
 end

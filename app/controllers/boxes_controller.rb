@@ -12,7 +12,7 @@ class BoxesController < ApplicationController
     if @box.save
       follower_follow_this_box(@box)
       # redirect_to root_path
-      redirect_back_or user_path(@user)
+      redirect_back_or user_path(current_user)
     else
       # @micropost = current_user.microposts.build(params[:micropost])
       # if @micropost.save
