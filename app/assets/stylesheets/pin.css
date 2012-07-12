@@ -259,7 +259,7 @@ body#building {height: 100%;}
 
 #wrapper {position: relative; width: auto; min-width: 933px; margin: 0 auto; border: none;}
 .BoardLayout { visibility: hidden; /*opacity: 0;*/}
-
-
-
-
+#CategoriesDropdown {
+  margin-top: 30px;
+  margin-left: -100px;
+}

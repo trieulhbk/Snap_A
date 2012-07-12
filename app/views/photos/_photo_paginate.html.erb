@@ -14,7 +14,7 @@
           <a class="btn btn-small" style="background: initial; border: 0;" href="<%= edit_photo_path(photo) %>"><i class="icon-edit"></i></a>
           <a href="/photos/<%= photo.id%>" class="btn btn-small"  style="background: initial; border: 0;" data-confirm="You sure?" data-method="delete" rel="nofollow"><i class="icon-trash"></i></a>
         <% end %>
-        <a class="btn btn-small"  style="background: initial; border: 0;" href="/reports/?photo=<%=photo.id%>"><i class="icon-warning-sign"></i></a>
+        <a href="/reports/?photo=<%=photo.id%>" class="btn btn-small"  style="background: initial; border: 0;" data-confirm="You sure?" data-method="post" rel="nofollow"><i class="icon-warning-sign"></i></a>
 
         <%= render 'photos/like_photo_form', photo: photo %>
       </div>
@@ -23,9 +23,14 @@
         <!--   	<%= Notification.find_all_by_relation_type("user_photo_actions like #{photo.id}").count %> -->
         <div style="color: gray"><%= UserPhotoAction.find_all_by_photo_id(photo.id).count %> likes
           <br/>pinned on <%= link_to photo.box.name, box_path( photo.box) %>
-      </div>
+        <% if !current_user?(photo.box.owner)%>
+          of <%= link_to photo.box.owner.name, user_path(photo.box.owner) %>
+      <% else %>
+        of <%= link_to "You", user_path(current_user) %>
+    <% end %>
+  </div>
 
-    </div>
+</div>
   </div>
 
 </div>

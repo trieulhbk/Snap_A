@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    store_location
     @user = User.find(params[:id])
     @boxes = @user.boxes
     @count_photo = 0
@@ -50,7 +51,8 @@ class UsersController < ApplicationController
     @user.boxes.each do |box|
       @photos[@photos.length..@photos.length] = box.photos
     end
-    @photos = Photo.order("created_at DESC").paginate(page: params[:page],per_page: 15)
+    @photos = @photos.sort_by{|t| - t.created_at.to_i}
+    @photos = @photos.paginate(page: params[:page],per_page: 15)
 
   end
 

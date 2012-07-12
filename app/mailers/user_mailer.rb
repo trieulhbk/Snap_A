@@ -3,6 +3,7 @@ class UserMailer < ActionMailer::Base
 
   def invite(email)
     @email = email
+    @root_url = root_url
     mail(:to => email, :subject => "Invite")
   end
 
