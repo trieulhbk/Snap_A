@@ -53,7 +53,14 @@
 
   function change_source(id){
     $('#popup').attr('src', $('#img-src-'+id).attr('src'));
-    $('#like_button').html($('#like_photo_' + id).html());
+    
+    if ( $('#like_photo_' + id).length > 0){
+
+      $('#like_button').html($('#like_photo_' + id).html());
+    }
+    else 
+      $('#like_button').html($('#unlike_photo_' + id).html());
+
   }
 
 
