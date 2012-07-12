@@ -73,7 +73,7 @@ class UsersController < ApplicationController
       session.delete :authentication
     end
     if @user.save
-      deliver_password_verification_instructions(@user)
+      deliver_verification_instructions(@user)
       flash[:notice] = "Thanks for signing up, we've delivered an email to you with instructions on how to complete your registration!"
       redirect_to root_path
     else
@@ -101,13 +101,6 @@ class UsersController < ApplicationController
     flash[:success] = "User destroyed"
     redirect_to users_path
   end
-
-  def deliver_password_verification_instructions(user)
-    user.reset_persistence_token!
-    mail = UserMailer.verify(user)
-    mail.deliver
-  end
-
 
   def toggle_active
     if current_user.active

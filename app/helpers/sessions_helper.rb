@@ -75,4 +75,9 @@ module SessionsHelper
   def twitter?(user)
     !user.authentications.find_by_provider("twitter").nil?
   end
+
+  def deliver_verification_instructions(user)
+    mail = UserMailer.verify(user)
+    mail.deliver
+  end
 end
