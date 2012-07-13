@@ -6,17 +6,23 @@ namespace :db do
     make_boxes
     make_photos
     make_relationships
+    make_users_like_photos
     # make_notifications
   end
 end
 
 def make_users
-   admin = User.create!(name:"Example User",
-    email:    "example@railstutorial.org",
+   admin = User.create!(name:"Admin",
+    email:    "admin@snap.com",
     password: "foobar",
     password_confirmation: "foobar")
    admin.toggle!(:admin)
    admin.verify!
+   normal = User.create!(name:"Normal",
+    email:    "normal@snap.com",
+    password: "foobar",
+    password_confirmation: "foobar")
+   normal.verify!
   10.times do |n|
     name  = Faker::Name.name
     email = "example-#{n+1}@railstutorial.org"
@@ -112,5 +118,12 @@ def make_photos
 end
 
 def make_users_like_photos
-
+  users=User.all(limit: 5)
+  users.each do |u|
+    50.times do
+      i = rand(Photo.count -1 ) + 1
+      photo = Photo.find(i)
+      u.act_on_photo!(photo, :like)
+    end
+  end
 end

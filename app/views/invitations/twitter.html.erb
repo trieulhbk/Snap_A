@@ -1,6 +1,2 @@
 <%= render '/shared/invite' %>
-<%= link_to 'Tweet to your timeline', '#', :id => :tweet, class: "btn btn-large btn-primary" %>
-  <div id="fb-root"></div>
-</br>
-
-<%= javascript_include_tag "tweet" %>
+<%= tweet_button(:url => root_url, :text => "Awesome Snap App") %>

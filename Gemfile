@@ -17,6 +17,7 @@ gem 'fb_graph'
 gem 'paperclip'
 gem 'mail', '2.4.4'
 gem 'twitter'
+gem 'tweet-button'
 
 group :development do
   gem 'sqlite3'

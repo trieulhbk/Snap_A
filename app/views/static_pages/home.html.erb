@@ -53,10 +53,15 @@
     <h2 style="text-align: left;margin-left: 5px">N o t i f i c a t i o n</h2>
       <%= render 'notifications/user_notification' %>
   </div>
+  <div style="margin: 5px" >
+  <%= tweet_button(:url => root_url, :text => "Awesome Snap App") %>
 </div>
+</div>
+
 <section class="content" style="margin-right: 0px;margin-left: 300px">
   <%= render :partial => 'photos/photo_paginate' %>
 </section>
 </div>
 </div>
 <%end%>
+

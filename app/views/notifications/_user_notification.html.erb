@@ -1,4 +1,4 @@
-<% Notification.order("created_at DESC").find_all_by_target_id(current_user.id).each do | noti | %>
+<% Notification.order("created_at DESC").find_all_by_target_id(current_user.id)[0..10].each do | noti | %>
 
   <div style="margin-left: 5px;margin-right: 3px">
     <% if noti.relation_type == "user_user_relationships" %>
