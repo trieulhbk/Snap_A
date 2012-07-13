@@ -25,12 +25,19 @@ class PhotosController < ApplicationController
 		token = current_user.authentications.find_by_provider('facebook').access_token
 
 		client = FBGraph::Client.new(:client_id => GRAPH_APP_ID, :secret_id => GRAPH_SECRET, :token => token)
-		photos =client.selection.me.photos.limit(0).info!
-		@tagged_photos = photos.data.data.map(&:source)
-		user =FbGraph::User.me(token)
-		@albums=user.albums.map(&:photos);
-		store_location
+        @photos =client.selection.me.photos.limit(0).info!
+        @photos = @photos.data.data.map(&:source)
 
+        user =FbGraph::User.me(token)
+        albums=user.albums.map(&:photos);
+        albums.each do |album|
+        	uploaded_photos= album.collection
+        	uploaded_photos.each do |uploaded_photo|
+        		@photos << uploaded_photo[:source]
+        	end
+        end
+        @photos = @photos.paginate(page: params[:page],per_page: 10)
+        store_location
 	end
 
 	def create
